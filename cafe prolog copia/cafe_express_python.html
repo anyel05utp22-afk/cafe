@@ -1,0 +1,1583 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CaféExpress — Pedidos Online, Club VIP, Delivery y Analítica</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cafe-900: #1b0e05;
+      --cafe-800: #291508;
+      --cafe-700: #3d1f0d;
+      --cafe-600: #542b13;
+      --gold-500: #c8893a;
+      --gold-400: #dc9d4e;
+      --gold-600: #ae732c;
+      --gold-light: #f6ecdc;
+      --cream-50: #fdfaf6;
+      --cream-100: #f6efe4;
+      --cream-200: #ebdcc9;
+      --text-main: #271408;
+      --text-muted: #7a6354;
+      --green-ok: #237844;
+      --green-bg: #eaf6ee;
+      --red-no: #a82a2a;
+      --red-bg: #fdeeee;
+      --warn-color: #c46816;
+      --warn-bg: #fef4e8;
+      --blue-py: #1f5c87;
+      --blue-bg: #eaf3fa;
+      --border-subtle: #ebdcc9;
+      --shadow-sm: 0 4px 14px rgba(39, 20, 8, 0.05);
+      --shadow-md: 0 10px 30px rgba(39, 20, 8, 0.09);
+      --shadow-lg: 0 20px 48px rgba(39, 20, 8, 0.14);
+      --radius-sm: 10px;
+      --radius-md: 18px;
+      --radius-lg: 24px;
+      --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: var(--cream-50);
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+
+    /* BARRA DE NAVEGACIÓN */
+    nav {
+      position: sticky; top: 0; z-index: 1000; height: 72px;
+      background: rgba(27, 14, 5, 0.95); backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(200, 137, 58, 0.25);
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 clamp(16px, 4vw, 48px); gap: 16px;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 12px; color: #fff;
+      font-size: 1.3rem; font-weight: 800; letter-spacing: -0.3px; text-decoration: none;
+    }
+    .logo-badge {
+      background: linear-gradient(135deg, var(--gold-400), var(--gold-600));
+      color: #fff; width: 38px; height: 38px; border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+      box-shadow: 0 4px 12px rgba(200, 137, 58, 0.4);
+    }
+    .logo span { color: var(--gold-400); font-family: 'Playfair Display', serif; }
+    .nav-links { display: flex; align-items: center; gap: 18px; list-style: none; }
+    .nav-links a { color: rgba(255,255,255,0.78); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: var(--transition); }
+    .nav-links a:hover, .nav-links a.active { color: #fff; }
+    .nav-actions { display: flex; align-items: center; gap: 10px; }
+    .py-status {
+      font-size: 0.74rem; font-weight: 700; padding: 5px 11px; border-radius: 50px;
+      background: rgba(35, 120, 68, 0.25); color: #9cf2bc; border: 1px solid rgba(156,242,188,0.3);
+      white-space: nowrap;
+    }
+    .cart-btn {
+      background: linear-gradient(135deg, var(--gold-500), var(--gold-600)); color: #fff;
+      border: none; border-radius: 50px; padding: 9px 20px; font-family: inherit;
+      font-size: 0.88rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px;
+      transition: var(--transition); box-shadow: 0 4px 16px rgba(200, 137, 58, 0.35);
+    }
+    .cart-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(200, 137, 58, 0.5); }
+    .cart-count {
+      background: #fff; color: var(--cafe-900); border-radius: 50%;
+      min-width: 22px; height: 22px; padding: 0 5px; display: flex; align-items: center;
+      justify-content: center; font-size: 0.78rem; font-weight: 800;
+    }
+
+    /* HERO */
+    .hero {
+      position: relative; min-height: 440px;
+      background:
+        linear-gradient(135deg, rgba(27, 14, 5, 0.90) 0%, rgba(41, 21, 8, 0.82) 55%, rgba(61, 31, 13, 0.76) 100%),
+        url('img/hero_bg.jpg') center/cover no-repeat;
+      color: #fff; display: flex; align-items: center; padding: 54px clamp(16px, 5vw, 64px);
+    }
+    .hero-content { max-width: 720px; }
+    .hero-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(255,255,255,0.12); backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 50px;
+      font-size: 0.82rem; font-weight: 600; color: var(--gold-light); margin-bottom: 18px;
+    }
+    .hero-pill .dot { width: 8px; height: 8px; background: var(--gold-400); border-radius: 50%; display: inline-block; box-shadow: 0 0 10px var(--gold-400); }
+    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 4.3vw, 3.4rem); font-weight: 700; line-height: 1.15; margin-bottom: 14px; }
+    .hero h1 span { color: var(--gold-400); font-style: italic; }
+    .hero p { font-size: 1rem; color: rgba(255,255,255,0.86); margin-bottom: 26px; max-width: 600px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .btn-hero-primary {
+      background: linear-gradient(135deg, var(--gold-500), var(--gold-600)); color: #fff;
+      padding: 12px 26px; border-radius: 50px; font-weight: 700; font-size: 0.92rem;
+      text-decoration: none; display: inline-flex; align-items: center; gap: 8px; border: none;
+      cursor: pointer; font-family: inherit; transition: var(--transition);
+      box-shadow: 0 6px 20px rgba(200, 137, 58, 0.4);
+    }
+    .btn-hero-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 26px rgba(200, 137, 58, 0.55); }
+    .btn-hero-secondary {
+      background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
+      border: 1px solid rgba(255,255,255,0.25); color: #fff; padding: 12px 22px;
+      border-radius: 50px; font-weight: 600; font-size: 0.92rem; text-decoration: none;
+      display: inline-flex; align-items: center; gap: 8px; transition: var(--transition);
+    }
+    .btn-hero-secondary:hover { background: rgba(255,255,255,0.2); }
+
+    /* BANNER DINÁMICO DE SALUDO POR HORA (NUEVA OPCIÓN - SEMANA 12) */
+    .hora-banner {
+      background: linear-gradient(90deg, var(--gold-light), #fff);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 14px clamp(16px, 4vw, 56px);
+      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+    }
+    .hora-banner-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .hora-badge { background: var(--cafe-900); color: var(--gold-400); padding: 4px 12px; border-radius: 50px; font-size: 0.76rem; font-weight: 800; }
+    .hora-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+    /* BARRA DE ACCESO RÁPIDO A TODAS LAS OPCIONES */
+    .module-nav-bar {
+      background: #fff; border-bottom: 1px solid var(--border-subtle);
+      padding: 12px clamp(16px, 4vw, 56px); display: flex; align-items: center; gap: 10px;
+      overflow-x: auto; scrollbar-width: none; box-shadow: var(--shadow-sm);
+    }
+    .module-nav-bar::-webkit-scrollbar { display: none; }
+    .mod-tab {
+      display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 50px;
+      background: var(--cream-100); color: var(--text-main); font-size: 0.82rem; font-weight: 600;
+      text-decoration: none; white-space: nowrap; transition: var(--transition); border: 1px solid transparent;
+    }
+    .mod-tab.nuevo { background: var(--blue-bg); color: var(--blue-py); border-color: rgba(31,92,135,0.2); }
+    .mod-tab:hover, .mod-tab.active { background: var(--cafe-900); color: #fff; border-color: var(--cafe-900); }
+
+    /* CONTENEDOR PRINCIPAL */
+    .app-container {
+      max-width: 1360px; margin: 0 auto; padding: 36px clamp(16px, 3vw, 36px);
+      display: grid; grid-template-columns: 1fr 380px; gap: 34px; align-items: start;
+    }
+    .main-stream { display: flex; flex-direction: column; gap: 40px; }
+
+    .section-header { margin-bottom: 20px; }
+    .section-eyebrow {
+      display: inline-flex; align-items: center; gap: 6px; color: var(--gold-600);
+      font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px;
+    }
+    .badge-nuevo-py {
+      background: var(--blue-bg); color: var(--blue-py); padding: 2px 9px; border-radius: 50px;
+      font-size: 0.7rem; font-weight: 800; text-transform: uppercase; margin-left: 6px;
+    }
+    .section-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--cafe-900); }
+    .section-desc { color: var(--text-muted); font-size: 0.92rem; margin-top: 4px; }
+
+    /* BUSCADOR INTELIGENTE EN EL MENÚ (NUEVA OPCIÓN - SEMANA 12) */
+    .search-bar-box {
+      background: #fff; border: 1.5px solid var(--border-subtle); border-radius: 16px;
+      padding: 14px 16px; margin-bottom: 18px; box-shadow: var(--shadow-sm);
+      display: flex; flex-direction: column; gap: 10px;
+    }
+    .search-row { display: flex; gap: 10px; flex-wrap: wrap; }
+    .search-input {
+      flex: 1; min-width: 220px; padding: 10px 14px; border-radius: 10px;
+      border: 1.5px solid var(--border-subtle); font-family: inherit; font-size: 0.9rem;
+    }
+    .search-input:focus { outline: none; border-color: var(--gold-500); }
+    .search-meta { font-size: 0.82rem; color: var(--text-muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+    /* FILTROS Y MENÚ */
+    .filtros-wrapper { display: flex; gap: 10px; margin-bottom: 22px; flex-wrap: wrap; }
+    .filtro-chip {
+      background: #fff; border: 1.5px solid var(--border-subtle); color: var(--text-muted);
+      padding: 8px 16px; border-radius: 50px; font-family: inherit; font-size: 0.86rem; font-weight: 600;
+      cursor: pointer; transition: var(--transition); display: inline-flex; align-items: center; gap: 6px;
+    }
+    .filtro-chip:hover { border-color: var(--gold-500); color: var(--text-main); }
+    .filtro-chip.activo { background: var(--cafe-900); border-color: var(--cafe-900); color: #fff; }
+
+    .productos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+    .producto-card {
+      background: #fff; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);
+      overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow-sm); transition: var(--transition);
+    }
+    .producto-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: rgba(200, 137, 58, 0.45); }
+    .card-img-wrap { position: relative; height: 170px; background: var(--cream-100); overflow: hidden; }
+    .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .producto-card:hover .card-img-wrap img { transform: scale(1.06); }
+    .card-badge-cat {
+      position: absolute; top: 10px; left: 10px; background: rgba(27, 14, 5, 0.84);
+      color: #fff; font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 50px; text-transform: capitalize;
+    }
+    .card-badge-tag {
+      position: absolute; bottom: 8px; left: 10px; background: rgba(255,255,255,0.92);
+      color: var(--cafe-900); font-size: 0.7rem; font-weight: 600; padding: 2px 8px; border-radius: 6px;
+    }
+    .card-body { padding: 16px; display: flex; flex-direction: column; flex: 1; }
+    .card-title { font-size: 1.02rem; font-weight: 700; color: var(--cafe-900); margin-bottom: 5px; }
+    .card-desc { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 14px; flex: 1; }
+    .card-footer { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--cream-100); padding-top: 12px; }
+    .card-precio { font-size: 1.2rem; font-weight: 800; color: var(--cafe-900); }
+    .card-precio span { font-size: 0.8rem; font-weight: 600; color: var(--gold-600); margin-right: 2px; }
+    .btn-add-cart {
+      background: var(--cream-100); color: var(--cafe-900); border: 1.5px solid var(--border-subtle);
+      width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: var(--transition);
+    }
+    .btn-add-cart:hover { background: var(--gold-500); border-color: var(--gold-500); color: #fff; transform: scale(1.06); }
+
+    /* SECCIONES */
+    .feature-section {
+      background: #fff; border-radius: var(--radius-lg); border: 1px solid var(--border-subtle);
+      padding: 28px clamp(18px, 3vw, 32px); box-shadow: var(--shadow-sm);
+    }
+    .recom-controls, .form-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 14px;
+      background: var(--cream-50); padding: 18px; border-radius: var(--radius-md);
+      margin-bottom: 18px; border: 1px solid var(--border-subtle);
+    }
+    .form-group label { display: block; font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 5px; }
+    .form-control {
+      width: 100%; padding: 9px 12px; border-radius: 10px; border: 1.5px solid var(--border-subtle);
+      font-family: inherit; font-size: 0.88rem; background: #fff; color: var(--text-main);
+    }
+    .form-control:focus { outline: none; border-color: var(--gold-500); box-shadow: 0 0 0 3px rgba(200,137,58,0.14); }
+
+    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 14px; }
+    .kpi-card {
+      background: var(--cream-50); border: 1px solid var(--border-subtle); border-radius: 14px;
+      padding: 14px; display: flex; flex-direction: column; gap: 4px;
+    }
+    .kpi-label { font-size: 0.74rem; font-weight: 700; color: var(--gold-600); text-transform: uppercase; }
+    .kpi-val { font-size: 1.2rem; font-weight: 800; color: var(--cafe-900); }
+    .kpi-sub { font-size: 0.78rem; color: var(--text-muted); }
+
+    .two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 16px; }
+    .sub-panel { background: var(--cream-50); border: 1px solid var(--border-subtle); border-radius: 16px; padding: 18px; }
+    .sub-panel h4 { font-size: 0.95rem; font-weight: 800; color: var(--cafe-900); margin-bottom: 10px; }
+
+    /* COLA EN BARRA */
+    .queue-list { display: flex; flex-direction: column; gap: 8px; margin: 10px 0; }
+    .queue-pill {
+      background: #fff; border: 1px solid var(--border-subtle); border-radius: 10px;
+      padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;
+    }
+
+    /* BARRAS DE ANALÍTICA NUMPY */
+    .bar-chart { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; align-items: end; height: 150px; padding: 14px 8px 6px; background: #fff; border-radius: 14px; border: 1px solid var(--border-subtle); margin-top: 12px; }
+    .bar-col { display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end; }
+    .bar-fill { width: 100%; max-width: 42px; background: linear-gradient(180deg, var(--gold-400), var(--cafe-700)); border-radius: 8px 8px 4px 4px; transition: height 0.35s ease; }
+    .bar-lbl { font-size: 0.74rem; font-weight: 700; color: var(--text-muted); }
+    .bar-amt { font-size: 0.7rem; font-weight: 800; color: var(--cafe-900); }
+
+    .sales-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.8rem; background: #fff; border-radius: 12px; overflow: hidden; }
+    .sales-table th, .sales-table td { padding: 8px 10px; border-bottom: 1px solid var(--cream-100); text-align: center; }
+    .sales-table th { background: var(--cafe-900); color: #fff; font-weight: 700; }
+    .sales-table td:first-child { text-align: left; font-weight: 700; color: var(--cafe-900); }
+
+    /* RECOMENDADOR, ALÉRGENOS Y COMBOS ORIGINALES */
+    .recom-results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
+    .recom-mini-card {
+      background: var(--cream-50); border: 1px solid var(--border-subtle); border-radius: 14px;
+      padding: 14px; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .wa-box { background: #f7faf8; border: 1.5px solid #d3e7da; border-radius: var(--radius-md); padding: 20px; margin-bottom: 18px; }
+    .wa-bubble { background: #e7f7ed; border-left: 4px solid #25d366; padding: 12px 16px; border-radius: 12px; font-size: 0.9rem; color: #12542a; margin-bottom: 14px; display: flex; gap: 10px; }
+    .chips-container { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 14px; }
+    .allergen-chip {
+      background: #fff; border: 1.5px solid #d3e7da; border-radius: 50px; padding: 6px 13px;
+      font-size: 0.8rem; font-weight: 600; cursor: pointer; user-select: none;
+    }
+    .allergen-chip.selected { background: var(--red-bg); border-color: var(--red-no); color: var(--red-no); }
+    .stock-status-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; margin-top: 12px; }
+    .stock-item { background: #fff; border: 1px solid var(--border-subtle); border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; font-size: 0.84rem; }
+    .badge-status { font-size: 0.72rem; font-weight: 700; padding: 3px 8px; border-radius: 50px; }
+    .badge-status.disponible { background: var(--green-bg); color: var(--green-ok); }
+    .badge-status.agotado { background: var(--red-bg); color: var(--red-no); }
+    .badge-status.alerta { background: var(--warn-bg); color: var(--warn-color); }
+
+    .combos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-top: 14px; }
+    .combo-card {
+      background: linear-gradient(135deg, #fff, var(--cream-50)); border: 1.5px solid var(--border-subtle);
+      border-radius: 16px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;
+    }
+    .combo-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+    .combo-pill { background: var(--gold-light); color: var(--gold-600); padding: 3px 10px; border-radius: 50px; font-size: 0.72rem; font-weight: 800; }
+    .combo-items { font-size: 0.84rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+
+    /* CARRITO LATERAL */
+    .carrito-panel {
+      position: sticky; top: 92px; background: #fff; border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle); box-shadow: var(--shadow-md); overflow: hidden;
+      display: flex; flex-direction: column;
+    }
+    .carrito-header { background: var(--cafe-900); color: #fff; padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; }
+    .carrito-header h3 { font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+    .carrito-items { padding: 16px 20px; max-height: 290px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
+    .carrito-vacio { text-align: center; padding: 28px 10px; color: var(--text-muted); }
+    .item-row { display: flex; align-items: center; gap: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--cream-100); }
+    .item-img { width: 42px; height: 42px; border-radius: 10px; object-fit: cover; background: var(--cream-100); }
+    .item-info { flex: 1; }
+    .item-name { font-size: 0.85rem; font-weight: 700; color: var(--cafe-900); }
+    .item-sub { font-size: 0.76rem; color: var(--gold-600); font-weight: 700; }
+    .item-ctrls { display: flex; align-items: center; gap: 5px; background: var(--cream-50); border-radius: 50px; padding: 3px 6px; border: 1px solid var(--border-subtle); }
+    .ctrl-btn { background: none; border: none; width: 22px; height: 22px; border-radius: 50%; cursor: pointer; font-weight: 800; color: var(--cafe-900); }
+    .ctrl-btn:hover { background: var(--cream-200); }
+    .item-cant { font-size: 0.82rem; font-weight: 800; min-width: 16px; text-align: center; }
+
+    .carrito-extras { padding: 14px 20px; background: #fff; border-top: 1px solid var(--cream-100); display: flex; flex-direction: column; gap: 10px; }
+    .coupon-row { display: flex; gap: 6px; }
+    .coupon-msg { font-size: 0.76rem; font-weight: 600; color: var(--green-ok); }
+    .coupon-msg.err { color: var(--red-no); }
+
+    .carrito-resumen { background: var(--cream-50); padding: 16px 20px; border-top: 1px solid var(--border-subtle); display: flex; flex-direction: column; gap: 8px; }
+    .resumen-fila { display: flex; justify-content: space-between; font-size: 0.86rem; color: var(--text-muted); }
+    .resumen-fila.descuento { color: var(--green-ok); font-weight: 700; }
+    .resumen-fila.total { font-size: 1.2rem; font-weight: 800; color: var(--cafe-900); border-top: 1px dashed var(--border-subtle); padding-top: 8px; }
+    .btn-desc {
+      width: 100%; padding: 10px; background: #fff; border: 1.5px solid var(--gold-500);
+      color: var(--gold-600); border-radius: 12px; font-family: inherit; font-size: 0.85rem; font-weight: 700;
+      cursor: pointer; transition: var(--transition);
+    }
+    .btn-desc:hover:not(:disabled) { background: var(--gold-500); color: #fff; }
+    .btn-desc:disabled { opacity: 0.5; cursor: default; }
+    .btn-checkout {
+      width: 100%; padding: 13px; background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+      color: #fff; border: none; border-radius: 14px; font-family: inherit; font-size: 0.94rem; font-weight: 800;
+      cursor: pointer; transition: var(--transition); box-shadow: 0 4px 16px rgba(200,137,58,0.35);
+    }
+    .btn-checkout:hover:not(:disabled) { transform: translateY(-2px); }
+    .btn-checkout:disabled { opacity: 0.45; cursor: default; box-shadow: none; }
+
+    /* TOAST Y MODAL */
+    .toast-box {
+      position: fixed; bottom: 24px; right: 24px; background: var(--cafe-900); color: #fff;
+      padding: 13px 20px; border-radius: 14px; font-size: 0.88rem; font-weight: 600;
+      box-shadow: var(--shadow-lg); transform: translateY(100px); opacity: 0; transition: var(--transition);
+      z-index: 2000; display: flex; align-items: center; gap: 10px; border-left: 4px solid var(--gold-400);
+    }
+    .toast-box.show { transform: translateY(0); opacity: 1; }
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(20, 10, 4, 0.65); backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center; z-index: 3000;
+      opacity: 0; pointer-events: none; transition: var(--transition); padding: 20px;
+    }
+    .modal-overlay.show { opacity: 1; pointer-events: all; }
+    .modal-card { background: #fff; border-radius: var(--radius-lg); padding: 32px 28px; max-width: 460px; width: 100%; text-align: center; box-shadow: var(--shadow-lg); }
+    .modal-icon-badge { width: 68px; height: 68px; background: var(--green-bg); color: var(--green-ok); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 14px; }
+
+    footer { background: var(--cafe-900); color: rgba(255,255,255,0.75); padding: 40px clamp(16px, 4vw, 56px) 26px; margin-top: 50px; text-align: center; font-size: 0.84rem; }
+
+    @media (max-width: 980px) {
+      .app-container { grid-template-columns: 1fr; }
+      .carrito-panel { position: static; }
+      .nav-links { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVEGACIÓN PRINCIPAL -->
+<nav>
+  <a href="#" class="logo">
+    <div class="logo-badge">&#9749;</div>
+    <div><span>Café</span>Express</div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#menu" class="active">Menú</a></li>
+    <li><a href="#boleta-fidelidad">Puntos & Boleta</a></li>
+    <li><a href="#barra-vivo">Barra & Presupuesto</a></li>
+    <li><a href="#delivery-precios">Delivery</a></li>
+    <li><a href="#club-vip">Club VIP</a></li>
+    <li><a href="#analitica">Analítica</a></li>
+  </ul>
+
+  <div class="nav-actions">
+    <span class="py-status" id="py-status">🐍 Python activo</span>
+    <button class="cart-btn" onclick="scrollToCart()">
+      <span>&#128722;</span> Mi pedido <span class="cart-count" id="cart-count">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-pill">
+      <span class="dot"></span> Café de Especialidad, Delivery Inteligente &amp; Club VIP
+    </div>
+    <h1>El mejor café,<br><span>ahora aún más inteligente</span></h1>
+    <p>Pide desde nuestra carta artesanal, aplica cupones promocionales, personaliza tu bebida VIP, cotiza tu delivery en segundos, acumula puntos de fidelidad y explora la analítica en vivo.</p>
+    <div class="hero-actions">
+      <a href="#menu" class="btn-hero-primary">Explorar Menú &darr;</a>
+      <a href="#club-vip" class="btn-hero-secondary">&#128081; Personalizar Pedido VIP</a>
+      <a href="#delivery-precios" class="btn-hero-secondary">&#128757; Cotizar Delivery</a>
+    </div>
+  </div>
+</section>
+
+<!-- NUEVA OPCIÓN 1: BANNER DE SALUDO Y SUGERENCIA POR HORA DEL DÍA (Semana 12) -->
+<div class="hora-banner">
+  <div class="hora-banner-left">
+    <span class="hora-badge" id="hora-franja">Tarde</span>
+    <div id="hora-saludo-texto" style="font-size:0.9rem;">
+      <strong>Buenas tardes</strong> — Cargando sugerencia del momento...
+    </div>
+  </div>
+  <div class="hora-controls">
+    <label for="hora-select" style="font-size:0.78rem; font-weight:700; color:var(--text-muted);">Simular hora:</label>
+    <select id="hora-select" class="form-control" style="width:auto; padding:6px 10px; font-size:0.82rem;" onchange="actualizarSaludoHora()">
+      <option value="9">09:00 AM (Mañana)</option>
+      <option value="15" selected>03:00 PM (Tarde)</option>
+      <option value="20">08:00 PM (Noche)</option>
+    </select>
+    <button class="filtro-chip" style="background:var(--cafe-900); color:#fff; border-color:var(--cafe-900);" onclick="agregarSugerenciaHora()">
+      + Pedir sugerencia
+    </button>
+  </div>
+</div>
+
+<!-- BARRA DE ACCESO RÁPIDO (OPCIONES ORIGINALES + 6 NUEVAS OPCIONES) -->
+<div class="module-nav-bar">
+  <a href="#menu" class="mod-tab active">&#9749; Menú &amp; Buscador</a>
+  <a href="#boleta-fidelidad" class="mod-tab nuevo">&#129534; Boleta &amp; Puntos</a>
+  <a href="#barra-vivo" class="mod-tab nuevo">&#128203; Barra en Vivo &amp; Armar Pedido</a>
+  <a href="#delivery-precios" class="mod-tab nuevo">&#128757; Delivery &amp; Precios</a>
+  <a href="#club-vip" class="mod-tab nuevo">&#128081; Club VIP &amp; Monedero</a>
+  <a href="#analitica" class="mod-tab nuevo">&#128202; Analítica Ventas</a>
+  <a href="#recomendador" class="mod-tab">&#128161; Según Presupuesto</a>
+  <a href="#consulta-rapida" class="mod-tab">&#128172; Alérgenos &amp; Stock</a>
+  <a href="#combos" class="mod-tab">&#127873; Combos Especiales</a>
+</div>
+
+<!-- CONTENEDOR PRINCIPAL -->
+<div class="app-container">
+  <div class="main-stream">
+
+    <!-- SECCIÓN 1: MENÚ COMPLETO + NUEVO BUSCADOR INTELIGENTE (Semana 12) -->
+    <section id="menu">
+      <div class="section-header">
+        <div class="section-eyebrow">&#9749; Carta Artesanal</div>
+        <h2 class="section-title">Nuestro Menú</h2>
+        <p class="section-desc">Explora por categoría o escribe lo que te provoca en el buscador inteligente.</p>
+      </div>
+
+      <!-- NUEVA OPCIÓN: BUSCADOR POR FRASE (Semana 12 - .split(), .lower(), operador 'in') -->
+      <div class="search-bar-box">
+        <div class="search-row">
+          <input type="text" id="buscador-frase" class="search-input"
+                 placeholder="Escribe qué te provoca: ej. 'Quiero algo de chocolate o café frío'..."
+                 onkeydown="if(event.key==='Enter') ejecutarBuscadorMenu()">
+          <button class="btn-hero-primary" style="padding:10px 20px; font-size:0.86rem;" onclick="ejecutarBuscadorMenu()">
+            &#128269; Buscar en el Menú
+          </button>
+          <button class="filtro-chip" onclick="limpiarBuscadorMenu()">Ver todos</button>
+        </div>
+        <div class="search-meta" id="buscador-meta">
+          <span>Tip: prueba buscar <strong>"chocolate"</strong>, <strong>"café frío"</strong>, <strong>"queso"</strong> o <strong>"sin leche"</strong>.</span>
+        </div>
+      </div>
+
+      <div class="filtros-wrapper">
+        <button class="filtro-chip activo" onclick="filtrarCategoria('todos', this)">Todo (12)</button>
+        <button class="filtro-chip" onclick="filtrarCategoria('bebida', this)">&#9749; Bebidas</button>
+        <button class="filtro-chip" onclick="filtrarCategoria('postre', this)">&#127856; Postres</button>
+        <button class="filtro-chip" onclick="filtrarCategoria('sandwich', this)">&#129386; Sándwiches</button>
+      </div>
+
+      <div class="productos-grid" id="productos-grid"></div>
+    </section>
+
+    <!-- NUEVA OPCIÓN 2: BOLETA DETALLADA, IGV Y PUNTOS DE FIDELIDAD (Semana 11) -->
+    <section id="boleta-fidelidad" class="feature-section">
+      <div class="section-header">
+        <div class="section-eyebrow">&#129534; Facturación &amp; Beneficios <span class="badge-nuevo-py">Nuevo · Python S11</span></div>
+        <h3 class="section-title">Calculadora de Boleta, IGV y Puntos de Fidelidad</h3>
+        <p class="section-desc">Simula tu boleta con IGV (18%), descuento por cliente frecuente, puntos acumulados, bono por racha de visitas y empaques para llevar.</p>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Tu nombre</label>
+          <input id="s11-cliente" class="form-control" value="María">
+        </div>
+        <div class="form-group">
+          <label>Producto</label>
+          <select id="s11-producto" class="form-control" onchange="sincronizarPrecioS11()"></select>
+        </div>
+        <div class="form-group">
+          <label>Cantidad</label>
+          <input id="s11-cantidad" type="number" min="1" max="20" class="form-control" value="3">
+        </div>
+        <div class="form-group">
+          <label>Visitas esta semana (racha)</label>
+          <input id="s11-racha" type="number" min="0" max="5" class="form-control" value="2">
+        </div>
+      </div>
+
+      <div style="display:flex; gap:10px; flex-wrap:wrap;">
+        <button class="btn-hero-primary" style="padding:10px 20px; font-size:0.86rem;" onclick="calcularBoletaFidelidad()">
+          Calcular Boleta y Puntos
+        </button>
+        <button class="filtro-chip" onclick="usarCarritoEnBoleta()">
+          Usar totales de mi Carrito actual
+        </button>
+      </div>
+
+      <div class="kpi-grid" id="s11-kpis"></div>
+    </section>
+
+    <!-- NUEVA OPCIÓN 3: BARRA EN VIVO Y ARMADOR AUTOMÁTICO DE PEDIDO (Semana 13) -->
+    <section id="barra-vivo" class="feature-section">
+      <div class="section-header">
+        <div class="section-eyebrow">&#128203; Operaciones de Barra <span class="badge-nuevo-py">Nuevo · Python S13</span></div>
+        <h3 class="section-title">Cola de Preparación en Vivo y "Arma mi Pedido"</h3>
+        <p class="section-desc">Gestiona los pedidos en barra (agregar, reemplazar, cancelar y despachar) o deja que el sistema arme automáticamente un pedido según tu presupuesto.</p>
+      </div>
+
+      <div class="two-col">
+        <!-- Subpanel A: Cola en barra -->
+        <div class="sub-panel">
+          <h4>&#9749; Cola de Preparación en Barra</h4>
+          <div class="form-group" style="margin-bottom:8px;">
+            <label>Agregar nuevo pedido a la barra:</label>
+            <div style="display:flex; gap:6px;">
+              <input id="s13-nuevo" class="form-control" value="Jugo de Naranja">
+              <button class="filtro-chip" style="background:var(--cafe-900);color:#fff;" onclick="simularColaBarra()">Ejecutar</button>
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px;">
+            <div class="form-group">
+              <label>Cambiar turno #2 por:</label>
+              <input id="s13-reemplazo" class="form-control" value="Café Frío">
+            </div>
+            <div class="form-group">
+              <label>Cancelar pedido:</label>
+              <input id="s13-cancelar" class="form-control" value="Croissant">
+            </div>
+          </div>
+          <div id="s13-cola-out"></div>
+        </div>
+
+        <!-- Subpanel B: Armador automático por presupuesto -->
+        <div class="sub-panel">
+          <h4>&#128176; Arma mi Pedido Automático</h4>
+          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">Indica cuánto deseas gastar y armaremos un pedido completo sin pasarte de tu presupuesto.</p>
+          <div style="display:flex; gap:8px; align-items:center; margin-bottom:12px;">
+            <input id="s13-presupuesto" type="number" min="10" max="120" step="5" value="35" class="form-control" style="max-width:120px;">
+            <button class="btn-hero-primary" style="padding:9px 16px; font-size:0.84rem;" onclick="simularColaBarra()">Armar Pedido</button>
+          </div>
+          <div id="s13-lote-out"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NUEVA OPCIÓN 4: COTIZADOR DE DELIVERY Y GESTOR DE PRECIOS (Semana 14) -->
+    <section id="delivery-precios" class="feature-section">
+      <div class="section-header">
+        <div class="section-eyebrow">&#128757; Entregas &amp; Catálogo <span class="badge-nuevo-py">Nuevo · Python S14</span></div>
+        <h3 class="section-title">Cotizador de Delivery por Distrito y Precios del Día</h3>
+        <p class="section-desc">Calcula distancia, tiempo estimado de entrega y costo de envío desde nuestra tienda central, revisa popularidad del turno y actualiza precios del menú.</p>
+      </div>
+
+      <div class="two-col">
+        <!-- Delivery -->
+        <div class="sub-panel">
+          <h4>&#128205; Cotizar Delivery a Domicilio</h4>
+          <div class="form-group" style="margin-bottom:8px;">
+            <label>Distrito de entrega (Lima):</label>
+            <select id="s14-zona" class="form-control" onchange="ejecutarDeliveryYPrecios()">
+              <option value="-12.0550,-77.0400">Centro de Lima / Cercado</option>
+              <option value="-12.0600,-77.0350" selected>Jesús María / Lince</option>
+              <option value="-12.0950,-77.0360">San Isidro</option>
+              <option value="-12.1190,-77.0300">Miraflores</option>
+              <option value="-12.1040,-76.9990">San Borja</option>
+              <option value="-12.1460,-77.0210">Barranco</option>
+            </select>
+          </div>
+          <div style="display:grid; grid-template-columns:2fr 1fr; gap:8px; margin-bottom:10px;">
+            <div class="form-group">
+              <label>Producto:</label>
+              <select id="s14-prod" class="form-control" onchange="ejecutarDeliveryYPrecios()"></select>
+            </div>
+            <div class="form-group">
+              <label>Cant.:</label>
+              <input id="s14-cant" type="number" min="1" max="15" value="2" class="form-control" onchange="ejecutarDeliveryYPrecios()">
+            </div>
+          </div>
+          <div id="s14-delivery-out"></div>
+        </div>
+
+        <!-- Popularidad y actualización de precio -->
+        <div class="sub-panel">
+          <h4>&#127991; Popularidad del Turno y Ajuste de Precio</h4>
+          <div class="form-group" style="margin-bottom:8px;">
+            <label>Ver cuántas veces se vendió hoy:</label>
+            <select id="s14-tupla-prod" class="form-control" onchange="ejecutarDeliveryYPrecios()">
+              <option value="Café Americano" selected>Café Americano</option>
+              <option value="Capuchino">Capuchino</option>
+              <option value="Croissant">Croissant</option>
+              <option value="Galleta Artesanal">Galleta Artesanal</option>
+              <option value="Cheesecake">Cheesecake</option>
+            </select>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr auto; gap:8px; align-items:end; margin-bottom:10px;">
+            <div class="form-group">
+              <label>Actualizar precio del producto seleccionado (S/):</label>
+              <input id="s14-nuevo-precio" type="number" step="0.5" min="3" max="40" value="8.5" class="form-control">
+            </div>
+            <button class="btn-hero-primary" style="padding:9px 16px; font-size:0.82rem;" onclick="aplicarNuevoPrecioMenu()">
+              Actualizar
+            </button>
+          </div>
+          <div id="s14-precios-out"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NUEVA OPCIÓN 5: CLUB VIP, PERSONALIZADOR Y MONEDERO DIGITAL (Semana 15) -->
+    <section id="club-vip" class="feature-section">
+      <div class="section-header">
+        <div class="section-eyebrow">&#128081; Experiencia Personalizada <span class="badge-nuevo-py">Nuevo · Python S15</span></div>
+        <h3 class="section-title">Club CaféExpress VIP, Personalizador y Monedero Digital</h3>
+        <p class="section-desc">Arma tu combo personalizado (tamaño de vaso, temperatura, postre sin lactosa y tipo de pan), obtén 15% de descuento VIP y págalo con tu Monedero Digital recargable.</p>
+      </div>
+
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Nombre Socio VIP</label>
+          <input id="s15-nombre" class="form-control" value="Luis">
+        </div>
+        <div class="form-group">
+          <label>Bebida a personalizar</label>
+          <select id="s15-bebida" class="form-control">
+            <option value="Capuchino|12">Capuchino (S/ 12)</option>
+            <option value="Café Americano|8">Café Americano (S/ 8)</option>
+            <option value="Café Frío|14">Café Frío (S/ 14)</option>
+            <option value="Chocolate Caliente|10">Chocolate Caliente (S/ 10)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tamaño de vaso</label>
+          <select id="s15-tamano" class="form-control">
+            <option value="pequeno">Pequeño (+S/ 0)</option>
+            <option value="mediano">Mediano (+S/ 2)</option>
+            <option value="grande" selected>Grande (+S/ 4)</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Temperatura / Postre</label>
+          <select id="s15-temp" class="form-control">
+            <option value="caliente|true" selected>Caliente · Postre sin lactosa</option>
+            <option value="frio|true">Frío · Postre sin lactosa</option>
+            <option value="caliente|false">Caliente · Receta tradicional</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Tipo de pan (Sándwich)</label>
+          <select id="s15-pan" class="form-control">
+            <option value="integral" selected>Pan integral</option>
+            <option value="artesanal">Pan artesanal</option>
+            <option value="masa madre">Masa madre</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Recarga Monedero (S/)</label>
+          <input id="s15-recarga" type="number" min="0" max="200" step="5" value="20" class="form-control">
+        </div>
+      </div>
+
+      <button class="btn-hero-primary" style="padding:10px 22px; font-size:0.88rem;" onclick="ejecutarClubVIP()">
+        &#128081; Simular Pedido VIP y Pagar con Monedero
+      </button>
+
+      <div class="two-col" id="s15-out"></div>
+    </section>
+
+    <!-- NUEVA OPCIÓN 6: PANEL DE ANALÍTICA DE VENTAS Y DEMANDA (Semana 16 - NumPy) -->
+    <section id="analitica" class="feature-section">
+      <div class="section-header">
+        <div class="section-eyebrow">&#128202; Inteligencia de Negocio <span class="badge-nuevo-py">Nuevo · NumPy S16</span></div>
+        <h3 class="section-title">Panel de Analítica de Ventas y Simulador de Demanda</h3>
+        <p class="section-desc">Visualiza el desempeño semanal de CaféExpress, ingresos por día, corrección automática de fallos de caja (datos faltantes) y prueba de velocidad de procesamiento.</p>
+      </div>
+
+      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:end; margin-bottom:14px;">
+        <div class="form-group" style="min-width:180px;">
+          <label>Simular campaña descuento:</label>
+          <select id="s16-desc" class="form-control" onchange="ejecutarAnaliticaNumpy()">
+            <option value="0.0">Sin descuento (0%)</option>
+            <option value="0.10" selected>Campaña -10%</option>
+            <option value="0.15">Campaña -15%</option>
+            <option value="0.20">Campaña -20%</option>
+          </select>
+        </div>
+        <div class="form-group" style="min-width:190px;">
+          <label>Volumen prueba de rendimiento:</label>
+          <select id="s16-bench" class="form-control">
+            <option value="250000">250,000 registros</option>
+            <option value="500000" selected>500,000 registros</option>
+            <option value="1000000">1,000,000 registros</option>
+          </select>
+        </div>
+        <button class="btn-hero-primary" style="padding:10px 20px; font-size:0.86rem;" onclick="ejecutarAnaliticaNumpy()">
+          &#128200; Actualizar Analítica NumPy
+        </button>
+      </div>
+
+      <div class="kpi-grid" id="s16-kpis"></div>
+      <div class="bar-chart" id="s16-chart"></div>
+      <div style="overflow-x:auto;" id="s16-table-wrap"></div>
+      <div class="two-col" id="s16-extra"></div>
+    </section>
+
+    <!-- ============================================================ -->
+    <!-- SECCIONES ORIGINALES PRESERVADAS AL 100% (Semanas 6, 7 y 9)  -->
+    <!-- ============================================================ -->
+
+    <!-- SECCIÓN ORIGINAL: ASISTENTE SEGÚN PRESUPUESTO (Semana 6) -->
+    <section id="recomendador" class="feature-section">
+      <div class="section-header">
+        <div class="section-eyebrow">&#128161; Sugerencias a tu Medida</div>
+        <h3 class="section-title">¿Cuánto deseas gastar?</h3>
+        <p class="section-desc">Ajusta tu presupuesto y te mostraremos de inmediato las opciones que se ajustan a ti.</p>
+      </div>
+      <div class="recom-controls">
+        <div class="form-group">
+          <label for="recom-presupuesto">Presupuesto Máximo: <span id="presupuesto-val" style="color:var(--gold-600); font-weight:800;">S/ 10.00</span></label>
+          <input type="range" class="form-control" id="recom-presupuesto" min="5" max="20" step="0.5" value="10" oninput="actualizarRecomendaciones()">
+        </div>
+        <div class="form-group">
+          <label for="recom-cat">Filtrar por tipo:</label>
+          <select id="recom-cat" class="form-control" onchange="actualizarRecomendaciones()">
+            <option value="todos">Cualquier producto</option>
+            <option value="bebida" selected>Solo Bebidas Económicas</option>
+            <option value="postre">Solo Postres</option>
+            <option value="sandwich">Solo Sándwiches</option>
+          </select>
+        </div>
+      </div>
+      <div class="recom-results-grid" id="recom-results"></div>
+    </section>
+
+    <!-- SECCIÓN ORIGINAL: CONSULTA RÁPIDA & ALÉRGENOS (Semana 7) -->
+    <section id="consulta-rapida" class="feature-section">
+      <div class="section-header">
+        <div class="section-eyebrow">&#128172; Atención Personalizada</div>
+        <h3 class="section-title">Consulta Rápida &amp; Alérgenos</h3>
+        <p class="section-desc">Personaliza tus preferencias para ver qué opciones no contienen ingredientes que deseas evitar y están listas en stock.</p>
+      </div>
+      <div class="wa-box">
+        <div class="wa-bubble">
+          <span style="font-size:1.3rem;">&#128172;</span>
+          <div>
+            <strong>Pregunta frecuente:</strong><br>
+            <span id="wa-pregunta-texto">"¿Tienen algo sin leche y de menos de S/ 10.00?"</span>
+          </div>
+        </div>
+        <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted);">Marca ingredientes que deseas EXCLUIR:</label>
+        <div class="chips-container">
+          <div class="allergen-chip selected" data-ing="leche" onclick="toggleAllergen(this)">&#129371; Sin leche</div>
+          <div class="allergen-chip" data-ing="harina" onclick="toggleAllergen(this)">&#127806; Sin harina</div>
+          <div class="allergen-chip" data-ing="huevo" onclick="toggleAllergen(this)">&#129370; Sin huevo</div>
+          <div class="allergen-chip" data-ing="chocolate" onclick="toggleAllergen(this)">&#127851; Sin chocolate</div>
+          <div class="allergen-chip" data-ing="pollo" onclick="toggleAllergen(this)">&#127831; Sin pollo</div>
+          <div class="allergen-chip" data-ing="queso" onclick="toggleAllergen(this)">&#129472; Sin queso</div>
+        </div>
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <div>
+            <span style="font-size:0.84rem; font-weight:700; color:var(--text-muted);">Presupuesto máximo: </span>
+            <input type="number" id="wa-presupuesto" value="10" min="5" max="30" step="0.5" class="form-control" style="width:100px; display:inline-block;" oninput="actualizarConsultaWhatsApp()">
+          </div>
+          <button class="btn-hero-primary" style="padding:8px 18px; font-size:0.84rem;" onclick="ejecutarConsultaWhatsApp()">Ver Opciones Disponibles</button>
+        </div>
+      </div>
+      <div class="stock-status-grid" id="wa-results-grid"></div>
+      <div style="background:var(--cream-100); border-radius:14px; padding:16px; margin-top:18px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border:1px dashed var(--gold-500);">
+        <div>
+          <span style="font-size:0.74rem; font-weight:800; color:var(--gold-600); text-transform:uppercase;">Combo del Día:</span>
+          <div style="font-size:1rem; font-weight:800; color:var(--cafe-900);">&#9749; Café Americano + &#127856; Galleta / Keke</div>
+          <div style="font-size:0.8rem; color:var(--text-muted);">Precio habitual S/ 13.00 &bull; Con 10% de descuento: <strong style="color:var(--green-ok);">S/ 11.70</strong></div>
+        </div>
+        <button class="btn-hero-primary" style="padding:9px 16px; font-size:0.84rem;" onclick="agregarComboWhatsApp()">Añadir Combo (S/ 11.70)</button>
+      </div>
+    </section>
+
+    <!-- SECCIÓN ORIGINAL: COMBOS RECOMENDADOS (Semana 9) -->
+    <section id="combos" class="feature-section">
+      <div class="section-header">
+        <div class="section-eyebrow">&#127873; Ahorro y Variedad</div>
+        <h3 class="section-title">Combos Recomendados (Bebida + Postre)</h3>
+        <p class="section-desc">Selecciona tu presupuesto y descubre las mejores combinaciones para disfrutar.</p>
+      </div>
+      <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; flex-wrap:wrap;">
+        <label style="font-size:0.85rem; font-weight:700;">Presupuesto de Combo:</label>
+        <select id="combo-max-select" class="form-control" style="width:160px;" onchange="generarCombosIndeterminismo()">
+          <option value="15">Hasta S/ 15.00</option>
+          <option value="18">Hasta S/ 18.00</option>
+          <option value="20" selected>Hasta S/ 20.00</option>
+          <option value="25">Hasta S/ 25.00</option>
+        </select>
+        <span id="combo-count-badge" style="font-size:0.82rem; font-weight:700; color:var(--gold-600);"></span>
+      </div>
+      <div class="combos-grid" id="combos-grid"></div>
+    </section>
+
+  </div>
+
+  <!-- PANEL LATERAL: CARRITO REACTIVO MEJORADO CON CUPONES Y ETIQUETA DE VASO (Semana 12) -->
+  <aside class="carrito-panel" id="carrito-panel">
+    <div class="carrito-header">
+      <h3><span>&#128722;</span> Mi Pedido</h3>
+      <span style="font-size:0.78rem; background:rgba(255,255,255,0.2); padding:2px 9px; border-radius:50px;" id="cart-item-count">0 items</span>
+    </div>
+
+    <div class="carrito-items" id="carrito-items">
+      <div class="carrito-vacio" id="carrito-vacio">
+        <div style="font-size:2.4rem; opacity:0.7;">&#9749;</div>
+        <strong>Tu pedido está vacío</strong>
+        <p style="font-size:0.8rem; margin-top:4px;">Elige tus bebidas o postres del menú.</p>
+      </div>
+    </div>
+
+    <!-- NUEVO EN CARRITO: NOMBRE PARA VASO + CUPÓN PROMOCIONAL (Semana 12) -->
+    <div class="carrito-extras">
+      <div class="form-group">
+        <label for="cart-nombre-vaso">Nombre para la etiqueta de tu vaso:</label>
+        <input id="cart-nombre-vaso" class="form-control" style="padding:7px 10px; font-size:0.82rem;" placeholder="Ej. Ana María" value="Ana María">
+      </div>
+      <div class="form-group">
+        <label for="cart-cupon">¿Tienes cupón? (CAFE2026 · CAFEVIP · POSTRE5)</label>
+        <div class="coupon-row">
+          <input id="cart-cupon" class="form-control" style="padding:7px 10px; font-size:0.82rem;" placeholder="Ingresa tu código">
+          <button class="filtro-chip" style="padding:6px 12px; font-size:0.78rem;" onclick="aplicarCuponCarrito()">Aplicar</button>
+        </div>
+        <div id="cart-cupon-msg" class="coupon-msg" style="margin-top:4px;"></div>
+      </div>
+    </div>
+
+    <div class="carrito-resumen">
+      <div class="resumen-fila">
+        <span>Subtotal</span>
+        <span id="r-subtotal">S/ 0.00</span>
+      </div>
+      <div class="resumen-fila descuento" id="r-desc-fila" style="display:none;">
+        <span id="r-desc-label">Descuento Especial 10%</span>
+        <span id="r-desc-val">-S/ 0.00</span>
+      </div>
+      <div class="resumen-fila">
+        <span>Puntos estimados</span>
+        <span id="r-puntos" style="font-weight:700; color:var(--gold-600);">0 pts</span>
+      </div>
+      <div class="resumen-fila total">
+        <span>Total a Pagar</span>
+        <span id="r-total">S/ 0.00</span>
+      </div>
+
+      <button class="btn-desc" id="btn-desc" onclick="aplicarDescuento()" disabled>
+        &#127991; Aplicar Descuento 10%
+      </button>
+      <button class="btn-checkout" id="btn-checkout" onclick="confirmarPedido()" disabled>
+        Confirmar Pedido &rarr;
+      </button>
+    </div>
+  </aside>
+</div>
+
+<!-- TOAST Y MODAL -->
+<div class="toast-box" id="toast">
+  <span>&#9989;</span> <span id="toast-msg">Mensaje</span>
+</div>
+
+<div class="modal-overlay" id="modal-overlay" onclick="cerrarModal()">
+  <div class="modal-card" onclick="event.stopPropagation()">
+    <div class="modal-icon-badge">&#10004;</div>
+    <h3 style="font-family:'Playfair Display',serif; font-size:1.55rem; color:var(--cafe-900); margin-bottom:8px;">¡Pedido Confirmado!</h3>
+    <p id="modal-detalle" style="font-size:0.88rem; color:var(--text-muted); line-height:1.6; margin-bottom:20px;"></p>
+    <button class="btn-hero-primary" style="width:100%; justify-content:center;" onclick="cerrarModal()">Hacer Otro Pedido</button>
+  </div>
+</div>
+
+<footer>
+  <strong>CaféExpress</strong> &mdash; Café artesanal, Delivery inteligente, Club VIP y Analítica en Python + NumPy.<br>
+  <span style="opacity:0.65;">Integra Scala (Sem 1–3) &bull; Prolog (Sem 6–9) &bull; Python Multiparadigma &amp; Ciencia de Datos (Sem 11–16) &bull; <a href="/clasico" style="color:var(--gold-400);">Ver vista clásica original</a></span>
+</footer>
+
+<script>
+  const catalogo = [
+    { id: 1,  nombre: "Café Americano",     precio: 8.0,  categoria: "bebida",   img: "img/americano.png",      ingredientes: ["cafe"], desc: "Espresso con agua caliente, sabor suave y reconfortante." },
+    { id: 2,  nombre: "Capuchino",          precio: 12.0, categoria: "bebida",   img: "img/capuchino.png",      ingredientes: ["cafe", "leche"], desc: "Espresso con leche vaporizada y espuma cremosa." },
+    { id: 3,  nombre: "Café Frío",          precio: 14.0, categoria: "bebida",   img: "img/cafe_frio.png",      ingredientes: ["cafe", "hielo"], desc: "Cold brew con hielo, suave y refrescante." },
+    { id: 4,  nombre: "Chocolate Caliente", precio: 10.0, categoria: "bebida",   img: "img/chocolate.png",      ingredientes: ["chocolate", "leche"], desc: "Chocolate artesanal con leche entera cremosa." },
+    { id: 5,  nombre: "Torta de Chocolate", precio: 15.0, categoria: "postre",   img: "img/torta.png",          ingredientes: ["harina", "huevo", "chocolate", "leche"], desc: "Tres capas de bizcocho con ganache de cacao puro." },
+    { id: 6,  nombre: "Galleta Artesanal",  precio: 5.0,  categoria: "postre",   img: "img/galleta.png",        ingredientes: ["harina", "chocolate", "mantequilla"], desc: "Galleta horneada al momento con chispas de cacao." },
+    { id: 7,  nombre: "Cheesecake",         precio: 14.0, categoria: "postre",   img: "img/cheesecake.png",     ingredientes: ["harina", "queso", "frutos_rojos"], desc: "Base de galleta con crema de queso y coulis de frutos rojos." },
+    { id: 8,  nombre: "Croissant",          precio: 9.0,  categoria: "postre",   img: "img/croissant.png",      ingredientes: ["harina", "mantequilla"], desc: "Hojaldre mantecoso francés recién horneado." },
+    { id: 9,  nombre: "Sándwich de Pollo",  precio: 16.0, categoria: "sandwich", img: "img/sandwich_pollo.png", ingredientes: ["pan", "pollo", "lechuga", "tomate"], desc: "Pan artesanal, pollo a la plancha, lechuga fresca y tomate." },
+    { id: 10, nombre: "Club Sándwich",      precio: 18.0, categoria: "sandwich", img: "img/club_sandwich.png",  ingredientes: ["pan", "jamon", "queso", "huevo", "lechuga"], desc: "Triple piso con jamón, queso, huevo y vegetales." },
+    { id: 11, nombre: "Sándwich Veggie",    precio: 13.0, categoria: "sandwich", img: "img/veggie.png",         ingredientes: ["pan", "aguacate", "queso", "rucula", "tomate"], desc: "Aguacate fresco, queso tierno, rúcula y tomate cherry." },
+    { id: 12, nombre: "Jugo de Naranja",    precio: 9.0,  categoria: "bebida",   img: "img/naranja.png",        ingredientes: ["naranja"], desc: "Naranjas naturales exprimidas al momento." }
+  ];
+
+  const stockIngredientes = {
+    cafe: true, leche: true, te: true, harina: true, huevo: true, chocolate: true,
+    mantequilla: true, queso: true, pan: true, lechuga: true, tomate: true,
+    jamon: true, aguacate: true, rucula: true, naranja: true, hielo: true,
+    frutos_rojos: true, pollo: false
+  };
+
+  let carrito = [];
+  let descuentoPct = 0;
+  let descuentoEtiqueta = "Descuento Especial 10%";
+  let alergenosExcluidos = ["leche"];
+  let sugerenciaHoraActual = "Café Frío";
+  let ultimoLoteWhile = [];
+
+  async function apiPost(url, payload) {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    if (!res.ok) throw new Error("Error HTTP " + res.status);
+    return res.json();
+  }
+
+  // ============================================================
+  // MENÚ + FILTROS + NUEVO BUSCADOR INTELIGENTE (Semana 12)
+  // ============================================================
+  function renderMenu(items) {
+    const grid = document.getElementById("productos-grid");
+    grid.innerHTML = "";
+    if (!items.length) {
+      grid.innerHTML = `<p style="grid-column:1/-1; color:var(--text-muted);">No se encontraron productos con esa búsqueda.</p>`;
+      return;
+    }
+    items.forEach(p => {
+      const card = document.createElement("div");
+      card.className = "producto-card";
+      const ings = p.ingredientes.map(i => i.replace("_", " ")).join(", ");
+      card.innerHTML = `
+        <div class="card-img-wrap">
+          <img src="${p.img}" alt="${p.nombre}" onerror="this.src='img/americano.png'"/>
+          <span class="card-badge-cat">${p.categoria}</span>
+          <span class="card-badge-tag">${ings}</span>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">${p.nombre}</h4>
+          <p class="card-desc">${p.desc}</p>
+          <div class="card-footer">
+            <div class="card-precio"><span>S/</span>${p.precio.toFixed(2)}</div>
+            <button class="btn-add-cart" onclick="agregarAlCarrito(${p.id})" title="Añadir a mi pedido">+</button>
+          </div>
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function filtrarCategoria(cat, btn) {
+    document.querySelectorAll(".filtros-wrapper .filtro-chip").forEach(b => b.classList.remove("activo"));
+    if (btn) btn.classList.add("activo");
+    renderMenu(cat === "todos" ? catalogo : catalogo.filter(p => p.categoria === cat));
+  }
+
+  async function ejecutarBuscadorMenu() {
+    const frase = document.getElementById("buscador-frase").value.trim();
+    if (!frase) { limpiarBuscadorMenu(); return; }
+    try {
+      const data = await apiPost("/api/semana12/analizar", { frase, nombre: "Cliente", hora: 15, cupon: "", monto: 0 });
+      const ids = new Set(data.busqueda.coincidencias.map(c => c.id));
+      const filtrados = catalogo.filter(p => ids.has(p.id));
+      renderMenu(filtrados);
+      document.getElementById("buscador-meta").innerHTML = `
+        <span>&#128270; <strong>${data.busqueda.intencion}</strong> &bull; ${filtrados.length} resultado(s)</span>
+        <span>Palabras analizadas: <code>${data.busqueda.palabras_split.join(", ")}</code></span>
+      `;
+    } catch (e) {
+      mostrarToast("Inicia el servidor con python main.py para usar la búsqueda Python");
+    }
+  }
+
+  function limpiarBuscadorMenu() {
+    document.getElementById("buscador-frase").value = "";
+    document.getElementById("buscador-meta").innerHTML = `<span>Mostrando los 12 productos de nuestra carta artesanal.</span>`;
+    renderMenu(catalogo);
+  }
+
+  // ============================================================
+  // NUEVA OPCIÓN 1: SALUDO Y SUGERENCIA POR HORA (Semana 12)
+  // ============================================================
+  async function actualizarSaludoHora() {
+    const hora = parseInt(document.getElementById("hora-select").value);
+    const nombre = document.getElementById("cart-nombre-vaso").value || "Cliente";
+    try {
+      const data = await apiPost("/api/semana12/analizar", { hora, nombre, producto: "Café Americano", cupon: "", monto: 0, frase: "" });
+      const h = data.saludo_hora;
+      sugerenciaHoraActual = h.producto_sugerido || "Café Americano";
+      document.getElementById("hora-franja").textContent = h.franja;
+      document.getElementById("hora-saludo-texto").innerHTML = `<strong>${h.saludo}:</strong> ${h.recomendacion}`;
+    } catch (e) {}
+  }
+
+  function agregarSugerenciaHora() {
+    const prod = catalogo.find(p => p.nombre.toLowerCase() === sugerenciaHoraActual.toLowerCase()) || catalogo[0];
+    agregarAlCarrito(prod.id);
+  }
+
+  // ============================================================
+  // NUEVA OPCIÓN 2: BOLETA, IGV Y PUNTOS DE FIDELIDAD (Semana 11)
+  // ============================================================
+  function poblarSelectoresProductos() {
+    const opts = catalogo.map(p => `<option value="${p.nombre}">${p.nombre} (S/ ${p.precio.toFixed(2)})</option>`).join("");
+    document.getElementById("s11-producto").innerHTML = opts;
+    document.getElementById("s11-producto").value = "Capuchino";
+    document.getElementById("s14-prod").innerHTML = opts;
+    document.getElementById("s14-prod").value = "Café Americano";
+  }
+
+  function sincronizarPrecioS11() { calcularBoletaFidelidad(); }
+
+  async function calcularBoletaFidelidad(overrideSubtotal = null, overrideQty = null, overrideName = null) {
+    const cliente = document.getElementById("s11-cliente").value || "María";
+    const prodNombre = overrideName || document.getElementById("s11-producto").value;
+    const prodObj = catalogo.find(p => p.nombre === prodNombre) || catalogo[1];
+    const cantidad = overrideQty || parseInt(document.getElementById("s11-cantidad").value) || 1;
+    const precioUnit = overrideSubtotal !== null ? (overrideSubtotal / Math.max(cantidad, 1)) : prodObj.precio;
+    const racha = parseInt(document.getElementById("s11-racha").value) || 0;
+
+    try {
+      const data = await apiPost("/api/semana11/boleta", {
+        cliente, producto: prodNombre, precio_unitario: precioUnit,
+        cantidad, es_cliente_frecuente: true, racha_visitas: racha
+      });
+      const b = data.boleta;
+      document.getElementById("s11-kpis").innerHTML = `
+        <div class="kpi-card"><span class="kpi-label">Subtotal / Desc.</span><span class="kpi-val">S/ ${b.subtotal.toFixed(2)}</span><span class="kpi-sub">Descuento: -S/ ${b.monto_descuento.toFixed(2)}</span></div>
+        <div class="kpi-card"><span class="kpi-label">IGV (18%)</span><span class="kpi-val">S/ ${b.igv.toFixed(2)}</span><span class="kpi-sub">Base imponible: S/ ${b.base_imponible.toFixed(2)}</span></div>
+        <div class="kpi-card"><span class="kpi-label">Total Boleta</span><span class="kpi-val" style="color:var(--green-ok);">S/ ${b.total_pagar.toFixed(2)}</span><span class="kpi-sub">S/ ${b.costo_promedio_unidad.toFixed(2)} por unidad</span></div>
+        <div class="kpi-card"><span class="kpi-label">Puntos Ganados</span><span class="kpi-val">${b.puntos_totales} pts</span><span class="kpi-sub">Base: ${b.puntos_base_div_entera} + Bono racha: ${b.bono_racha_exponente}</span></div>
+        <div class="kpi-card"><span class="kpi-label">Empaques &amp; Saldo</span><span class="kpi-val">${b.pares_empaque} par(es)</span><span class="kpi-sub">${b.unidades_sueltas} suelta(s) · Sobrante: S/ ${b.sobrante_modulo}</span></div>
+      `;
+    } catch (e) {}
+  }
+
+  function usarCarritoEnBoleta() {
+    if (!carrito.length) { mostrarToast("Agrega primero al menos un producto a tu carrito"); return; }
+    const sub = calcularSubtotal();
+    const cant = carrito.reduce((a, i) => a + i.cantidad, 0);
+    calcularBoletaFidelidad(sub, cant, "Tu Carrito CaféExpress");
+    mostrarToast("Boleta calculada con tu carrito actual");
+  }
+
+  // ============================================================
+  // NUEVA OPCIÓN 3: COLA DE BARRA Y ARMAR PEDIDO (Semana 13)
+  // ============================================================
+  async function simularColaBarra() {
+    try {
+      const data = await apiPost("/api/semana13/cola", {
+        nuevo_pedido: document.getElementById("s13-nuevo").value,
+        reemplazo_indice_1: document.getElementById("s13-reemplazo").value,
+        pedido_cancelado: document.getElementById("s13-cancelar").value,
+        presupuesto: parseFloat(document.getElementById("s13-presupuesto").value) || 35
+      });
+      const g = data.gestion_cola;
+      document.getElementById("s13-cola-out").innerHTML = `
+        <div style="font-size:0.78rem; color:var(--text-muted); margin-bottom:6px;">
+          Despachado primero: <strong>${g.despachado_con_del}</strong>
+        </div>
+        <div class="queue-list">
+          ${g.recorrido_while.map(t => `<div class="queue-pill"><span>&#9749; ${t}</span><span class="badge-status disponible">En barra</span></div>`).join("")}
+        </div>
+      `;
+
+      const w = data.lote_while;
+      ultimoLoteWhile = w.productos;
+      document.getElementById("s13-lote-out").innerHTML = `
+        <div style="font-size:0.84rem; margin-bottom:8px;">
+          <strong>${w.cantidad_productos} productos</strong> por <strong>S/ ${w.gasto_total.toFixed(2)}</strong>
+          (te sobran S/ ${w.vuelto_restante.toFixed(2)})
+        </div>
+        <div class="queue-list">
+          ${w.productos.map(p => `<div class="queue-pill"><span>${p.nombre}</span><strong>S/ ${p.precio.toFixed(2)}</strong></div>`).join("")}
+        </div>
+        <button class="btn-desc" style="margin-top:8px;" onclick="pasarLoteAlCarrito()">+ Pasar todo este pedido al Carrito</button>
+      `;
+    } catch (e) {}
+  }
+
+  function pasarLoteAlCarrito() {
+    if (!ultimoLoteWhile.length) return;
+    ultimoLoteWhile.forEach(item => {
+      const p = catalogo.find(c => c.nombre === item.nombre);
+      if (p) agregarAlCarrito(p.id);
+    });
+    mostrarToast("Pedido automático agregado a tu carrito");
+  }
+
+  // ============================================================
+  // NUEVA OPCIÓN 4: DELIVERY POR DISTRITO Y PRECIOS (Semana 14)
+  // ============================================================
+  async function ejecutarDeliveryYPrecios() {
+    const [lat, lon] = document.getElementById("s14-zona").value.split(",").map(Number);
+    const producto_precio = document.getElementById("s14-prod").value || "Café Americano";
+    const producto_tupla = document.getElementById("s14-tupla-prod").value;
+    const nuevo_precio = parseFloat(document.getElementById("s14-nuevo-precio").value) || 8.5;
+    const cantidad = parseInt(document.getElementById("s14-cant").value) || 2;
+
+    try {
+      const data = await apiPost("/api/semana14/colecciones", {
+        producto_tupla, producto_precio, nuevo_precio, cantidad, lat, lon
+      });
+      const m = data.delivery_modular;
+      document.getElementById("s14-delivery-out").innerHTML = `
+        <div class="kpi-grid" style="margin-top:8px;">
+          <div class="kpi-card"><span class="kpi-label">Distancia / Tiempo</span><span class="kpi-val">${m.distancia_km} km</span><span class="kpi-sub">Llega en ~${m.tiempo_estimado_min} min</span></div>
+          <div class="kpi-card"><span class="kpi-label">Envío + IGV</span><span class="kpi-val">S/ ${m.costo_envio.toFixed(2)}</span><span class="kpi-sub">IGV: S/ ${m.igv.toFixed(2)} · Horario ${m.horario_fijo_tupla.join("-")}</span></div>
+          <div class="kpi-card"><span class="kpi-label">Total Delivery</span><span class="kpi-val" style="color:var(--green-ok);">${m.total_formateado}</span><span class="kpi-sub">Boleta ${m.codigo_boleta}</span></div>
+        </div>
+      `;
+      const t = data.tupla_conteo, d = data.diccionario_actualizado;
+      document.getElementById("s14-precios-out").innerHTML = `
+        <div class="kpi-card">
+          <span class="kpi-label">Popularidad en el turno</span>
+          <span class="kpi-val">${t.veces_vendido} ventas hoy</span>
+          <span class="kpi-sub">de ${t.producto_buscado} (registro de ${t.total_registros} pedidos)</span>
+        </div>
+        <div class="kpi-card" style="margin-top:8px;">
+          <span class="kpi-label">Vista previa cambio de precio</span>
+          <span class="kpi-val">${d.producto}: ${d.precio_formateado}</span>
+          <span class="kpi-sub">Precio anterior: S/ ${(d.precio_anterior ?? 0).toFixed(2)}</span>
+        </div>
+      `;
+    } catch (e) {}
+  }
+
+  async function aplicarNuevoPrecioMenu() {
+    const prodNombre = document.getElementById("s14-prod").value;
+    const nuevoPrecio = parseFloat(document.getElementById("s14-nuevo-precio").value);
+    if (!nuevoPrecio || nuevoPrecio <= 0) return;
+    const item = catalogo.find(p => p.nombre === prodNombre);
+    if (item) {
+      item.precio = nuevoPrecio;
+      renderMenu(catalogo);
+      actualizarRecomendaciones();
+      generarCombosIndeterminismo();
+      poblarSelectoresProductos();
+      document.getElementById("s14-prod").value = prodNombre;
+      await ejecutarDeliveryYPrecios();
+      mostrarToast(`Precio de ${prodNombre} actualizado a S/ ${nuevoPrecio.toFixed(2)}`);
+    }
+  }
+
+  // ============================================================
+  // NUEVA OPCIÓN 5: CLUB VIP Y MONEDERO DIGITAL (Semana 15)
+  // ============================================================
+  async function ejecutarClubVIP() {
+    const [bebida_nombre, bebida_precio] = document.getElementById("s15-bebida").value.split("|");
+    const [temperatura, sin_lactosa_str] = document.getElementById("s15-temp").value.split("|");
+    try {
+      const data = await apiPost("/api/semana15/poo", {
+        nombre_cliente: document.getElementById("s15-nombre").value || "Luis",
+        edad_cliente: 22,
+        saldo_inicial: 50.0,
+        recarga: parseFloat(document.getElementById("s15-recarga").value) || 0,
+        tamano_bebida: document.getElementById("s15-tamano").value,
+        bebida_nombre,
+        bebida_precio: parseFloat(bebida_precio),
+        temperatura,
+        sin_lactosa: sin_lactosa_str === "true",
+        tipo_pan: document.getElementById("s15-pan").value
+      });
+      const p = data.pedido, m = data.monedero_encapsulado;
+      document.getElementById("s15-out").innerHTML = `
+        <div class="sub-panel">
+          <h4>&#128081; Tu Pedido VIP Personalizado</h4>
+          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:8px;">${p.saludo_cliente}</p>
+          <p style="font-size:0.82rem; color:var(--gold-600); font-weight:700; margin-bottom:10px;">&#9749; ${data.accion_barista}</p>
+          <div class="queue-list">
+            ${p.items.map(i => `<div class="queue-pill"><span>${i.descripcion}</span><span class="badge-status disponible">${i.clase}</span></div>`).join("")}
+          </div>
+          <div style="margin-top:10px; font-weight:800; font-size:1.05rem; color:var(--green-ok);">
+            Total VIP (-${p.descuento_vip_pct}%): S/ ${p.total_a_pagar.toFixed(2)}
+          </div>
+        </div>
+        <div class="sub-panel">
+          <h4>&#128179; Monedero Digital CaféExpress</h4>
+          <div class="kpi-grid" style="margin-top:0;">
+            <div class="kpi-card"><span class="kpi-label">Saldo Disponible</span><span class="kpi-val" style="color:var(--green-ok);">S/ ${m.saldo_final.toFixed(2)}</span><span class="kpi-sub">Pago: ${m.pago_realizado ? "Aprobado ✓" : "Saldo insuficiente"}</span></div>
+            <div class="kpi-card"><span class="kpi-label">Puntos VIP</span><span class="kpi-val">${data.puntos_totales_vip} pts</span><span class="kpi-sub">+${data.puntos_ganados} pts en esta compra</span></div>
+          </div>
+          <div style="margin-top:10px; font-size:0.8rem; color:var(--text-muted);">
+            <strong>Movimientos:</strong> ${m.movimientos.join(" &rarr; ")}
+          </div>
+        </div>
+      `;
+    } catch (e) {}
+  }
+
+  // ============================================================
+  // NUEVA OPCIÓN 6: PANEL DE ANALÍTICA DE VENTAS (Semana 16 - NumPy)
+  // ============================================================
+  async function ejecutarAnaliticaNumpy() {
+    try {
+      const data = await apiPost("/api/semana16/numpy", {
+        descuento_promo: parseFloat(document.getElementById("s16-desc").value),
+        n_benchmark: parseInt(document.getElementById("s16-bench").value)
+      });
+      const e = data.estadisticas, a = data.algebra_lineal, n = data.datos_faltantes, b = data.benchmark, r = data.aleatorios;
+
+      document.getElementById("s16-kpis").innerHTML = `
+        <div class="kpi-card"><span class="kpi-label">Ingreso Semanal</span><span class="kpi-val" style="color:var(--green-ok);">S/ ${a.ingreso_total_semanal.toLocaleString("es-PE", {minimumFractionDigits:2})}</span><span class="kpi-sub">Calculado con álgebra matricial</span></div>
+        <div class="kpi-card"><span class="kpi-label">Unidades Vendidas</span><span class="kpi-val">${e.total_unidades_semana} uds</span><span class="kpi-sub">Media: ${e.media_unidades_por_dia}/día · Mediana: ${e.mediana_unidades_por_dia}</span></div>
+        <div class="kpi-card"><span class="kpi-label">Día Pico / Desv. Std</span><span class="kpi-val">${e.dia_mayor_venta}</span><span class="kpi-sub">Desviación estándar: ${e.desviacion_estandar_diaria} uds</span></div>
+        <div class="kpi-card"><span class="kpi-label">Velocidad NumPy</span><span class="kpi-val">${b.factor_aceleracion_x}x más rápido</span><span class="kpi-sub">${b.tiempo_numpy_seg}s vs ${b.tiempo_lista_seg}s (${b.n_elementos.toLocaleString()} regs)</span></div>
+      `;
+
+      const maxIng = Math.max(...a.ingresos_diarios_soles);
+      document.getElementById("s16-chart").innerHTML = a.dias.map((dia, i) => {
+        const val = a.ingresos_diarios_soles[i];
+        const pct = Math.max(18, Math.round((val / maxIng) * 100));
+        return `
+          <div class="bar-col">
+            <span class="bar-amt">S/${Math.round(val)}</span>
+            <div class="bar-fill" style="height:${pct}%"></div>
+            <span class="bar-lbl">${dia}</span>
+          </div>
+        `;
+      }).join("");
+
+      document.getElementById("s16-table-wrap").innerHTML = `
+        <table class="sales-table">
+          <thead>
+            <tr><th>Producto Top</th>${e.dias.map(d => `<th>${d}</th>`).join("")}<th>Total Uds</th><th>Precio Promo</th></tr>
+          </thead>
+          <tbody>
+            ${e.productos.map((prod, idx) => `
+              <tr>
+                <td>${prod}</td>
+                ${e.matriz_ventas_5x7[idx].map(v => `<td>${v}</td>`).join("")}
+                <td><strong>${e.unidades_por_producto[idx]}</strong></td>
+                <td style="color:var(--green-ok); font-weight:700;">S/ ${e.precios_con_descuento[idx].toFixed(2)}</td>
+              </tr>
+            `).join("")}
+          </tbody>
+        </table>
+      `;
+
+      document.getElementById("s16-extra").innerHTML = `
+        <div class="sub-panel">
+          <h4>&#128295; Limpieza Automática de Caja (Datos Faltantes)</h4>
+          <p style="font-size:0.82rem; color:var(--text-muted);">Detectados <strong>${n.cantidad_nan_detectados}</strong> registros vacíos (NaN) e imputados con la media válida (<strong>S/ ${n.media_sin_nan}</strong>):</p>
+          <p style="font-size:0.8rem; margin-top:6px;"><strong>Original:</strong> [${n.datos_originales.map(x => x === null ? "Faltante" : x).join(", ")}]</p>
+          <p style="font-size:0.8rem; margin-top:4px; color:var(--green-ok);"><strong>Corregido:</strong> [${n.datos_imputados_sin_nan.join(", ")}]</p>
+        </div>
+        <div class="sub-panel">
+          <h4>&#127922; Proyección Aleatoria de Demanda (10 días)</h4>
+          <p style="font-size:0.82rem; color:var(--text-muted);">Escenario simulado: <strong>[${r.arreglo_10_ventas_1_a_100.join(", ")}]</strong></p>
+          <p style="font-size:0.82rem; margin-top:6px;">Media proyectada: <strong>${r.media_muestra}</strong> &bull; Desviación estándar: <strong>${r.desviacion_estandar_muestra}</strong></p>
+        </div>
+      `;
+    } catch (e) {}
+  }
+
+  // ============================================================
+  // FUNCIONES ORIGINALES (Semanas 6, 7, 8, 9) + CARRITO CON CUPÓN
+  // ============================================================
+  function actualizarRecomendaciones() {
+    const presupuesto = parseFloat(document.getElementById("recom-presupuesto").value);
+    const cat = document.getElementById("recom-cat").value;
+    document.getElementById("presupuesto-val").textContent = `S/ ${presupuesto.toFixed(2)}`;
+    const resultados = catalogo.filter(p => p.precio <= presupuesto && (cat === "todos" || p.categoria === cat));
+    const cont = document.getElementById("recom-results");
+    cont.innerHTML = "";
+    if (!resultados.length) {
+      cont.innerHTML = `<p style="grid-column:1/-1; color:var(--text-muted); font-size:0.86rem;">No hay productos por S/ ${presupuesto.toFixed(2)} o menos.</p>`;
+      return;
+    }
+    resultados.forEach(p => {
+      const card = document.createElement("div");
+      card.className = "recom-mini-card";
+      card.innerHTML = `
+        <div>
+          <div style="font-size:0.72rem; font-weight:700; color:var(--gold-600); text-transform:uppercase;">${p.categoria}</div>
+          <div style="font-weight:700; font-size:0.92rem; color:var(--cafe-900); margin:3px 0;">${p.nombre}</div>
+          <div style="font-size:1rem; font-weight:800; color:var(--cafe-900);">S/ ${p.precio.toFixed(2)}</div>
+        </div>
+        <button class="filtro-chip" style="margin-top:8px; width:100%; justify-content:center; border-color:var(--gold-500);" onclick="agregarAlCarrito(${p.id})">+ Agregar</button>
+      `;
+      cont.appendChild(card);
+    });
+  }
+
+  function toggleAllergen(chip) {
+    const ing = chip.dataset.ing;
+    chip.classList.toggle("selected");
+    if (chip.classList.contains("selected")) {
+      if (!alergenosExcluidos.includes(ing)) alergenosExcluidos.push(ing);
+    } else {
+      alergenosExcluidos = alergenosExcluidos.filter(i => i !== ing);
+    }
+    actualizarConsultaWhatsApp();
+  }
+
+  function actualizarConsultaWhatsApp() {
+    const max = parseFloat(document.getElementById("wa-presupuesto").value) || 10;
+    const txt = document.getElementById("wa-pregunta-texto");
+    txt.textContent = alergenosExcluidos.length === 0
+      ? `"¿Tienen algo de menos de S/ ${max.toFixed(2)}?"`
+      : `"¿Tienen algo sin ${alergenosExcluidos.join(", ")} y de menos de S/ ${max.toFixed(2)}?"`;
+    ejecutarConsultaWhatsApp();
+  }
+
+  function ejecutarConsultaWhatsApp() {
+    const max = parseFloat(document.getElementById("wa-presupuesto").value) || 10;
+    const cont = document.getElementById("wa-results-grid");
+    cont.innerHTML = "";
+    catalogo.forEach(p => {
+      const faltantes = p.ingredientes.filter(i => stockIngredientes[i] === false);
+      const contieneExcluido = p.ingredientes.filter(i => alergenosExcluidos.includes(i));
+      let cls = "disponible", txt = "Opción Válida ✓";
+      if (faltantes.length) { cls = "agotado"; txt = `Agotado (${faltantes.join(", ")})`; }
+      else if (contieneExcluido.length) { cls = "alerta"; txt = `Contiene ${contieneExcluido.join(", ")}`; }
+      else if (p.precio > max) { cls = "alerta"; txt = `Supera S/ ${max.toFixed(2)}`; }
+      const item = document.createElement("div");
+      item.className = "stock-item";
+      item.innerHTML = `<div><strong>${p.nombre}</strong> (S/ ${p.precio.toFixed(2)})</div><span class="badge-status ${cls}">${txt}</span>`;
+      cont.appendChild(item);
+    });
+  }
+
+  function agregarComboWhatsApp() {
+    agregarAlCarrito(1);
+    agregarAlCarrito(6);
+    aplicarDescuento();
+    mostrarToast("Combo del día añadido con 10% de descuento");
+  }
+
+  function generarCombosIndeterminismo() {
+    const max = parseFloat(document.getElementById("combo-max-select").value);
+    const grid = document.getElementById("combos-grid");
+    grid.innerHTML = "";
+    const bebidas = catalogo.filter(p => p.categoria === "bebida");
+    const postres = catalogo.filter(p => p.categoria === "postre");
+    const combos = [];
+    bebidas.forEach(b => postres.forEach(pos => {
+      if (b.precio + pos.precio <= max) combos.push({ bebida: b, postre: pos, total: b.precio + pos.precio });
+    }));
+    document.getElementById("combo-count-badge").textContent = `${combos.length} combinaciones disponibles`;
+    combos.forEach(c => {
+      const card = document.createElement("div");
+      card.className = "combo-card";
+      card.innerHTML = `
+        <div>
+          <div class="combo-header"><span class="combo-pill">Combo Especial</span><strong>S/ ${c.total.toFixed(2)}</strong></div>
+          <div class="combo-items">
+            <span>&#9749; ${c.bebida.nombre} (S/ ${c.bebida.precio.toFixed(2)})</span>
+            <span>&#127856; ${c.postre.nombre} (S/ ${c.postre.precio.toFixed(2)})</span>
+          </div>
+        </div>
+        <button class="btn-checkout" style="padding:9px; font-size:0.84rem;" onclick="agregarComboComple(${c.bebida.id}, ${c.postre.id})">+ Agregar Combo</button>
+      `;
+      grid.appendChild(card);
+    });
+  }
+
+  function agregarComboComple(idB, idP) {
+    agregarAlCarrito(idB);
+    agregarAlCarrito(idP);
+    mostrarToast("Combo completo añadido al pedido");
+  }
+
+  function agregarAlCarrito(id) {
+    const prod = catalogo.find(p => p.id === id);
+    if (!prod) return;
+    const existente = carrito.find(i => i.id === id);
+    if (existente) existente.cantidad += 1;
+    else carrito.push({ ...prod, cantidad: 1 });
+    actualizarCarrito();
+    mostrarToast(`${prod.nombre} añadido al pedido`);
+  }
+
+  function cambiarCantidad(id, delta) {
+    const idx = carrito.findIndex(i => i.id === id);
+    if (idx === -1) return;
+    carrito[idx].cantidad += delta;
+    if (carrito[idx].cantidad <= 0) carrito.splice(idx, 1);
+    actualizarCarrito();
+  }
+
+  function calcularSubtotal() {
+    return carrito.reduce((acc, i) => acc + i.precio * i.cantidad, 0);
+  }
+
+  function calcularTotal() {
+    const sub = calcularSubtotal();
+    return parseFloat((sub * (1 - descuentoPct / 100)).toFixed(2));
+  }
+
+  function aplicarDescuento() {
+    if (descuentoPct >= 10 || !carrito.length) return;
+    descuentoPct = 10;
+    descuentoEtiqueta = "Descuento Especial 10%";
+    actualizarCarrito();
+    mostrarToast("¡Descuento del 10% aplicado!");
+  }
+
+  async function aplicarCuponCarrito() {
+    const cupon = document.getElementById("cart-cupon").value.trim();
+    const msgEl = document.getElementById("cart-cupon-msg");
+    if (!carrito.length) {
+      msgEl.className = "coupon-msg err";
+      msgEl.textContent = "Agrega productos al carrito antes de aplicar un cupón.";
+      return;
+    }
+    try {
+      const data = await apiPost("/api/semana12/analizar", {
+        cupon, monto: calcularSubtotal(), nombre: "Cliente", producto: "Café", hora: 15, frase: ""
+      });
+      const c = data.cupon;
+      if (c.valido) {
+        descuentoPct = c.porcentaje_descuento;
+        descuentoEtiqueta = `Cupón ${c.codigo_normalizado} (-${c.porcentaje_descuento}%)`;
+        msgEl.className = "coupon-msg";
+        msgEl.textContent = c.mensaje;
+        actualizarCarrito();
+        mostrarToast(c.mensaje);
+      } else {
+        msgEl.className = "coupon-msg err";
+        msgEl.textContent = c.mensaje;
+      }
+    } catch (e) {}
+  }
+
+  function actualizarCarrito() {
+    const cont = document.getElementById("carrito-items");
+    const vacio = document.getElementById("carrito-vacio");
+    const totalUnidades = carrito.reduce((acc, i) => acc + i.cantidad, 0);
+    document.getElementById("cart-count").textContent = totalUnidades;
+    document.getElementById("cart-item-count").textContent = `${totalUnidades} items`;
+    cont.innerHTML = "";
+
+    if (!carrito.length) {
+      descuentoPct = 0;
+      cont.appendChild(vacio);
+      document.getElementById("btn-desc").disabled = true;
+      document.getElementById("btn-checkout").disabled = true;
+      document.getElementById("r-desc-fila").style.display = "none";
+      document.getElementById("r-subtotal").textContent = "S/ 0.00";
+      document.getElementById("r-total").textContent = "S/ 0.00";
+      document.getElementById("r-puntos").textContent = "0 pts";
+      return;
+    }
+
+    carrito.forEach(item => {
+      const row = document.createElement("div");
+      row.className = "item-row";
+      row.innerHTML = `
+        <img src="${item.img}" class="item-img" onerror="this.src='img/americano.png'"/>
+        <div class="item-info">
+          <div class="item-name">${item.nombre}</div>
+          <div class="item-sub">S/ ${item.precio.toFixed(2)} c/u</div>
+        </div>
+        <div class="item-ctrls">
+          <button class="ctrl-btn" onclick="cambiarCantidad(${item.id}, -1)">&#8722;</button>
+          <span class="item-cant">${item.cantidad}</span>
+          <button class="ctrl-btn" onclick="cambiarCantidad(${item.id}, 1)">+</button>
+        </div>
+      `;
+      cont.appendChild(row);
+    });
+
+    const sub = calcularSubtotal();
+    const total = calcularTotal();
+    const ahorro = sub - total;
+    const puntos = Math.floor(total / 5);
+
+    document.getElementById("r-subtotal").textContent = `S/ ${sub.toFixed(2)}`;
+    document.getElementById("r-total").textContent = `S/ ${total.toFixed(2)}`;
+    document.getElementById("r-puntos").textContent = `+${puntos} pts`;
+
+    const descFila = document.getElementById("r-desc-fila");
+    if (descuentoPct > 0) {
+      descFila.style.display = "flex";
+      document.getElementById("r-desc-label").textContent = descuentoEtiqueta;
+      document.getElementById("r-desc-val").textContent = `-S/ ${ahorro.toFixed(2)}`;
+      document.getElementById("btn-desc").disabled = true;
+    } else {
+      descFila.style.display = "none";
+      document.getElementById("btn-desc").disabled = false;
+    }
+    document.getElementById("btn-checkout").disabled = false;
+  }
+
+  async function confirmarPedido() {
+    if (!carrito.length) return;
+    const total = calcularTotal();
+    const itemsResumen = carrito.map(i => `${i.nombre} (x${i.cantidad})`).join(", ");
+    const nombreVaso = document.getElementById("cart-nombre-vaso").value || "Cliente";
+    let etiquetaHtml = "";
+    try {
+      const data = await apiPost("/api/semana12/analizar", {
+        nombre: nombreVaso, producto: carrito[0].nombre, hora: 15, cupon: "", monto: total, frase: ""
+      });
+      etiquetaHtml = `<br><strong>Código de orden:</strong> ${data.etiqueta.codigo_orden}<br><strong>Etiqueta de vaso:</strong> ${data.etiqueta.etiqueta_vaso}<br>`;
+    } catch (e) {}
+
+    document.getElementById("modal-detalle").innerHTML = `
+      <strong>Productos:</strong><br>${itemsResumen}<br>
+      ${etiquetaHtml}<br>
+      <strong>Total pagado:</strong> <span style="color:var(--gold-600); font-size:1.15rem; font-weight:800;">S/ ${total.toFixed(2)}</span>
+      (Ganaste <strong>+${Math.floor(total / 5)} pts</strong>)<br><br>
+      ¡Tu pedido está en preparación en CaféExpress!
+    `;
+    document.getElementById("modal-overlay").classList.add("show");
+    carrito = [];
+    descuentoPct = 0;
+    document.getElementById("cart-cupon").value = "";
+    document.getElementById("cart-cupon-msg").textContent = "";
+    actualizarCarrito();
+  }
+
+  function cerrarModal() { document.getElementById("modal-overlay").classList.remove("show"); }
+
+  function mostrarToast(msg) {
+    const t = document.getElementById("toast");
+    document.getElementById("toast-msg").textContent = msg;
+    t.classList.add("show");
+    setTimeout(() => t.classList.remove("show"), 2600);
+  }
+
+  function scrollToCart() {
+    document.getElementById("carrito-panel").scrollIntoView({ behavior: "smooth" });
+  }
+
+  window.addEventListener("DOMContentLoaded", async () => {
+    renderMenu(catalogo);
+    poblarSelectoresProductos();
+    actualizarRecomendaciones();
+    ejecutarConsultaWhatsApp();
+    generarCombosIndeterminismo();
+    actualizarCarrito();
+
+    // Conectar y cargar todas las opciones nuevas en Python
+    try {
+      await fetch("/api/salud");
+      document.getElementById("py-status").textContent = "🐍 Python conectado";
+      await Promise.all([
+        actualizarSaludoHora(),
+        calcularBoletaFidelidad(),
+        simularColaBarra(),
+        ejecutarDeliveryYPrecios(),
+        ejecutarClubVIP(),
+        ejecutarAnaliticaNumpy()
+      ]);
+    } catch (e) {
+      document.getElementById("py-status").textContent = "⚠ Inicia: python main.py";
+    }
+  });
+</script>
+</body>
+</html>

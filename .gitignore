@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+
+# Scala / sbt / Metals / Bloop (archivos compilados temporales)
+target/
+.bloop/
+.metals/
+.bsp/
+project/target/
+project/project/
+
+# Sistema operativo / Editor
+.DS_Store
+Thumbs.db
