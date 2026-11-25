@@ -159,7 +159,7 @@ def cotizar_delivery_modular(producto="Capuchino", cantidad=2, coord_cliente=(-1
     tiempo_min = utilidades_cafe.calcular_tiempo_estimado_min(distancia_km)
     costo_envio = round(max(4.0, ceil(distancia_km) * 1.5), 2)
     total = round(subtotal + igv + costo_envio, 2)
-    codigo = generar_codigo_boleta("CE-S14")
+    codigo = generar_codigo_boleta("CE")
 
     return {
         "codigo_boleta": codigo,

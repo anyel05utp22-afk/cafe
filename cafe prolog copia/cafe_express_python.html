@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>CaféExpress — Pedidos Online, Club VIP, Delivery y Analítica</title>
+  <link rel="icon" type="image/jpeg" href="img/logo_cafeexpress.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
@@ -63,11 +64,15 @@
       display: flex; align-items: center; gap: 12px; color: #fff;
       font-size: 1.3rem; font-weight: 800; letter-spacing: -0.3px; text-decoration: none;
     }
-    .logo-badge {
-      background: linear-gradient(135deg, var(--gold-400), var(--gold-600));
-      color: #fff; width: 38px; height: 38px; border-radius: 12px;
-      display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
-      box-shadow: 0 4px 12px rgba(200, 137, 58, 0.4);
+    .logo-img-wrap {
+      background: #fff; width: 46px; height: 46px; border-radius: 12px;
+      overflow: hidden; display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 12px rgba(200, 137, 58, 0.35); border: 1.5px solid rgba(220, 157, 78, 0.55);
+      flex-shrink: 0;
+    }
+    .logo-img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center 44%;
+      transform: scale(1.25);
     }
     .logo span { color: var(--gold-400); font-family: 'Playfair Display', serif; }
     .nav-links { display: flex; align-items: center; gap: 18px; list-style: none; }
@@ -100,7 +105,21 @@
         url('img/hero_bg.jpg') center/cover no-repeat;
       color: #fff; display: flex; align-items: center; padding: 54px clamp(16px, 5vw, 64px);
     }
-    .hero-content { max-width: 720px; }
+    .hero-inner {
+      width: 100%; max-width: 1260px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between; gap: 36px; flex-wrap: wrap;
+    }
+    .hero-content { max-width: 660px; flex: 1; min-width: 280px; }
+    .hero-logo-card {
+      background: #fff; border-radius: 24px; width: 220px; height: 220px;
+      overflow: hidden; box-shadow: 0 18px 42px rgba(0, 0, 0, 0.35);
+      border: 3px solid rgba(220, 157, 78, 0.65); flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .hero-logo-card img {
+      width: 100%; height: 100%; object-fit: cover; object-position: center 44%;
+      transform: scale(1.18);
+    }
     .hero-pill {
       display: inline-flex; align-items: center; gap: 8px;
       background: rgba(255,255,255,0.12); backdrop-filter: blur(8px);
@@ -381,7 +400,9 @@
 <!-- NAVEGACIÓN PRINCIPAL -->
 <nav>
   <a href="#" class="logo">
-    <div class="logo-badge">&#9749;</div>
+    <div class="logo-img-wrap">
+      <img src="img/logo_cafeexpress.jpg" alt="CaféExpress Logo" class="logo-img" />
+    </div>
     <div><span>Café</span>Express</div>
   </a>
 
@@ -395,7 +416,7 @@
   </ul>
 
   <div class="nav-actions">
-    <span class="py-status" id="py-status">🐍 Python activo</span>
+    <span class="py-status" id="py-status">● En línea</span>
     <button class="cart-btn" onclick="scrollToCart()">
       <span>&#128722;</span> Mi pedido <span class="cart-count" id="cart-count">0</span>
     </button>
@@ -404,16 +425,21 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-content">
-    <div class="hero-pill">
-      <span class="dot"></span> Café de Especialidad, Delivery Inteligente &amp; Club VIP
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-pill">
+        <span class="dot"></span> Café de Especialidad, Delivery Inteligente &amp; Club VIP
+      </div>
+      <h1>El mejor café,<br><span>ahora aún más inteligente</span></h1>
+      <p>Pide desde nuestra carta artesanal, aplica cupones promocionales, personaliza tu bebida VIP, cotiza tu delivery en segundos, acumula puntos de fidelidad y explora la analítica en vivo.</p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn-hero-primary">Explorar Menú &darr;</a>
+        <a href="#club-vip" class="btn-hero-secondary">&#128081; Personalizar Pedido VIP</a>
+        <a href="#delivery-precios" class="btn-hero-secondary">&#128757; Cotizar Delivery</a>
+      </div>
     </div>
-    <h1>El mejor café,<br><span>ahora aún más inteligente</span></h1>
-    <p>Pide desde nuestra carta artesanal, aplica cupones promocionales, personaliza tu bebida VIP, cotiza tu delivery en segundos, acumula puntos de fidelidad y explora la analítica en vivo.</p>
-    <div class="hero-actions">
-      <a href="#menu" class="btn-hero-primary">Explorar Menú &darr;</a>
-      <a href="#club-vip" class="btn-hero-secondary">&#128081; Personalizar Pedido VIP</a>
-      <a href="#delivery-precios" class="btn-hero-secondary">&#128757; Cotizar Delivery</a>
+    <div class="hero-logo-card">
+      <img src="img/logo_cafeexpress.jpg" alt="CaféExpress Logo Principal" />
     </div>
   </div>
 </section>
@@ -493,7 +519,7 @@
     <!-- NUEVA OPCIÓN 2: BOLETA DETALLADA, IGV Y PUNTOS DE FIDELIDAD (Semana 11) -->
     <section id="boleta-fidelidad" class="feature-section">
       <div class="section-header">
-        <div class="section-eyebrow">&#129534; Facturación &amp; Beneficios <span class="badge-nuevo-py">Nuevo · Python S11</span></div>
+        <div class="section-eyebrow">&#129534; Facturación &amp; Beneficios</div>
         <h3 class="section-title">Calculadora de Boleta, IGV y Puntos de Fidelidad</h3>
         <p class="section-desc">Simula tu boleta con IGV (18%), descuento por cliente frecuente, puntos acumulados, bono por racha de visitas y empaques para llevar.</p>
       </div>
@@ -532,7 +558,7 @@
     <!-- NUEVA OPCIÓN 3: BARRA EN VIVO Y ARMADOR AUTOMÁTICO DE PEDIDO (Semana 13) -->
     <section id="barra-vivo" class="feature-section">
       <div class="section-header">
-        <div class="section-eyebrow">&#128203; Operaciones de Barra <span class="badge-nuevo-py">Nuevo · Python S13</span></div>
+        <div class="section-eyebrow">&#128203; Operaciones de Barra</div>
         <h3 class="section-title">Cola de Preparación en Vivo y "Arma mi Pedido"</h3>
         <p class="section-desc">Gestiona los pedidos en barra (agregar, reemplazar, cancelar y despachar) o deja que el sistema arme automáticamente un pedido según tu presupuesto.</p>
       </div>
@@ -577,7 +603,7 @@
     <!-- NUEVA OPCIÓN 4: COTIZADOR DE DELIVERY Y GESTOR DE PRECIOS (Semana 14) -->
     <section id="delivery-precios" class="feature-section">
       <div class="section-header">
-        <div class="section-eyebrow">&#128757; Entregas &amp; Catálogo <span class="badge-nuevo-py">Nuevo · Python S14</span></div>
+        <div class="section-eyebrow">&#128757; Entregas &amp; Catálogo</div>
         <h3 class="section-title">Cotizador de Delivery por Distrito y Precios del Día</h3>
         <p class="section-desc">Calcula distancia, tiempo estimado de entrega y costo de envío desde nuestra tienda central, revisa popularidad del turno y actualiza precios del menú.</p>
       </div>
@@ -640,7 +666,7 @@
     <!-- NUEVA OPCIÓN 5: CLUB VIP, PERSONALIZADOR Y MONEDERO DIGITAL (Semana 15) -->
     <section id="club-vip" class="feature-section">
       <div class="section-header">
-        <div class="section-eyebrow">&#128081; Experiencia Personalizada <span class="badge-nuevo-py">Nuevo · Python S15</span></div>
+        <div class="section-eyebrow">&#128081; Experiencia Personalizada</div>
         <h3 class="section-title">Club CaféExpress VIP, Personalizador y Monedero Digital</h3>
         <p class="section-desc">Arma tu combo personalizado (tamaño de vaso, temperatura, postre sin lactosa y tipo de pan), obtén 15% de descuento VIP y págalo con tu Monedero Digital recargable.</p>
       </div>
@@ -699,7 +725,7 @@
     <!-- NUEVA OPCIÓN 6: PANEL DE ANALÍTICA DE VENTAS Y DEMANDA (Semana 16 - NumPy) -->
     <section id="analitica" class="feature-section">
       <div class="section-header">
-        <div class="section-eyebrow">&#128202; Inteligencia de Negocio <span class="badge-nuevo-py">Nuevo · NumPy S16</span></div>
+        <div class="section-eyebrow">&#128202; Inteligencia de Negocio</div>
         <h3 class="section-title">Panel de Analítica de Ventas y Simulador de Demanda</h3>
         <p class="section-desc">Visualiza el desempeño semanal de CaféExpress, ingresos por día, corrección automática de fallos de caja (datos faltantes) y prueba de velocidad de procesamiento.</p>
       </div>
@@ -901,8 +927,14 @@
 </div>
 
 <footer>
-  <strong>CaféExpress</strong> &mdash; Café artesanal, Delivery inteligente, Club VIP y Analítica en Python + NumPy.<br>
-  <span style="opacity:0.65;">Integra Scala (Sem 1–3) &bull; Prolog (Sem 6–9) &bull; Python Multiparadigma &amp; Ciencia de Datos (Sem 11–16) &bull; <a href="/clasico" style="color:var(--gold-400);">Ver vista clásica original</a></span>
+  <div style="display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:10px;">
+    <div class="logo-img-wrap" style="width:40px; height:40px;">
+      <img src="img/logo_cafeexpress.jpg" alt="CaféExpress" class="logo-img" />
+    </div>
+    <strong style="font-size:1.1rem; color:#fff;">CaféExpress</strong>
+  </div>
+  Café artesanal, Delivery inteligente, Club VIP y Analítica de Ventas.<br>
+  <span style="opacity:0.65;">&copy; 2026 CaféExpress &mdash; Pasión por el buen café y servicio de calidad. &bull; <a href="/clasico" style="color:var(--gold-400);">Ver vista clásica</a></span>
 </footer>
 
 <script>
@@ -1565,7 +1597,7 @@
     // Conectar y cargar todas las opciones nuevas en Python
     try {
       await fetch("/api/salud");
-      document.getElementById("py-status").textContent = "🐍 Python conectado";
+      document.getElementById("py-status").textContent = "● En línea";
       await Promise.all([
         actualizarSaludoHora(),
         calcularBoletaFidelidad(),
