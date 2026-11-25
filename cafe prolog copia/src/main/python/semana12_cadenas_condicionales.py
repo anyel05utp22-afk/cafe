@@ -166,7 +166,7 @@ def buscar_productos_por_frase(frase_cliente):
     """
     Usa .lower(), .replace(), .split() y el operador 'in' (Caso 1 de práctica)
     para comprobar si alguna palabra de la frase del cliente está contenida
-    en el nombre o descripción de los productos de CaféExpress.
+    en el nombre, descripción, categoría o ingredientes de los productos.
     """
     frase_limpia = (
         frase_cliente.lower()
@@ -192,7 +192,13 @@ def buscar_productos_por_frase(frase_cliente):
     palabras_clave = [w for w in palabras if len(w) >= 3]
     for prod in CATALOGO_PRODUCTOS:
         texto_producto = (
-            prod["nombre"] + " " + prod["categoria"] + " " + prod["desc"]
+            prod["nombre"]
+            + " "
+            + prod["categoria"]
+            + " "
+            + prod["desc"]
+            + " "
+            + " ".join(prod["ingredientes"])
         ).lower()
         # Normalización simple de tildes comunes para facilitar coincidencias
         texto_sin_tilde = (

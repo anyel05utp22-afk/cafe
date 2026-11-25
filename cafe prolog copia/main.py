@@ -6,7 +6,7 @@
  Archivo : main.py (punto de entrada en Python, paralelo a main.pl)
 
  Formas de ejecución:
-   python main.py                  -> Inicia servidor web en http://localhost:8000
+   python main.py                  -> Inicia servidor web en http://localhost:8080
    python main.py --consola        -> Ejecuta demostración en consola (Semanas 11-16)
    python main.py --interactivo    -> Consola interactiva con input() (Semanas 11-16)
    python main.py --puerto 8001    -> Inicia servidor web en otro puerto
@@ -35,7 +35,7 @@ def main():
         ejecutar_consola(interactivo=True)
         return
 
-    puerto = 8000
+    puerto = 8080
     if "--puerto" in args:
         idx = args.index("--puerto")
         if idx + 1 < len(args):

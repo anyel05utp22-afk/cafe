@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,7 +8,9 @@
   <link rel="icon" type="image/jpeg" href="img/logo_cafeexpress.jpg" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap"
+    rel="stylesheet">
   <style>
     :root {
       --cafe-900: #1b0e05;
@@ -41,8 +44,16 @@
       --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
       background-color: var(--cream-50);
@@ -54,888 +65,1830 @@
 
     /* BARRA DE NAVEGACIÓN */
     nav {
-      position: sticky; top: 0; z-index: 1000; height: 72px;
-      background: rgba(27, 14, 5, 0.95); backdrop-filter: blur(16px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      height: 72px;
+      background: rgba(27, 14, 5, 0.95);
+      backdrop-filter: blur(16px);
       border-bottom: 1px solid rgba(200, 137, 58, 0.25);
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 clamp(16px, 4vw, 48px); gap: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(16px, 4vw, 48px);
+      gap: 16px;
     }
+
     .logo {
-      display: flex; align-items: center; gap: 12px; color: #fff;
-      font-size: 1.3rem; font-weight: 800; letter-spacing: -0.3px; text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: #fff;
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.3px;
+      text-decoration: none;
     }
+
     .logo-img-wrap {
-      background: #fff; width: 46px; height: 46px; border-radius: 12px;
-      overflow: hidden; display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 12px rgba(200, 137, 58, 0.35); border: 1.5px solid rgba(220, 157, 78, 0.55);
+      background: #fff;
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(200, 137, 58, 0.35);
+      border: 1.5px solid rgba(220, 157, 78, 0.55);
       flex-shrink: 0;
     }
+
     .logo-img {
-      width: 100%; height: 100%; object-fit: cover; object-position: center 44%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 44%;
       transform: scale(1.25);
     }
-    .logo span { color: var(--gold-400); font-family: 'Playfair Display', serif; }
-    .nav-links { display: flex; align-items: center; gap: 18px; list-style: none; }
-    .nav-links a { color: rgba(255,255,255,0.78); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: var(--transition); }
-    .nav-links a:hover, .nav-links a.active { color: #fff; }
-    .nav-actions { display: flex; align-items: center; gap: 10px; }
-    .cart-btn {
-      background: linear-gradient(135deg, var(--gold-500), var(--gold-600)); color: #fff;
-      border: none; border-radius: 50px; padding: 9px 20px; font-family: inherit;
-      font-size: 0.88rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px;
-      transition: var(--transition); box-shadow: 0 4px 16px rgba(200, 137, 58, 0.35);
+
+    .logo span {
+      color: var(--gold-400);
+      font-family: 'Playfair Display', serif;
     }
-    .cart-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(200, 137, 58, 0.5); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.78);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: #fff;
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cart-btn {
+      background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      padding: 9px 20px;
+      font-family: inherit;
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+      box-shadow: 0 4px 16px rgba(200, 137, 58, 0.35);
+    }
+
+    .cart-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(200, 137, 58, 0.5);
+    }
+
     .cart-count {
-      background: #fff; color: var(--cafe-900); border-radius: 50%;
-      min-width: 22px; height: 22px; padding: 0 5px; display: flex; align-items: center;
-      justify-content: center; font-size: 0.78rem; font-weight: 800;
+      background: #fff;
+      color: var(--cafe-900);
+      border-radius: 50%;
+      min-width: 22px;
+      height: 22px;
+      padding: 0 5px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.78rem;
+      font-weight: 800;
     }
 
     /* HERO */
     .hero {
-      position: relative; min-height: 440px;
+      position: relative;
+      min-height: 440px;
       background:
         linear-gradient(135deg, rgba(27, 14, 5, 0.90) 0%, rgba(41, 21, 8, 0.82) 55%, rgba(61, 31, 13, 0.76) 100%),
         url('img/hero_bg.jpg') center/cover no-repeat;
-      color: #fff; display: flex; align-items: center; padding: 54px clamp(16px, 5vw, 64px);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      padding: 54px clamp(16px, 5vw, 64px);
     }
+
     .hero-inner {
-      width: 100%; max-width: 1260px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: space-between; gap: 36px; flex-wrap: wrap;
+      width: 100%;
+      max-width: 1260px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 36px;
+      flex-wrap: wrap;
     }
-    .hero-content { max-width: 660px; flex: 1; min-width: 280px; }
+
+    .hero-content {
+      max-width: 660px;
+      flex: 1;
+      min-width: 280px;
+    }
+
     .hero-logo-card {
-      background: #fff; border-radius: 24px; width: 220px; height: 220px;
-      overflow: hidden; box-shadow: 0 18px 42px rgba(0, 0, 0, 0.35);
-      border: 3px solid rgba(220, 157, 78, 0.65); flex-shrink: 0;
-      display: flex; align-items: center; justify-content: center;
+      background: #fff;
+      border-radius: 24px;
+      width: 220px;
+      height: 220px;
+      overflow: hidden;
+      box-shadow: 0 18px 42px rgba(0, 0, 0, 0.35);
+      border: 3px solid rgba(220, 157, 78, 0.65);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
+
     .hero-logo-card img {
-      width: 100%; height: 100%; object-fit: cover; object-position: center 44%;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 44%;
       transform: scale(1.18);
     }
+
     .hero-pill {
-      display: inline-flex; align-items: center; gap: 8px;
-      background: rgba(255,255,255,0.12); backdrop-filter: blur(8px);
-      border: 1px solid rgba(255,255,255,0.2); padding: 6px 14px; border-radius: 50px;
-      font-size: 0.82rem; font-weight: 600; color: var(--gold-light); margin-bottom: 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.12);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      margin-bottom: 18px;
     }
-    .hero-pill .dot { width: 8px; height: 8px; background: var(--gold-400); border-radius: 50%; display: inline-block; box-shadow: 0 0 10px var(--gold-400); }
-    .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 4.3vw, 3.4rem); font-weight: 700; line-height: 1.15; margin-bottom: 14px; }
-    .hero h1 span { color: var(--gold-400); font-style: italic; }
-    .hero p { font-size: 1rem; color: rgba(255,255,255,0.86); margin-bottom: 26px; max-width: 600px; }
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+    .hero-pill .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--gold-400);
+      border-radius: 50%;
+      display: inline-block;
+      box-shadow: 0 0 10px var(--gold-400);
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4.3vw, 3.4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .hero h1 span {
+      color: var(--gold-400);
+      font-style: italic;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      color: rgba(255, 255, 255, 0.86);
+      margin-bottom: 26px;
+      max-width: 600px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
     .btn-hero-primary {
-      background: linear-gradient(135deg, var(--gold-500), var(--gold-600)); color: #fff;
-      padding: 12px 26px; border-radius: 50px; font-weight: 700; font-size: 0.92rem;
-      text-decoration: none; display: inline-flex; align-items: center; gap: 8px; border: none;
-      cursor: pointer; font-family: inherit; transition: var(--transition);
+      background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+      color: #fff;
+      padding: 12px 26px;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.92rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: none;
+      cursor: pointer;
+      font-family: inherit;
+      transition: var(--transition);
       box-shadow: 0 6px 20px rgba(200, 137, 58, 0.4);
     }
-    .btn-hero-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 26px rgba(200, 137, 58, 0.55); }
-    .btn-hero-secondary {
-      background: rgba(255,255,255,0.1); backdrop-filter: blur(10px);
-      border: 1px solid rgba(255,255,255,0.25); color: #fff; padding: 12px 22px;
-      border-radius: 50px; font-weight: 600; font-size: 0.92rem; text-decoration: none;
-      display: inline-flex; align-items: center; gap: 8px; transition: var(--transition);
+
+    .btn-hero-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 26px rgba(200, 137, 58, 0.55);
     }
-    .btn-hero-secondary:hover { background: rgba(255,255,255,0.2); }
+
+    .btn-hero-secondary {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fff;
+      padding: 12px 22px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.92rem;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .btn-hero-secondary:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
 
     /* BANNER DINÁMICO DE SALUDO POR HORA (NUEVA OPCIÓN - SEMANA 12) */
     .hora-banner {
       background: linear-gradient(90deg, var(--gold-light), #fff);
       border-bottom: 1px solid var(--border-subtle);
       padding: 14px clamp(16px, 4vw, 56px);
-      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
     }
-    .hora-banner-left { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
-    .hora-badge { background: var(--cafe-900); color: var(--gold-400); padding: 4px 12px; border-radius: 50px; font-size: 0.76rem; font-weight: 800; }
-    .hora-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+
+    .hora-banner-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .hora-badge {
+      background: var(--cafe-900);
+      color: var(--gold-400);
+      padding: 4px 12px;
+      border-radius: 50px;
+      font-size: 0.76rem;
+      font-weight: 800;
+    }
+
+    .hora-controls {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
 
     /* BARRA DE ACCESO RÁPIDO A TODAS LAS OPCIONES */
     .module-nav-bar {
-      background: #fff; border-bottom: 1px solid var(--border-subtle);
-      padding: 14px clamp(16px, 3vw, 36px); box-shadow: var(--shadow-sm);
+      background: #fff;
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 14px clamp(16px, 3vw, 36px);
+      box-shadow: var(--shadow-sm);
     }
+
     .module-nav-inner {
-      max-width: 1320px; margin: 0 auto;
-      display: flex; align-items: center; justify-content: center;
-      flex-wrap: wrap; gap: 10px;
+      max-width: 1320px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
     }
+
     .mod-tab {
-      display: inline-flex; align-items: center; justify-content: center;
-      padding: 8px 16px; border-radius: 50px;
-      background: var(--cream-100); color: var(--text-main); font-size: 0.83rem; font-weight: 600;
-      text-decoration: none; white-space: nowrap; transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 8px 16px;
+      border-radius: 50px;
+      background: var(--cream-100);
+      color: var(--text-main);
+      font-size: 0.83rem;
+      font-weight: 600;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: var(--transition);
       border: 1px solid var(--border-subtle);
     }
-    .mod-tab:hover, .mod-tab.active { background: var(--cafe-900); color: #fff; border-color: var(--cafe-900); }
+
+    .mod-tab:hover,
+    .mod-tab.active {
+      background: var(--cafe-900);
+      color: #fff;
+      border-color: var(--cafe-900);
+    }
 
     /* CONTENEDOR PRINCIPAL */
     .app-container {
-      max-width: 1360px; margin: 0 auto; padding: 36px clamp(16px, 3vw, 36px);
-      display: grid; grid-template-columns: 1fr 380px; gap: 34px; align-items: start;
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 36px clamp(16px, 3vw, 36px);
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 34px;
+      align-items: start;
     }
-    .main-stream { display: flex; flex-direction: column; gap: 40px; }
 
-    .section-header { margin-bottom: 20px; }
+    .main-stream {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+
+    .section-header {
+      margin-bottom: 20px;
+    }
+
     .section-eyebrow {
-      display: inline-flex; align-items: center; gap: 6px; color: var(--gold-600);
-      font-size: 0.78rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--gold-600);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 4px;
     }
+
     .badge-nuevo-py {
-      background: var(--blue-bg); color: var(--blue-py); padding: 2px 9px; border-radius: 50px;
-      font-size: 0.7rem; font-weight: 800; text-transform: uppercase; margin-left: 6px;
+      background: var(--blue-bg);
+      color: var(--blue-py);
+      padding: 2px 9px;
+      border-radius: 50px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      margin-left: 6px;
     }
-    .section-title { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--cafe-900); }
-    .section-desc { color: var(--text-muted); font-size: 0.92rem; margin-top: 4px; }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--cafe-900);
+    }
+
+    .section-desc {
+      color: var(--text-muted);
+      font-size: 0.92rem;
+      margin-top: 4px;
+    }
 
     /* BUSCADOR INTELIGENTE EN EL MENÚ (NUEVA OPCIÓN - SEMANA 12) */
     .search-bar-box {
-      background: #fff; border: 1.5px solid var(--border-subtle); border-radius: 16px;
-      padding: 14px 16px; margin-bottom: 18px; box-shadow: var(--shadow-sm);
-      display: flex; flex-direction: column; gap: 10px;
+      background: #fff;
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
-    .search-row { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    .search-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
     .search-input {
-      flex: 1; min-width: 220px; padding: 10px 14px; border-radius: 10px;
-      border: 1.5px solid var(--border-subtle); font-family: inherit; font-size: 0.9rem;
+      flex: 1;
+      min-width: 220px;
+      padding: 10px 14px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border-subtle);
+      font-family: inherit;
+      font-size: 0.9rem;
     }
-    .search-input:focus { outline: none; border-color: var(--gold-500); }
-    .search-meta { font-size: 0.82rem; color: var(--text-muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+    .search-input:focus {
+      outline: none;
+      border-color: var(--gold-500);
+    }
+
+    .search-meta {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
 
     /* FILTROS Y MENÚ */
-    .filtros-wrapper { display: flex; gap: 10px; margin-bottom: 22px; flex-wrap: wrap; }
-    .filtro-chip {
-      background: #fff; border: 1.5px solid var(--border-subtle); color: var(--text-muted);
-      padding: 8px 16px; border-radius: 50px; font-family: inherit; font-size: 0.86rem; font-weight: 600;
-      cursor: pointer; transition: var(--transition); display: inline-flex; align-items: center; gap: 6px;
+    .filtros-wrapper {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 22px;
+      flex-wrap: wrap;
     }
-    .filtro-chip:hover { border-color: var(--gold-500); color: var(--text-main); }
-    .filtro-chip.activo { background: var(--cafe-900); border-color: var(--cafe-900); color: #fff; }
 
-    .productos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; }
+    .filtro-chip {
+      background: #fff;
+      border: 1.5px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 8px 16px;
+      border-radius: 50px;
+      font-family: inherit;
+      font-size: 0.86rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .filtro-chip:hover {
+      border-color: var(--gold-500);
+      color: var(--text-main);
+    }
+
+    .filtro-chip.activo {
+      background: var(--cafe-900);
+      border-color: var(--cafe-900);
+      color: #fff;
+    }
+
+    .productos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
     .producto-card {
-      background: #fff; border-radius: var(--radius-md); border: 1px solid var(--border-subtle);
-      overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--shadow-sm); transition: var(--transition);
+      background: #fff;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
     }
-    .producto-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: rgba(200, 137, 58, 0.45); }
-    .card-img-wrap { position: relative; height: 170px; background: var(--cream-100); overflow: hidden; }
-    .card-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-    .producto-card:hover .card-img-wrap img { transform: scale(1.06); }
+
+    .producto-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: rgba(200, 137, 58, 0.45);
+    }
+
+    .card-img-wrap {
+      position: relative;
+      height: 170px;
+      background: var(--cream-100);
+      overflow: hidden;
+    }
+
+    .card-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .producto-card:hover .card-img-wrap img {
+      transform: scale(1.06);
+    }
+
     .card-badge-cat {
-      position: absolute; top: 10px; left: 10px; background: rgba(27, 14, 5, 0.84);
-      color: #fff; font-size: 0.72rem; font-weight: 700; padding: 3px 10px; border-radius: 50px; text-transform: capitalize;
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(27, 14, 5, 0.84);
+      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 50px;
+      text-transform: capitalize;
     }
+
     .card-badge-tag {
-      position: absolute; bottom: 8px; left: 10px; background: rgba(255,255,255,0.92);
-      color: var(--cafe-900); font-size: 0.7rem; font-weight: 600; padding: 2px 8px; border-radius: 6px;
+      position: absolute;
+      bottom: 8px;
+      left: 10px;
+      background: rgba(255, 255, 255, 0.92);
+      color: var(--cafe-900);
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 6px;
     }
-    .card-body { padding: 16px; display: flex; flex-direction: column; flex: 1; }
-    .card-title { font-size: 1.02rem; font-weight: 700; color: var(--cafe-900); margin-bottom: 5px; }
-    .card-desc { font-size: 0.8rem; color: var(--text-muted); margin-bottom: 14px; flex: 1; }
-    .card-footer { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--cream-100); padding-top: 12px; }
-    .card-precio { font-size: 1.2rem; font-weight: 800; color: var(--cafe-900); }
-    .card-precio span { font-size: 0.8rem; font-weight: 600; color: var(--gold-600); margin-right: 2px; }
+
+    .card-body {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-title {
+      font-size: 1.02rem;
+      font-weight: 700;
+      color: var(--cafe-900);
+      margin-bottom: 5px;
+    }
+
+    .card-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+      flex: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--cream-100);
+      padding-top: 12px;
+    }
+
+    .card-precio {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--cafe-900);
+    }
+
+    .card-precio span {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--gold-600);
+      margin-right: 2px;
+    }
+
     .btn-add-cart {
-      background: var(--cream-100); color: var(--cafe-900); border: 1.5px solid var(--border-subtle);
-      width: 36px; height: 36px; border-radius: 10px; display: flex; align-items: center; justify-content: center;
-      font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: var(--transition);
+      background: var(--cream-100);
+      color: var(--cafe-900);
+      border: 1.5px solid var(--border-subtle);
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
     }
-    .btn-add-cart:hover { background: var(--gold-500); border-color: var(--gold-500); color: #fff; transform: scale(1.06); }
+
+    .btn-add-cart:hover {
+      background: var(--gold-500);
+      border-color: var(--gold-500);
+      color: #fff;
+      transform: scale(1.06);
+    }
 
     /* SECCIONES */
     .feature-section {
-      background: #fff; border-radius: var(--radius-lg); border: 1px solid var(--border-subtle);
-      padding: 28px clamp(18px, 3vw, 32px); box-shadow: var(--shadow-sm);
+      background: #fff;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      padding: 28px clamp(18px, 3vw, 32px);
+      box-shadow: var(--shadow-sm);
     }
-    .recom-controls, .form-grid {
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(175px, 1fr)); gap: 14px;
-      background: var(--cream-50); padding: 18px; border-radius: var(--radius-md);
-      margin-bottom: 18px; border: 1px solid var(--border-subtle);
+
+    .recom-controls,
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: 14px;
+      background: var(--cream-50);
+      padding: 18px;
+      border-radius: var(--radius-md);
+      margin-bottom: 18px;
+      border: 1px solid var(--border-subtle);
     }
-    .form-group label { display: block; font-size: 0.8rem; font-weight: 700; color: var(--text-muted); margin-bottom: 5px; }
+
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+    }
+
     .form-control {
-      width: 100%; padding: 9px 12px; border-radius: 10px; border: 1.5px solid var(--border-subtle);
-      font-family: inherit; font-size: 0.88rem; background: #fff; color: var(--text-main);
+      width: 100%;
+      padding: 9px 12px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border-subtle);
+      font-family: inherit;
+      font-size: 0.88rem;
+      background: #fff;
+      color: var(--text-main);
     }
-    .form-control:focus { outline: none; border-color: var(--gold-500); box-shadow: 0 0 0 3px rgba(200,137,58,0.14); }
 
-    .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin-top: 14px; }
+    .form-control:focus {
+      outline: none;
+      border-color: var(--gold-500);
+      box-shadow: 0 0 0 3px rgba(200, 137, 58, 0.14);
+    }
+
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
     .kpi-card {
-      background: var(--cream-50); border: 1px solid var(--border-subtle); border-radius: 14px;
-      padding: 14px; display: flex; flex-direction: column; gap: 4px;
+      background: var(--cream-50);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
-    .kpi-label { font-size: 0.74rem; font-weight: 700; color: var(--gold-600); text-transform: uppercase; }
-    .kpi-val { font-size: 1.2rem; font-weight: 800; color: var(--cafe-900); }
-    .kpi-sub { font-size: 0.78rem; color: var(--text-muted); }
 
-    .two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; margin-top: 16px; }
-    .sub-panel { background: var(--cream-50); border: 1px solid var(--border-subtle); border-radius: 16px; padding: 18px; }
-    .sub-panel h4 { font-size: 0.95rem; font-weight: 800; color: var(--cafe-900); margin-bottom: 10px; }
+    .kpi-label {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--gold-600);
+      text-transform: uppercase;
+    }
+
+    .kpi-val {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--cafe-900);
+    }
+
+    .kpi-sub {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 18px;
+      margin-top: 16px;
+    }
+
+    .sub-panel {
+      background: var(--cream-50);
+      border: 1px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 18px;
+    }
+
+    .sub-panel h4 {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: var(--cafe-900);
+      margin-bottom: 10px;
+    }
 
     /* COLA EN BARRA */
-    .queue-list { display: flex; flex-direction: column; gap: 8px; margin: 10px 0; }
+    .queue-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 10px 0;
+    }
+
     .queue-pill {
-      background: #fff; border: 1px solid var(--border-subtle); border-radius: 10px;
-      padding: 8px 12px; display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem;
+      background: #fff;
+      border: 1px solid var(--border-subtle);
+      border-radius: 10px;
+      padding: 8px 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
     }
 
     /* BARRAS DE ANALÍTICA NUMPY */
-    .bar-chart { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; align-items: end; height: 150px; padding: 14px 8px 6px; background: #fff; border-radius: 14px; border: 1px solid var(--border-subtle); margin-top: 12px; }
-    .bar-col { display: flex; flex-direction: column; align-items: center; gap: 6px; height: 100%; justify-content: flex-end; }
-    .bar-fill { width: 100%; max-width: 42px; background: linear-gradient(180deg, var(--gold-400), var(--cafe-700)); border-radius: 8px 8px 4px 4px; transition: height 0.35s ease; }
-    .bar-lbl { font-size: 0.74rem; font-weight: 700; color: var(--text-muted); }
-    .bar-amt { font-size: 0.7rem; font-weight: 800; color: var(--cafe-900); }
+    .bar-chart {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 8px;
+      align-items: end;
+      height: 150px;
+      padding: 14px 8px 6px;
+      background: #fff;
+      border-radius: 14px;
+      border: 1px solid var(--border-subtle);
+      margin-top: 12px;
+    }
 
-    .sales-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 0.8rem; background: #fff; border-radius: 12px; overflow: hidden; }
-    .sales-table th, .sales-table td { padding: 8px 10px; border-bottom: 1px solid var(--cream-100); text-align: center; }
-    .sales-table th { background: var(--cafe-900); color: #fff; font-weight: 700; }
-    .sales-table td:first-child { text-align: left; font-weight: 700; color: var(--cafe-900); }
+    .bar-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      height: 100%;
+      justify-content: flex-end;
+    }
+
+    .bar-fill {
+      width: 100%;
+      max-width: 42px;
+      background: linear-gradient(180deg, var(--gold-400), var(--cafe-700));
+      border-radius: 8px 8px 4px 4px;
+      transition: height 0.35s ease;
+    }
+
+    .bar-lbl {
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--text-muted);
+    }
+
+    .bar-amt {
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--cafe-900);
+    }
+
+    .sales-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+      font-size: 0.8rem;
+      background: #fff;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .sales-table th,
+    .sales-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--cream-100);
+      text-align: center;
+    }
+
+    .sales-table th {
+      background: var(--cafe-900);
+      color: #fff;
+      font-weight: 700;
+    }
+
+    .sales-table td:first-child {
+      text-align: left;
+      font-weight: 700;
+      color: var(--cafe-900);
+    }
 
     /* RECOMENDADOR, ALÉRGENOS Y COMBOS ORIGINALES */
-    .recom-results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 14px; }
-    .recom-mini-card {
-      background: var(--cream-50); border: 1px solid var(--border-subtle); border-radius: 14px;
-      padding: 14px; display: flex; flex-direction: column; justify-content: space-between;
+    .recom-results-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
     }
-    .wa-box { background: #f7faf8; border: 1.5px solid #d3e7da; border-radius: var(--radius-md); padding: 20px; margin-bottom: 18px; }
-    .wa-bubble { background: #e7f7ed; border-left: 4px solid #25d366; padding: 12px 16px; border-radius: 12px; font-size: 0.9rem; color: #12542a; margin-bottom: 14px; display: flex; gap: 10px; }
-    .chips-container { display: flex; flex-wrap: wrap; gap: 8px; margin: 10px 0 14px; }
-    .allergen-chip {
-      background: #fff; border: 1.5px solid #d3e7da; border-radius: 50px; padding: 6px 13px;
-      font-size: 0.8rem; font-weight: 600; cursor: pointer; user-select: none;
-    }
-    .allergen-chip.selected { background: var(--red-bg); border-color: var(--red-no); color: var(--red-no); }
-    .stock-status-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 10px; margin-top: 12px; }
-    .stock-item { background: #fff; border: 1px solid var(--border-subtle); border-radius: 12px; padding: 10px 14px; display: flex; justify-content: space-between; align-items: center; font-size: 0.84rem; }
-    .badge-status { font-size: 0.72rem; font-weight: 700; padding: 3px 8px; border-radius: 50px; }
-    .badge-status.disponible { background: var(--green-bg); color: var(--green-ok); }
-    .badge-status.agotado { background: var(--red-bg); color: var(--red-no); }
-    .badge-status.alerta { background: var(--warn-bg); color: var(--warn-color); }
 
-    .combos-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-top: 14px; }
-    .combo-card {
-      background: linear-gradient(135deg, #fff, var(--cream-50)); border: 1.5px solid var(--border-subtle);
-      border-radius: 16px; padding: 16px; display: flex; flex-direction: column; justify-content: space-between;
+    .recom-mini-card {
+      background: var(--cream-50);
+      border: 1px solid var(--border-subtle);
+      border-radius: 14px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
-    .combo-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
-    .combo-pill { background: var(--gold-light); color: var(--gold-600); padding: 3px 10px; border-radius: 50px; font-size: 0.72rem; font-weight: 800; }
-    .combo-items { font-size: 0.84rem; color: var(--text-muted); display: flex; flex-direction: column; gap: 4px; margin-bottom: 12px; }
+
+    .wa-box {
+      background: #f7faf8;
+      border: 1.5px solid #d3e7da;
+      border-radius: var(--radius-md);
+      padding: 20px;
+      margin-bottom: 18px;
+    }
+
+    .wa-bubble {
+      background: #e7f7ed;
+      border-left: 4px solid #25d366;
+      padding: 12px 16px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      color: #12542a;
+      margin-bottom: 14px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .chips-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 14px;
+    }
+
+    .allergen-chip {
+      background: #fff;
+      border: 1.5px solid #d3e7da;
+      border-radius: 50px;
+      padding: 6px 13px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .allergen-chip.selected {
+      background: var(--red-bg);
+      border-color: var(--red-no);
+      color: var(--red-no);
+    }
+
+    .stock-status-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 10px;
+      margin-top: 12px;
+    }
+
+    .stock-item {
+      background: #fff;
+      border: 1px solid var(--border-subtle);
+      border-radius: 12px;
+      padding: 10px 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.84rem;
+    }
+
+    .badge-status {
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 50px;
+    }
+
+    .badge-status.disponible {
+      background: var(--green-bg);
+      color: var(--green-ok);
+    }
+
+    .badge-status.agotado {
+      background: var(--red-bg);
+      color: var(--red-no);
+    }
+
+    .badge-status.alerta {
+      background: var(--warn-bg);
+      color: var(--warn-color);
+    }
+
+    .combos-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .combo-card {
+      background: linear-gradient(135deg, #fff, var(--cream-50));
+      border: 1.5px solid var(--border-subtle);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .combo-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .combo-pill {
+      background: var(--gold-light);
+      color: var(--gold-600);
+      padding: 3px 10px;
+      border-radius: 50px;
+      font-size: 0.72rem;
+      font-weight: 800;
+    }
+
+    .combo-items {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
 
     /* CARRITO LATERAL */
     .carrito-panel {
-      position: sticky; top: 92px; background: #fff; border-radius: var(--radius-lg);
-      border: 1px solid var(--border-subtle); box-shadow: var(--shadow-md); overflow: hidden;
-      display: flex; flex-direction: column;
+      position: sticky;
+      top: 92px;
+      background: #fff;
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
-    .carrito-header { background: var(--cafe-900); color: #fff; padding: 18px 20px; display: flex; align-items: center; justify-content: space-between; }
-    .carrito-header h3 { font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 8px; }
-    .carrito-items { padding: 16px 20px; max-height: 290px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; }
-    .carrito-vacio { text-align: center; padding: 28px 10px; color: var(--text-muted); }
-    .item-row { display: flex; align-items: center; gap: 10px; padding-bottom: 10px; border-bottom: 1px solid var(--cream-100); }
-    .item-img { width: 42px; height: 42px; border-radius: 10px; object-fit: cover; background: var(--cream-100); }
-    .item-info { flex: 1; }
-    .item-name { font-size: 0.85rem; font-weight: 700; color: var(--cafe-900); }
-    .item-sub { font-size: 0.76rem; color: var(--gold-600); font-weight: 700; }
-    .item-ctrls { display: flex; align-items: center; gap: 5px; background: var(--cream-50); border-radius: 50px; padding: 3px 6px; border: 1px solid var(--border-subtle); }
-    .ctrl-btn { background: none; border: none; width: 22px; height: 22px; border-radius: 50%; cursor: pointer; font-weight: 800; color: var(--cafe-900); }
-    .ctrl-btn:hover { background: var(--cream-200); }
-    .item-cant { font-size: 0.82rem; font-weight: 800; min-width: 16px; text-align: center; }
 
-    .carrito-extras { padding: 14px 20px; background: #fff; border-top: 1px solid var(--cream-100); display: flex; flex-direction: column; gap: 10px; }
-    .coupon-row { display: flex; gap: 6px; }
-    .coupon-msg { font-size: 0.76rem; font-weight: 600; color: var(--green-ok); }
-    .coupon-msg.err { color: var(--red-no); }
+    .carrito-header {
+      background: var(--cafe-900);
+      color: #fff;
+      padding: 18px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
 
-    .carrito-resumen { background: var(--cream-50); padding: 16px 20px; border-top: 1px solid var(--border-subtle); display: flex; flex-direction: column; gap: 8px; }
-    .resumen-fila { display: flex; justify-content: space-between; font-size: 0.86rem; color: var(--text-muted); }
-    .resumen-fila.descuento { color: var(--green-ok); font-weight: 700; }
-    .resumen-fila.total { font-size: 1.2rem; font-weight: 800; color: var(--cafe-900); border-top: 1px dashed var(--border-subtle); padding-top: 8px; }
+    .carrito-header h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .carrito-items {
+      padding: 16px 20px;
+      max-height: 290px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .carrito-vacio {
+      text-align: center;
+      padding: 28px 10px;
+      color: var(--text-muted);
+    }
+
+    .item-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--cream-100);
+    }
+
+    .item-img {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      object-fit: cover;
+      background: var(--cream-100);
+    }
+
+    .item-info {
+      flex: 1;
+    }
+
+    .item-name {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--cafe-900);
+    }
+
+    .item-sub {
+      font-size: 0.76rem;
+      color: var(--gold-600);
+      font-weight: 700;
+    }
+
+    .item-ctrls {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--cream-50);
+      border-radius: 50px;
+      padding: 3px 6px;
+      border: 1px solid var(--border-subtle);
+    }
+
+    .ctrl-btn {
+      background: none;
+      border: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-weight: 800;
+      color: var(--cafe-900);
+    }
+
+    .ctrl-btn:hover {
+      background: var(--cream-200);
+    }
+
+    .item-cant {
+      font-size: 0.82rem;
+      font-weight: 800;
+      min-width: 16px;
+      text-align: center;
+    }
+
+    .carrito-extras {
+      padding: 14px 20px;
+      background: #fff;
+      border-top: 1px solid var(--cream-100);
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .coupon-row {
+      display: flex;
+      gap: 6px;
+    }
+
+    .coupon-msg {
+      font-size: 0.76rem;
+      font-weight: 600;
+      color: var(--green-ok);
+    }
+
+    .coupon-msg.err {
+      color: var(--red-no);
+    }
+
+    .carrito-resumen {
+      background: var(--cream-50);
+      padding: 16px 20px;
+      border-top: 1px solid var(--border-subtle);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .resumen-fila {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.86rem;
+      color: var(--text-muted);
+    }
+
+    .resumen-fila.descuento {
+      color: var(--green-ok);
+      font-weight: 700;
+    }
+
+    .resumen-fila.total {
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--cafe-900);
+      border-top: 1px dashed var(--border-subtle);
+      padding-top: 8px;
+    }
+
     .btn-desc {
-      width: 100%; padding: 10px; background: #fff; border: 1.5px solid var(--gold-500);
-      color: var(--gold-600); border-radius: 12px; font-family: inherit; font-size: 0.85rem; font-weight: 700;
-      cursor: pointer; transition: var(--transition);
+      width: 100%;
+      padding: 10px;
+      background: #fff;
+      border: 1.5px solid var(--gold-500);
+      color: var(--gold-600);
+      border-radius: 12px;
+      font-family: inherit;
+      font-size: 0.85rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
     }
-    .btn-desc:hover:not(:disabled) { background: var(--gold-500); color: #fff; }
-    .btn-desc:disabled { opacity: 0.5; cursor: default; }
+
+    .btn-desc:hover:not(:disabled) {
+      background: var(--gold-500);
+      color: #fff;
+    }
+
+    .btn-desc:disabled {
+      opacity: 0.5;
+      cursor: default;
+    }
+
     .btn-checkout {
-      width: 100%; padding: 13px; background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
-      color: #fff; border: none; border-radius: 14px; font-family: inherit; font-size: 0.94rem; font-weight: 800;
-      cursor: pointer; transition: var(--transition); box-shadow: 0 4px 16px rgba(200,137,58,0.35);
+      width: 100%;
+      padding: 13px;
+      background: linear-gradient(135deg, var(--gold-500), var(--gold-600));
+      color: #fff;
+      border: none;
+      border-radius: 14px;
+      font-family: inherit;
+      font-size: 0.94rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 16px rgba(200, 137, 58, 0.35);
     }
-    .btn-checkout:hover:not(:disabled) { transform: translateY(-2px); }
-    .btn-checkout:disabled { opacity: 0.45; cursor: default; box-shadow: none; }
+
+    .btn-checkout:hover:not(:disabled) {
+      transform: translateY(-2px);
+    }
+
+    .btn-checkout:disabled {
+      opacity: 0.45;
+      cursor: default;
+      box-shadow: none;
+    }
 
     /* TOAST Y MODAL */
     .toast-box {
-      position: fixed; bottom: 24px; right: 24px; background: var(--cafe-900); color: #fff;
-      padding: 13px 20px; border-radius: 14px; font-size: 0.88rem; font-weight: 600;
-      box-shadow: var(--shadow-lg); transform: translateY(100px); opacity: 0; transition: var(--transition);
-      z-index: 2000; display: flex; align-items: center; gap: 10px; border-left: 4px solid var(--gold-400);
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--cafe-900);
+      color: #fff;
+      padding: 13px 20px;
+      border-radius: 14px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      box-shadow: var(--shadow-lg);
+      transform: translateY(100px);
+      opacity: 0;
+      transition: var(--transition);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-left: 4px solid var(--gold-400);
     }
-    .toast-box.show { transform: translateY(0); opacity: 1; }
-    .modal-overlay {
-      position: fixed; inset: 0; background: rgba(20, 10, 4, 0.65); backdrop-filter: blur(8px);
-      display: flex; align-items: center; justify-content: center; z-index: 3000;
-      opacity: 0; pointer-events: none; transition: var(--transition); padding: 20px;
-    }
-    .modal-overlay.show { opacity: 1; pointer-events: all; }
-    .modal-card { background: #fff; border-radius: var(--radius-lg); padding: 32px 28px; max-width: 460px; width: 100%; text-align: center; box-shadow: var(--shadow-lg); }
-    .modal-icon-badge { width: 68px; height: 68px; background: var(--green-bg); color: var(--green-ok); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 2rem; margin: 0 auto 14px; }
 
-    footer { background: var(--cafe-900); color: rgba(255,255,255,0.75); padding: 40px clamp(16px, 4vw, 56px) 26px; margin-top: 50px; text-align: center; font-size: 0.84rem; }
+    .toast-box.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(20, 10, 4, 0.65);
+      backdrop-filter: blur(8px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 3000;
+      opacity: 0;
+      pointer-events: none;
+      transition: var(--transition);
+      padding: 20px;
+    }
+
+    .modal-overlay.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal-card {
+      background: #fff;
+      border-radius: var(--radius-lg);
+      padding: 32px 28px;
+      max-width: 460px;
+      width: 100%;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+    }
+
+    .modal-icon-badge {
+      width: 68px;
+      height: 68px;
+      background: var(--green-bg);
+      color: var(--green-ok);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin: 0 auto 14px;
+    }
+
+    footer {
+      background: var(--cafe-900);
+      color: rgba(255, 255, 255, 0.75);
+      padding: 40px clamp(16px, 4vw, 56px) 26px;
+      margin-top: 50px;
+      text-align: center;
+      font-size: 0.84rem;
+    }
 
     @media (max-width: 980px) {
-      .app-container { grid-template-columns: 1fr; }
-      .carrito-panel { position: static; }
-      .nav-links { display: none; }
+      .app-container {
+        grid-template-columns: 1fr;
+      }
+
+      .carrito-panel {
+        position: static;
+      }
+
+      .nav-links {
+        display: none;
+      }
     }
   </style>
 </head>
+
 <body>
 
-<!-- NAVEGACIÓN PRINCIPAL -->
-<nav>
-  <a href="#" class="logo">
-    <div class="logo-img-wrap">
-      <img src="img/logo_cafeexpress.jpg" alt="CaféExpress Logo" class="logo-img" />
+  <!-- NAVEGACIÓN PRINCIPAL -->
+  <nav>
+    <a href="#" class="logo">
+      <div class="logo-img-wrap">
+        <img src="img/logo_cafeexpress.jpg" alt="CaféExpress Logo" class="logo-img" />
+      </div>
+      <div><span>Café</span>Express</div>
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#menu" class="active">Menú</a></li>
+      <li><a href="#boleta-fidelidad">Puntos & Boleta</a></li>
+      <li><a href="#barra-vivo">Barra & Presupuesto</a></li>
+      <li><a href="#delivery-precios">Delivery</a></li>
+      <li><a href="#club-vip">Club VIP</a></li>
+      <li><a href="#analitica">Analítica</a></li>
+    </ul>
+
+    <div class="nav-actions">
+      <button class="cart-btn" onclick="scrollToCart()">
+        Mi pedido <span class="cart-count" id="cart-count">0</span>
+      </button>
     </div>
-    <div><span>Café</span>Express</div>
-  </a>
+  </nav>
 
-  <ul class="nav-links">
-    <li><a href="#menu" class="active">Menú</a></li>
-    <li><a href="#boleta-fidelidad">Puntos & Boleta</a></li>
-    <li><a href="#barra-vivo">Barra & Presupuesto</a></li>
-    <li><a href="#delivery-precios">Delivery</a></li>
-    <li><a href="#club-vip">Club VIP</a></li>
-    <li><a href="#analitica">Analítica</a></li>
-  </ul>
-
-  <div class="nav-actions">
-    <button class="cart-btn" onclick="scrollToCart()">
-      Mi pedido <span class="cart-count" id="cart-count">0</span>
-    </button>
-  </div>
-</nav>
-
-<!-- HERO -->
-<section class="hero">
-  <div class="hero-inner">
-    <div class="hero-content">
-      <div class="hero-pill">
-        <span class="dot"></span> Café de Especialidad, Delivery Inteligente &amp; Club VIP
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-pill">
+          <span class="dot"></span> Café de Especialidad, Delivery Inteligente &amp; Club VIP
+        </div>
+        <h1>El mejor café,<br><span>ahora aún más inteligente</span></h1>
+        <p>Pide desde nuestra carta artesanal, aplica cupones promocionales, personaliza tu bebida VIP, cotiza tu
+          delivery en segundos, acumula puntos de fidelidad y explora la analítica en vivo.</p>
+        <div class="hero-actions">
+          <a href="#menu" class="btn-hero-primary">Explorar Menú &darr;</a>
+          <a href="#club-vip" class="btn-hero-secondary">Personalizar Pedido VIP</a>
+          <a href="#delivery-precios" class="btn-hero-secondary">Cotizar Delivery</a>
+        </div>
       </div>
-      <h1>El mejor café,<br><span>ahora aún más inteligente</span></h1>
-      <p>Pide desde nuestra carta artesanal, aplica cupones promocionales, personaliza tu bebida VIP, cotiza tu delivery en segundos, acumula puntos de fidelidad y explora la analítica en vivo.</p>
-      <div class="hero-actions">
-        <a href="#menu" class="btn-hero-primary">Explorar Menú &darr;</a>
-        <a href="#club-vip" class="btn-hero-secondary">Personalizar Pedido VIP</a>
-        <a href="#delivery-precios" class="btn-hero-secondary">Cotizar Delivery</a>
+      <div class="hero-logo-card">
+        <img src="img/logo_cafeexpress.jpg" alt="CaféExpress Logo Principal" />
       </div>
     </div>
-    <div class="hero-logo-card">
-      <img src="img/logo_cafeexpress.jpg" alt="CaféExpress Logo Principal" />
+  </section>
+
+  <!-- NUEVA OPCIÓN 1: BANNER DE SALUDO Y SUGERENCIA POR HORA DEL DÍA (Semana 12) -->
+  <div class="hora-banner">
+    <div class="hora-banner-left">
+      <span class="hora-badge" id="hora-franja">Tarde</span>
+      <div id="hora-saludo-texto" style="font-size:0.9rem;">
+        <strong>Buenas tardes</strong> — Cargando sugerencia del momento...
+      </div>
+    </div>
+    <div class="hora-controls">
+      <label for="hora-select" style="font-size:0.78rem; font-weight:700; color:var(--text-muted);">Simular
+        hora:</label>
+      <select id="hora-select" class="form-control" style="width:auto; padding:6px 10px; font-size:0.82rem;"
+        onchange="actualizarSaludoHora()">
+        <option value="9">09:00 AM (Mañana)</option>
+        <option value="15" selected>03:00 PM (Tarde)</option>
+        <option value="20">08:00 PM (Noche)</option>
+      </select>
+      <button class="filtro-chip" style="background:var(--cafe-900); color:#fff; border-color:var(--cafe-900);"
+        onclick="agregarSugerenciaHora()">
+        + Pedir sugerencia
+      </button>
     </div>
   </div>
-</section>
 
-<!-- NUEVA OPCIÓN 1: BANNER DE SALUDO Y SUGERENCIA POR HORA DEL DÍA (Semana 12) -->
-<div class="hora-banner">
-  <div class="hora-banner-left">
-    <span class="hora-badge" id="hora-franja">Tarde</span>
-    <div id="hora-saludo-texto" style="font-size:0.9rem;">
-      <strong>Buenas tardes</strong> — Cargando sugerencia del momento...
+  <!-- BARRA DE ACCESO RÁPIDO -->
+  <div class="module-nav-bar">
+    <div class="module-nav-inner">
+      <a href="#menu" class="mod-tab active">Menú y Buscador</a>
+      <a href="#boleta-fidelidad" class="mod-tab">Boleta y Puntos</a>
+      <a href="#barra-vivo" class="mod-tab">Barra y Armar Pedido</a>
+      <a href="#delivery-precios" class="mod-tab">Delivery y Precios</a>
+      <a href="#club-vip" class="mod-tab">Club VIP y Monedero</a>
+      <a href="#analitica" class="mod-tab">Analítica Ventas</a>
+      <a href="#recomendador" class="mod-tab">Según Presupuesto</a>
+      <a href="#consulta-rapida" class="mod-tab">Alérgenos y Stock</a>
+      <a href="#combos" class="mod-tab">Combos Especiales</a>
     </div>
   </div>
-  <div class="hora-controls">
-    <label for="hora-select" style="font-size:0.78rem; font-weight:700; color:var(--text-muted);">Simular hora:</label>
-    <select id="hora-select" class="form-control" style="width:auto; padding:6px 10px; font-size:0.82rem;" onchange="actualizarSaludoHora()">
-      <option value="9">09:00 AM (Mañana)</option>
-      <option value="15" selected>03:00 PM (Tarde)</option>
-      <option value="20">08:00 PM (Noche)</option>
-    </select>
-    <button class="filtro-chip" style="background:var(--cafe-900); color:#fff; border-color:var(--cafe-900);" onclick="agregarSugerenciaHora()">
-      + Pedir sugerencia
-    </button>
-  </div>
-</div>
 
-<!-- BARRA DE ACCESO RÁPIDO -->
-<div class="module-nav-bar">
-  <div class="module-nav-inner">
-    <a href="#menu" class="mod-tab active">Menú y Buscador</a>
-    <a href="#boleta-fidelidad" class="mod-tab">Boleta y Puntos</a>
-    <a href="#barra-vivo" class="mod-tab">Barra y Armar Pedido</a>
-    <a href="#delivery-precios" class="mod-tab">Delivery y Precios</a>
-    <a href="#club-vip" class="mod-tab">Club VIP y Monedero</a>
-    <a href="#analitica" class="mod-tab">Analítica Ventas</a>
-    <a href="#recomendador" class="mod-tab">Según Presupuesto</a>
-    <a href="#consulta-rapida" class="mod-tab">Alérgenos y Stock</a>
-    <a href="#combos" class="mod-tab">Combos Especiales</a>
-  </div>
-</div>
+  <!-- CONTENEDOR PRINCIPAL -->
+  <div class="app-container">
+    <div class="main-stream">
 
-<!-- CONTENEDOR PRINCIPAL -->
-<div class="app-container">
-  <div class="main-stream">
-
-    <!-- SECCIÓN 1: MENÚ COMPLETO + NUEVO BUSCADOR INTELIGENTE (Semana 12) -->
-    <section id="menu">
-      <div class="section-header">
-        <div class="section-eyebrow">Carta Artesanal</div>
-        <h2 class="section-title">Nuestro Menú</h2>
-        <p class="section-desc">Explora por categoría o escribe lo que te provoca en el buscador inteligente.</p>
-      </div>
-
-      <!-- BUSCADOR POR FRASE -->
-      <div class="search-bar-box">
-        <div class="search-row">
-          <input type="text" id="buscador-frase" class="search-input"
-                 placeholder="Escribe qué te provoca: ej. 'Quiero algo de chocolate o café frío'..."
-                 onkeydown="if(event.key==='Enter') ejecutarBuscadorMenu()">
-          <button class="btn-hero-primary" style="padding:10px 20px; font-size:0.86rem;" onclick="ejecutarBuscadorMenu()">
-            Buscar en el Menú
-          </button>
-          <button class="filtro-chip" onclick="limpiarBuscadorMenu()">Ver todos</button>
-        </div>
-        <div class="search-meta" id="buscador-meta">
-          <span>Tip: prueba buscar <strong>"chocolate"</strong>, <strong>"café frío"</strong>, <strong>"queso"</strong> o <strong>"sin leche"</strong>.</span>
-        </div>
-      </div>
-
-      <div class="filtros-wrapper">
-        <button class="filtro-chip activo" onclick="filtrarCategoria('todos', this)">Todo (12)</button>
-        <button class="filtro-chip" onclick="filtrarCategoria('bebida', this)">Bebidas</button>
-        <button class="filtro-chip" onclick="filtrarCategoria('postre', this)">Postres</button>
-        <button class="filtro-chip" onclick="filtrarCategoria('sandwich', this)">Sándwiches</button>
-      </div>
-
-      <div class="productos-grid" id="productos-grid"></div>
-    </section>
-
-    <!-- NUEVA OPCIÓN 2: BOLETA DETALLADA, IGV Y PUNTOS DE FIDELIDAD (Semana 11) -->
-    <section id="boleta-fidelidad" class="feature-section">
-      <div class="section-header">
-        <div class="section-eyebrow">Facturación &amp; Beneficios</div>
-        <h3 class="section-title">Calculadora de Boleta, IGV y Puntos de Fidelidad</h3>
-        <p class="section-desc">Simula tu boleta con IGV (18%), descuento por cliente frecuente, puntos acumulados, bono por racha de visitas y empaques para llevar.</p>
-      </div>
-
-      <div class="form-grid">
-        <div class="form-group">
-          <label>Tu nombre</label>
-          <input id="s11-cliente" class="form-control" value="María">
-        </div>
-        <div class="form-group">
-          <label>Producto</label>
-          <select id="s11-producto" class="form-control" onchange="sincronizarPrecioS11()"></select>
-        </div>
-        <div class="form-group">
-          <label>Cantidad</label>
-          <input id="s11-cantidad" type="number" min="1" max="20" class="form-control" value="3">
-        </div>
-        <div class="form-group">
-          <label>Visitas esta semana (racha)</label>
-          <input id="s11-racha" type="number" min="0" max="5" class="form-control" value="2">
-        </div>
-      </div>
-
-      <div style="display:flex; gap:10px; flex-wrap:wrap;">
-        <button class="btn-hero-primary" style="padding:10px 20px; font-size:0.86rem;" onclick="calcularBoletaFidelidad()">
-          Calcular Boleta y Puntos
-        </button>
-        <button class="filtro-chip" onclick="usarCarritoEnBoleta()">
-          Usar totales de mi Carrito actual
-        </button>
-      </div>
-
-      <div class="kpi-grid" id="s11-kpis"></div>
-    </section>
-
-    <!-- NUEVA OPCIÓN 3: BARRA EN VIVO Y ARMADOR AUTOMÁTICO DE PEDIDO (Semana 13) -->
-    <section id="barra-vivo" class="feature-section">
-      <div class="section-header">
-        <div class="section-eyebrow">Operaciones de Barra</div>
-        <h3 class="section-title">Cola de Preparación en Vivo y "Arma mi Pedido"</h3>
-        <p class="section-desc">Gestiona los pedidos en barra (agregar, reemplazar, cancelar y despachar) o deja que el sistema arme automáticamente un pedido según tu presupuesto.</p>
-      </div>
-
-      <div class="two-col">
-        <!-- Subpanel A: Cola en barra -->
-        <div class="sub-panel">
-          <h4>Cola de Preparación en Barra</h4>
-          <div class="form-group" style="margin-bottom:8px;">
-            <label>Agregar nuevo pedido a la barra:</label>
-            <div style="display:flex; gap:6px;">
-              <input id="s13-nuevo" class="form-control" value="Jugo de Naranja">
-              <button class="filtro-chip" style="background:var(--cafe-900);color:#fff;" onclick="simularColaBarra()">Ejecutar</button>
-            </div>
-          </div>
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px;">
-            <div class="form-group">
-              <label>Cambiar turno #2 por:</label>
-              <input id="s13-reemplazo" class="form-control" value="Café Frío">
-            </div>
-            <div class="form-group">
-              <label>Cancelar pedido:</label>
-              <input id="s13-cancelar" class="form-control" value="Croissant">
-            </div>
-          </div>
-          <div id="s13-cola-out"></div>
+      <!-- SECCIÓN 1: MENÚ COMPLETO + NUEVO BUSCADOR INTELIGENTE (Semana 12) -->
+      <section id="menu">
+        <div class="section-header">
+          <div class="section-eyebrow">Carta Artesanal</div>
+          <h2 class="section-title">Nuestro Menú</h2>
+          <p class="section-desc">Explora por categoría o escribe lo que te provoca en el buscador inteligente.</p>
         </div>
 
-        <!-- Subpanel B: Armador automático por presupuesto -->
-        <div class="sub-panel">
-          <h4>Arma mi Pedido Automático</h4>
-          <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">Indica cuánto deseas gastar y armaremos un pedido completo sin pasarte de tu presupuesto.</p>
-          <div style="display:flex; gap:8px; align-items:center; margin-bottom:12px;">
-            <input id="s13-presupuesto" type="number" min="10" max="120" step="5" value="35" class="form-control" style="max-width:120px;">
-            <button class="btn-hero-primary" style="padding:9px 16px; font-size:0.84rem;" onclick="simularColaBarra()">Armar Pedido</button>
-          </div>
-          <div id="s13-lote-out"></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- NUEVA OPCIÓN 4: COTIZADOR DE DELIVERY Y GESTOR DE PRECIOS (Semana 14) -->
-    <section id="delivery-precios" class="feature-section">
-      <div class="section-header">
-        <div class="section-eyebrow">Entregas &amp; Catálogo</div>
-        <h3 class="section-title">Cotizador de Delivery por Distrito y Precios del Día</h3>
-        <p class="section-desc">Calcula distancia, tiempo estimado de entrega y costo de envío desde nuestra tienda central, revisa popularidad del turno y actualiza precios del menú.</p>
-      </div>
-
-      <div class="two-col">
-        <!-- Delivery -->
-        <div class="sub-panel">
-          <h4>Cotizar Delivery a Domicilio</h4>
-          <div class="form-group" style="margin-bottom:8px;">
-            <label>Distrito de entrega (Lima):</label>
-            <select id="s14-zona" class="form-control" onchange="ejecutarDeliveryYPrecios()">
-              <option value="-12.0550,-77.0400">Centro de Lima / Cercado</option>
-              <option value="-12.0600,-77.0350" selected>Jesús María / Lince</option>
-              <option value="-12.0950,-77.0360">San Isidro</option>
-              <option value="-12.1190,-77.0300">Miraflores</option>
-              <option value="-12.1040,-76.9990">San Borja</option>
-              <option value="-12.1460,-77.0210">Barranco</option>
-            </select>
-          </div>
-          <div style="display:grid; grid-template-columns:2fr 1fr; gap:8px; margin-bottom:10px;">
-            <div class="form-group">
-              <label>Producto:</label>
-              <select id="s14-prod" class="form-control" onchange="ejecutarDeliveryYPrecios()"></select>
-            </div>
-            <div class="form-group">
-              <label>Cant.:</label>
-              <input id="s14-cant" type="number" min="1" max="15" value="2" class="form-control" onchange="ejecutarDeliveryYPrecios()">
-            </div>
-          </div>
-          <div id="s14-delivery-out"></div>
-        </div>
-
-        <!-- Popularidad y actualización de precio -->
-        <div class="sub-panel">
-          <h4>Popularidad del Turno y Ajuste de Precio</h4>
-          <div class="form-group" style="margin-bottom:8px;">
-            <label>Ver cuántas veces se vendió hoy:</label>
-            <select id="s14-tupla-prod" class="form-control" onchange="ejecutarDeliveryYPrecios()">
-              <option value="Café Americano" selected>Café Americano</option>
-              <option value="Capuchino">Capuchino</option>
-              <option value="Croissant">Croissant</option>
-              <option value="Galleta Artesanal">Galleta Artesanal</option>
-              <option value="Cheesecake">Cheesecake</option>
-            </select>
-          </div>
-          <div style="display:grid; grid-template-columns:1fr auto; gap:8px; align-items:end; margin-bottom:10px;">
-            <div class="form-group">
-              <label>Actualizar precio del producto seleccionado (S/):</label>
-              <input id="s14-nuevo-precio" type="number" step="0.5" min="3" max="40" value="8.5" class="form-control">
-            </div>
-            <button class="btn-hero-primary" style="padding:9px 16px; font-size:0.82rem;" onclick="aplicarNuevoPrecioMenu()">
-              Actualizar
+        <!-- BUSCADOR POR FRASE -->
+        <div class="search-bar-box">
+          <div class="search-row">
+            <input type="text" id="buscador-frase" class="search-input"
+              placeholder="Escribe qué te provoca: ej. 'Quiero algo de chocolate o café frío'..."
+              onkeydown="if(event.key==='Enter') ejecutarBuscadorMenu()">
+            <button class="btn-hero-primary" style="padding:10px 20px; font-size:0.86rem;"
+              onclick="ejecutarBuscadorMenu()">
+              Buscar en el Menú
             </button>
+            <button class="filtro-chip" onclick="limpiarBuscadorMenu()">Ver todos</button>
           </div>
-          <div id="s14-precios-out"></div>
+          <div class="search-meta" id="buscador-meta">
+            <span>Tip: prueba buscar <strong>"chocolate"</strong>, <strong>"café frío"</strong>,
+              <strong>"queso"</strong> o <strong>"sin leche"</strong>.</span>
+          </div>
+        </div>
+
+        <div class="filtros-wrapper">
+          <button class="filtro-chip activo" onclick="filtrarCategoria('todos', this)">Todo (12)</button>
+          <button class="filtro-chip" onclick="filtrarCategoria('bebida', this)">Bebidas</button>
+          <button class="filtro-chip" onclick="filtrarCategoria('postre', this)">Postres</button>
+          <button class="filtro-chip" onclick="filtrarCategoria('sandwich', this)">Sándwiches</button>
+        </div>
+
+        <div class="productos-grid" id="productos-grid"></div>
+      </section>
+
+      <!-- NUEVA OPCIÓN 2: BOLETA DETALLADA, IGV Y PUNTOS DE FIDELIDAD (Semana 11) -->
+      <section id="boleta-fidelidad" class="feature-section">
+        <div class="section-header">
+          <div class="section-eyebrow">Facturación &amp; Beneficios</div>
+          <h3 class="section-title">Calculadora de Boleta, IGV y Puntos de Fidelidad</h3>
+          <p class="section-desc">Simula tu boleta con IGV (18%), descuento por cliente frecuente, puntos acumulados,
+            bono por racha de visitas y empaques para llevar.</p>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Tu nombre</label>
+            <input id="s11-cliente" class="form-control" value="María">
+          </div>
+          <div class="form-group">
+            <label>Producto</label>
+            <select id="s11-producto" class="form-control" onchange="sincronizarPrecioS11()"></select>
+          </div>
+          <div class="form-group">
+            <label>Cantidad</label>
+            <input id="s11-cantidad" type="number" min="1" max="20" class="form-control" value="3">
+          </div>
+          <div class="form-group">
+            <label>Visitas esta semana (racha)</label>
+            <input id="s11-racha" type="number" min="0" max="5" class="form-control" value="2">
+          </div>
+        </div>
+
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <button class="btn-hero-primary" style="padding:10px 20px; font-size:0.86rem;"
+            onclick="calcularBoletaFidelidad()">
+            Calcular Boleta y Puntos
+          </button>
+          <button class="filtro-chip" onclick="usarCarritoEnBoleta()">
+            Usar totales de mi Carrito actual
+          </button>
+        </div>
+
+        <div class="kpi-grid" id="s11-kpis"></div>
+      </section>
+
+      <!-- NUEVA OPCIÓN 3: BARRA EN VIVO Y ARMADOR AUTOMÁTICO DE PEDIDO (Semana 13) -->
+      <section id="barra-vivo" class="feature-section">
+        <div class="section-header">
+          <div class="section-eyebrow">Operaciones de Barra</div>
+          <h3 class="section-title">Cola de Preparación en Vivo y "Arma mi Pedido"</h3>
+          <p class="section-desc">Gestiona los pedidos en barra (agregar, reemplazar, cancelar y despachar) o deja que
+            el sistema arme automáticamente un pedido según tu presupuesto.</p>
+        </div>
+
+        <div class="two-col">
+          <!-- Subpanel A: Cola en barra -->
+          <div class="sub-panel">
+            <h4>Cola de Preparación en Barra</h4>
+            <div class="form-group" style="margin-bottom:8px;">
+              <label>Agregar nuevo pedido a la barra:</label>
+              <div style="display:flex; gap:6px;">
+                <input id="s13-nuevo" class="form-control" value="Jugo de Naranja">
+                <button class="filtro-chip" style="background:var(--cafe-900);color:#fff;"
+                  onclick="simularColaBarra()">Ejecutar</button>
+              </div>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px;">
+              <div class="form-group">
+                <label>Cambiar turno #2 por:</label>
+                <input id="s13-reemplazo" class="form-control" value="Café Frío">
+              </div>
+              <div class="form-group">
+                <label>Cancelar pedido:</label>
+                <input id="s13-cancelar" class="form-control" value="Croissant">
+              </div>
+            </div>
+            <div id="s13-cola-out"></div>
+          </div>
+
+          <!-- Subpanel B: Armador automático por presupuesto -->
+          <div class="sub-panel">
+            <h4>Arma mi Pedido Automático</h4>
+            <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">Indica cuánto deseas gastar y
+              armaremos un pedido completo sin pasarte de tu presupuesto.</p>
+            <div style="display:flex; gap:8px; align-items:center; margin-bottom:12px;">
+              <input id="s13-presupuesto" type="number" min="10" max="120" step="5" value="35" class="form-control"
+                style="max-width:120px;">
+              <button class="btn-hero-primary" style="padding:9px 16px; font-size:0.84rem;"
+                onclick="simularColaBarra()">Armar Pedido</button>
+            </div>
+            <div id="s13-lote-out"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NUEVA OPCIÓN 4: COTIZADOR DE DELIVERY Y GESTOR DE PRECIOS (Semana 14) -->
+      <section id="delivery-precios" class="feature-section">
+        <div class="section-header">
+          <div class="section-eyebrow">Entregas &amp; Catálogo</div>
+          <h3 class="section-title">Cotizador de Delivery por Distrito y Precios del Día</h3>
+          <p class="section-desc">Calcula distancia, tiempo estimado de entrega y costo de envío desde nuestra tienda
+            central, revisa popularidad del turno y actualiza precios del menú.</p>
+        </div>
+
+        <div class="two-col">
+          <!-- Delivery -->
+          <div class="sub-panel">
+            <h4>Cotizar Delivery a Domicilio</h4>
+            <div class="form-group" style="margin-bottom:8px;">
+              <label>Distrito de entrega (Lima):</label>
+              <select id="s14-zona" class="form-control" onchange="ejecutarDeliveryYPrecios()">
+                <option value="-12.0550,-77.0400">Centro de Lima / Cercado</option>
+                <option value="-12.0600,-77.0350" selected>Jesús María / Lince</option>
+                <option value="-12.0950,-77.0360">San Isidro</option>
+                <option value="-12.1190,-77.0300">Miraflores</option>
+                <option value="-12.1040,-76.9990">San Borja</option>
+                <option value="-12.1460,-77.0210">Barranco</option>
+              </select>
+            </div>
+            <div style="display:grid; grid-template-columns:2fr 1fr; gap:8px; margin-bottom:10px;">
+              <div class="form-group">
+                <label>Producto:</label>
+                <select id="s14-prod" class="form-control" onchange="ejecutarDeliveryYPrecios()"></select>
+              </div>
+              <div class="form-group">
+                <label>Cant.:</label>
+                <input id="s14-cant" type="number" min="1" max="15" value="2" class="form-control"
+                  onchange="ejecutarDeliveryYPrecios()">
+              </div>
+            </div>
+            <div id="s14-delivery-out"></div>
+          </div>
+
+          <!-- Popularidad y actualización de precio -->
+          <div class="sub-panel">
+            <h4>Popularidad del Turno y Ajuste de Precio</h4>
+            <div class="form-group" style="margin-bottom:8px;">
+              <label>Ver cuántas veces se vendió hoy:</label>
+              <select id="s14-tupla-prod" class="form-control" onchange="ejecutarDeliveryYPrecios()">
+                <option value="Café Americano" selected>Café Americano</option>
+                <option value="Capuchino">Capuchino</option>
+                <option value="Croissant">Croissant</option>
+                <option value="Galleta Artesanal">Galleta Artesanal</option>
+                <option value="Cheesecake">Cheesecake</option>
+              </select>
+            </div>
+            <div style="display:grid; grid-template-columns:1fr auto; gap:8px; align-items:end; margin-bottom:10px;">
+              <div class="form-group">
+                <label>Actualizar precio del producto seleccionado (S/):</label>
+                <input id="s14-nuevo-precio" type="number" step="0.5" min="3" max="40" value="8.5" class="form-control">
+              </div>
+              <button class="btn-hero-primary" style="padding:9px 16px; font-size:0.82rem;"
+                onclick="aplicarNuevoPrecioMenu()">
+                Actualizar
+              </button>
+            </div>
+            <div id="s14-precios-out"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- NUEVA OPCIÓN 5: CLUB VIP, PERSONALIZADOR Y MONEDERO DIGITAL (Semana 15) -->
+      <section id="club-vip" class="feature-section">
+        <div class="section-header">
+          <div class="section-eyebrow">Experiencia Personalizada</div>
+          <h3 class="section-title">Club CaféExpress VIP, Personalizador y Monedero Digital</h3>
+          <p class="section-desc">Arma tu combo personalizado (tamaño de vaso, temperatura, postre sin lactosa y tipo de
+            pan), obtén 15% de descuento VIP y págalo con tu Monedero Digital recargable.</p>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Nombre Socio VIP</label>
+            <input id="s15-nombre" class="form-control" value="Luis">
+          </div>
+          <div class="form-group">
+            <label>Bebida a personalizar</label>
+            <select id="s15-bebida" class="form-control">
+              <option value="Capuchino|12">Capuchino (S/ 12)</option>
+              <option value="Café Americano|8">Café Americano (S/ 8)</option>
+              <option value="Café Frío|14">Café Frío (S/ 14)</option>
+              <option value="Chocolate Caliente|10">Chocolate Caliente (S/ 10)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tamaño de vaso</label>
+            <select id="s15-tamano" class="form-control">
+              <option value="pequeno">Pequeño (+S/ 0)</option>
+              <option value="mediano">Mediano (+S/ 2)</option>
+              <option value="grande" selected>Grande (+S/ 4)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Temperatura / Postre</label>
+            <select id="s15-temp" class="form-control">
+              <option value="caliente|true" selected>Caliente · Postre sin lactosa</option>
+              <option value="frio|true">Frío · Postre sin lactosa</option>
+              <option value="caliente|false">Caliente · Receta tradicional</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Tipo de pan (Sándwich)</label>
+            <select id="s15-pan" class="form-control">
+              <option value="integral" selected>Pan integral</option>
+              <option value="artesanal">Pan artesanal</option>
+              <option value="masa madre">Masa madre</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Recarga Monedero (S/)</label>
+            <input id="s15-recarga" type="number" min="0" max="200" step="5" value="20" class="form-control">
+          </div>
+        </div>
+
+        <button class="btn-hero-primary" style="padding:10px 22px; font-size:0.88rem;" onclick="ejecutarClubVIP()">
+          Simular Pedido VIP y Pagar con Monedero
+        </button>
+
+        <div class="two-col" id="s15-out"></div>
+      </section>
+
+      <!-- NUEVA OPCIÓN 6: PANEL DE ANALÍTICA DE VENTAS Y DEMANDA (Semana 16 - NumPy) -->
+      <section id="analitica" class="feature-section">
+        <div class="section-header">
+          <div class="section-eyebrow">Inteligencia de Negocio</div>
+          <h3 class="section-title">Panel de Analítica de Ventas y Simulador de Demanda</h3>
+          <p class="section-desc">Visualiza el desempeño semanal de CaféExpress, ingresos por día, corrección automática
+            de fallos de caja (datos faltantes) y prueba de velocidad de procesamiento.</p>
+        </div>
+
+        <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:end; margin-bottom:14px;">
+          <div class="form-group" style="min-width:180px;">
+            <label>Simular campaña descuento:</label>
+            <select id="s16-desc" class="form-control" onchange="ejecutarAnaliticaNumpy()">
+              <option value="0.0">Sin descuento (0%)</option>
+              <option value="0.10" selected>Campaña -10%</option>
+              <option value="0.15">Campaña -15%</option>
+              <option value="0.20">Campaña -20%</option>
+            </select>
+          </div>
+          <div class="form-group" style="min-width:190px;">
+            <label>Volumen prueba de rendimiento:</label>
+            <select id="s16-bench" class="form-control">
+              <option value="250000">250,000 registros</option>
+              <option value="500000" selected>500,000 registros</option>
+              <option value="1000000">1,000,000 registros</option>
+            </select>
+          </div>
+          <button class="btn-hero-primary" style="padding:10px 20px; font-size:0.86rem;"
+            onclick="ejecutarAnaliticaNumpy()">
+            Actualizar Analítica
+          </button>
+        </div>
+
+        <div class="kpi-grid" id="s16-kpis"></div>
+        <div class="bar-chart" id="s16-chart"></div>
+        <div style="overflow-x:auto;" id="s16-table-wrap"></div>
+        <div class="two-col" id="s16-extra"></div>
+      </section>
+
+      <!-- ============================================================ -->
+      <!-- SECCIONES ORIGINALES PRESERVADAS AL 100% (Semanas 6, 7 y 9)  -->
+      <!-- ============================================================ -->
+
+      <!-- SECCIÓN ORIGINAL: ASISTENTE SEGÚN PRESUPUESTO (Semana 6) -->
+      <section id="recomendador" class="feature-section">
+        <div class="section-header">
+          <div class="section-eyebrow">Sugerencias a tu Medida</div>
+          <h3 class="section-title">¿Cuánto deseas gastar?</h3>
+          <p class="section-desc">Ajusta tu presupuesto y te mostraremos de inmediato las opciones que se ajustan a ti.
+          </p>
+        </div>
+        <div class="recom-controls">
+          <div class="form-group">
+            <label for="recom-presupuesto">Presupuesto Máximo: <span id="presupuesto-val"
+                style="color:var(--gold-600); font-weight:800;">S/ 10.00</span></label>
+            <input type="range" class="form-control" id="recom-presupuesto" min="5" max="20" step="0.5" value="10"
+              oninput="actualizarRecomendaciones()">
+          </div>
+          <div class="form-group">
+            <label for="recom-cat">Filtrar por tipo:</label>
+            <select id="recom-cat" class="form-control" onchange="actualizarRecomendaciones()">
+              <option value="todos">Cualquier producto</option>
+              <option value="bebida" selected>Solo Bebidas Económicas</option>
+              <option value="postre">Solo Postres</option>
+              <option value="sandwich">Solo Sándwiches</option>
+            </select>
+          </div>
+        </div>
+        <div class="recom-results-grid" id="recom-results"></div>
+      </section>
+
+      <!-- SECCIÓN ORIGINAL: CONSULTA RÁPIDA & ALÉRGENOS (Semana 7) -->
+      <section id="consulta-rapida" class="feature-section">
+        <div class="section-header">
+          <div class="section-eyebrow">Atención Personalizada</div>
+          <h3 class="section-title">Consulta Rápida &amp; Alérgenos</h3>
+          <p class="section-desc">Personaliza tus preferencias para ver qué opciones no contienen ingredientes que
+            deseas evitar y están listas en stock.</p>
+        </div>
+        <div class="wa-box">
+          <div class="wa-bubble">
+            <div>
+              <strong>Pregunta frecuente:</strong><br>
+              <span id="wa-pregunta-texto">"¿Tienen algo sin leche y de menos de S/ 10.00?"</span>
+            </div>
+          </div>
+          <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted);">Marca ingredientes que deseas
+            EXCLUIR:</label>
+          <div class="chips-container">
+            <div class="allergen-chip selected" data-ing="leche" onclick="toggleAllergen(this)">Sin leche</div>
+            <div class="allergen-chip" data-ing="harina" onclick="toggleAllergen(this)">Sin harina</div>
+            <div class="allergen-chip" data-ing="huevo" onclick="toggleAllergen(this)">Sin huevo</div>
+            <div class="allergen-chip" data-ing="chocolate" onclick="toggleAllergen(this)">Sin chocolate</div>
+            <div class="allergen-chip" data-ing="pollo" onclick="toggleAllergen(this)">Sin pollo</div>
+            <div class="allergen-chip" data-ing="queso" onclick="toggleAllergen(this)">Sin queso</div>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+            <div>
+              <span style="font-size:0.84rem; font-weight:700; color:var(--text-muted);">Presupuesto máximo: </span>
+              <input type="number" id="wa-presupuesto" value="10" min="5" max="30" step="0.5" class="form-control"
+                style="width:100px; display:inline-block;" oninput="actualizarConsultaWhatsApp()">
+            </div>
+            <button class="btn-hero-primary" style="padding:8px 18px; font-size:0.84rem;"
+              onclick="ejecutarConsultaWhatsApp()">Ver Opciones Disponibles</button>
+          </div>
+        </div>
+        <div class="stock-status-grid" id="wa-results-grid"></div>
+        <div
+          style="background:var(--cream-100); border-radius:14px; padding:16px; margin-top:18px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border:1px dashed var(--gold-500);">
+          <div>
+            <span style="font-size:0.74rem; font-weight:800; color:var(--gold-600); text-transform:uppercase;">Combo del
+              Día:</span>
+            <div style="font-size:1rem; font-weight:800; color:var(--cafe-900);">Café Americano + Galleta / Keke</div>
+            <div style="font-size:0.8rem; color:var(--text-muted);">Precio habitual S/ 13.00 &bull; Con 10% de
+              descuento: <strong style="color:var(--green-ok);">S/ 11.70</strong></div>
+          </div>
+          <button class="btn-hero-primary" style="padding:9px 16px; font-size:0.84rem;"
+            onclick="agregarComboWhatsApp()">Añadir Combo (S/ 11.70)</button>
+        </div>
+      </section>
+
+      <!-- SECCIÓN ORIGINAL: COMBOS RECOMENDADOS (Semana 9) -->
+      <section id="combos" class="feature-section">
+        <div class="section-header">
+          <div class="section-eyebrow">Ahorro y Variedad</div>
+          <h3 class="section-title">Combos Recomendados (Bebida + Postre)</h3>
+          <p class="section-desc">Selecciona tu presupuesto y descubre las mejores combinaciones para disfrutar.</p>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; flex-wrap:wrap;">
+          <label style="font-size:0.85rem; font-weight:700;">Presupuesto de Combo:</label>
+          <select id="combo-max-select" class="form-control" style="width:160px;"
+            onchange="generarCombosIndeterminismo()">
+            <option value="15">Hasta S/ 15.00</option>
+            <option value="18">Hasta S/ 18.00</option>
+            <option value="20" selected>Hasta S/ 20.00</option>
+            <option value="25">Hasta S/ 25.00</option>
+          </select>
+          <span id="combo-count-badge" style="font-size:0.82rem; font-weight:700; color:var(--gold-600);"></span>
+        </div>
+        <div class="combos-grid" id="combos-grid"></div>
+      </section>
+
+    </div>
+
+    <!-- PANEL LATERAL: CARRITO REACTIVO MEJORADO CON CUPONES Y ETIQUETA DE VASO (Semana 12) -->
+    <aside class="carrito-panel" id="carrito-panel">
+      <div class="carrito-header">
+        <h3>Mi Pedido</h3>
+        <span style="font-size:0.78rem; background:rgba(255,255,255,0.2); padding:2px 9px; border-radius:50px;"
+          id="cart-item-count">0 items</span>
+      </div>
+
+      <div class="carrito-items" id="carrito-items">
+        <div class="carrito-vacio" id="carrito-vacio">
+          <strong>Tu pedido está vacío</strong>
+          <p style="font-size:0.8rem; margin-top:4px;">Elige tus bebidas o postres del menú.</p>
         </div>
       </div>
-    </section>
 
-    <!-- NUEVA OPCIÓN 5: CLUB VIP, PERSONALIZADOR Y MONEDERO DIGITAL (Semana 15) -->
-    <section id="club-vip" class="feature-section">
-      <div class="section-header">
-        <div class="section-eyebrow">Experiencia Personalizada</div>
-        <h3 class="section-title">Club CaféExpress VIP, Personalizador y Monedero Digital</h3>
-        <p class="section-desc">Arma tu combo personalizado (tamaño de vaso, temperatura, postre sin lactosa y tipo de pan), obtén 15% de descuento VIP y págalo con tu Monedero Digital recargable.</p>
-      </div>
-
-      <div class="form-grid">
+      <!-- NUEVO EN CARRITO: NOMBRE PARA VASO + CUPÓN PROMOCIONAL (Semana 12) -->
+      <div class="carrito-extras">
         <div class="form-group">
-          <label>Nombre Socio VIP</label>
-          <input id="s15-nombre" class="form-control" value="Luis">
+          <label for="cart-nombre-vaso">Nombre para la etiqueta de tu vaso:</label>
+          <input id="cart-nombre-vaso" class="form-control" style="padding:7px 10px; font-size:0.82rem;"
+            placeholder="Ej. Ana María" value="Ana María">
         </div>
         <div class="form-group">
-          <label>Bebida a personalizar</label>
-          <select id="s15-bebida" class="form-control">
-            <option value="Capuchino|12">Capuchino (S/ 12)</option>
-            <option value="Café Americano|8">Café Americano (S/ 8)</option>
-            <option value="Café Frío|14">Café Frío (S/ 14)</option>
-            <option value="Chocolate Caliente|10">Chocolate Caliente (S/ 10)</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Tamaño de vaso</label>
-          <select id="s15-tamano" class="form-control">
-            <option value="pequeno">Pequeño (+S/ 0)</option>
-            <option value="mediano">Mediano (+S/ 2)</option>
-            <option value="grande" selected>Grande (+S/ 4)</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Temperatura / Postre</label>
-          <select id="s15-temp" class="form-control">
-            <option value="caliente|true" selected>Caliente · Postre sin lactosa</option>
-            <option value="frio|true">Frío · Postre sin lactosa</option>
-            <option value="caliente|false">Caliente · Receta tradicional</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Tipo de pan (Sándwich)</label>
-          <select id="s15-pan" class="form-control">
-            <option value="integral" selected>Pan integral</option>
-            <option value="artesanal">Pan artesanal</option>
-            <option value="masa madre">Masa madre</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Recarga Monedero (S/)</label>
-          <input id="s15-recarga" type="number" min="0" max="200" step="5" value="20" class="form-control">
+          <label for="cart-cupon">¿Tienes cupón? (CAFE2026 · CAFEVIP · POSTRE5)</label>
+          <div class="coupon-row">
+            <input id="cart-cupon" class="form-control" style="padding:7px 10px; font-size:0.82rem;"
+              placeholder="Ingresa tu código">
+            <button class="filtro-chip" style="padding:6px 12px; font-size:0.78rem;"
+              onclick="aplicarCuponCarrito()">Aplicar</button>
+          </div>
+          <div id="cart-cupon-msg" class="coupon-msg" style="margin-top:4px;"></div>
         </div>
       </div>
 
-      <button class="btn-hero-primary" style="padding:10px 22px; font-size:0.88rem;" onclick="ejecutarClubVIP()">
-        Simular Pedido VIP y Pagar con Monedero
-      </button>
-
-      <div class="two-col" id="s15-out"></div>
-    </section>
-
-    <!-- NUEVA OPCIÓN 6: PANEL DE ANALÍTICA DE VENTAS Y DEMANDA (Semana 16 - NumPy) -->
-    <section id="analitica" class="feature-section">
-      <div class="section-header">
-        <div class="section-eyebrow">Inteligencia de Negocio</div>
-        <h3 class="section-title">Panel de Analítica de Ventas y Simulador de Demanda</h3>
-        <p class="section-desc">Visualiza el desempeño semanal de CaféExpress, ingresos por día, corrección automática de fallos de caja (datos faltantes) y prueba de velocidad de procesamiento.</p>
-      </div>
-
-      <div style="display:flex; gap:12px; flex-wrap:wrap; align-items:end; margin-bottom:14px;">
-        <div class="form-group" style="min-width:180px;">
-          <label>Simular campaña descuento:</label>
-          <select id="s16-desc" class="form-control" onchange="ejecutarAnaliticaNumpy()">
-            <option value="0.0">Sin descuento (0%)</option>
-            <option value="0.10" selected>Campaña -10%</option>
-            <option value="0.15">Campaña -15%</option>
-            <option value="0.20">Campaña -20%</option>
-          </select>
+      <div class="carrito-resumen">
+        <div class="resumen-fila">
+          <span>Subtotal</span>
+          <span id="r-subtotal">S/ 0.00</span>
         </div>
-        <div class="form-group" style="min-width:190px;">
-          <label>Volumen prueba de rendimiento:</label>
-          <select id="s16-bench" class="form-control">
-            <option value="250000">250,000 registros</option>
-            <option value="500000" selected>500,000 registros</option>
-            <option value="1000000">1,000,000 registros</option>
-          </select>
+        <div class="resumen-fila descuento" id="r-desc-fila" style="display:none;">
+          <span id="r-desc-label">Descuento Especial 10%</span>
+          <span id="r-desc-val">-S/ 0.00</span>
         </div>
-        <button class="btn-hero-primary" style="padding:10px 20px; font-size:0.86rem;" onclick="ejecutarAnaliticaNumpy()">
-          Actualizar Analítica
+        <div class="resumen-fila">
+          <span>Puntos estimados</span>
+          <span id="r-puntos" style="font-weight:700; color:var(--gold-600);">0 pts</span>
+        </div>
+        <div class="resumen-fila total">
+          <span>Total a Pagar</span>
+          <span id="r-total">S/ 0.00</span>
+        </div>
+
+        <button class="btn-desc" id="btn-desc" onclick="aplicarDescuento()" disabled>
+          Aplicar Descuento 10%
+        </button>
+        <button class="btn-checkout" id="btn-checkout" onclick="confirmarPedido()" disabled>
+          Confirmar Pedido &rarr;
         </button>
       </div>
-
-      <div class="kpi-grid" id="s16-kpis"></div>
-      <div class="bar-chart" id="s16-chart"></div>
-      <div style="overflow-x:auto;" id="s16-table-wrap"></div>
-      <div class="two-col" id="s16-extra"></div>
-    </section>
-
-    <!-- ============================================================ -->
-    <!-- SECCIONES ORIGINALES PRESERVADAS AL 100% (Semanas 6, 7 y 9)  -->
-    <!-- ============================================================ -->
-
-    <!-- SECCIÓN ORIGINAL: ASISTENTE SEGÚN PRESUPUESTO (Semana 6) -->
-    <section id="recomendador" class="feature-section">
-      <div class="section-header">
-        <div class="section-eyebrow">Sugerencias a tu Medida</div>
-        <h3 class="section-title">¿Cuánto deseas gastar?</h3>
-        <p class="section-desc">Ajusta tu presupuesto y te mostraremos de inmediato las opciones que se ajustan a ti.</p>
-      </div>
-      <div class="recom-controls">
-        <div class="form-group">
-          <label for="recom-presupuesto">Presupuesto Máximo: <span id="presupuesto-val" style="color:var(--gold-600); font-weight:800;">S/ 10.00</span></label>
-          <input type="range" class="form-control" id="recom-presupuesto" min="5" max="20" step="0.5" value="10" oninput="actualizarRecomendaciones()">
-        </div>
-        <div class="form-group">
-          <label for="recom-cat">Filtrar por tipo:</label>
-          <select id="recom-cat" class="form-control" onchange="actualizarRecomendaciones()">
-            <option value="todos">Cualquier producto</option>
-            <option value="bebida" selected>Solo Bebidas Económicas</option>
-            <option value="postre">Solo Postres</option>
-            <option value="sandwich">Solo Sándwiches</option>
-          </select>
-        </div>
-      </div>
-      <div class="recom-results-grid" id="recom-results"></div>
-    </section>
-
-    <!-- SECCIÓN ORIGINAL: CONSULTA RÁPIDA & ALÉRGENOS (Semana 7) -->
-    <section id="consulta-rapida" class="feature-section">
-      <div class="section-header">
-        <div class="section-eyebrow">Atención Personalizada</div>
-        <h3 class="section-title">Consulta Rápida &amp; Alérgenos</h3>
-        <p class="section-desc">Personaliza tus preferencias para ver qué opciones no contienen ingredientes que deseas evitar y están listas en stock.</p>
-      </div>
-      <div class="wa-box">
-        <div class="wa-bubble">
-          <div>
-            <strong>Pregunta frecuente:</strong><br>
-            <span id="wa-pregunta-texto">"¿Tienen algo sin leche y de menos de S/ 10.00?"</span>
-          </div>
-        </div>
-        <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted);">Marca ingredientes que deseas EXCLUIR:</label>
-        <div class="chips-container">
-          <div class="allergen-chip selected" data-ing="leche" onclick="toggleAllergen(this)">Sin leche</div>
-          <div class="allergen-chip" data-ing="harina" onclick="toggleAllergen(this)">Sin harina</div>
-          <div class="allergen-chip" data-ing="huevo" onclick="toggleAllergen(this)">Sin huevo</div>
-          <div class="allergen-chip" data-ing="chocolate" onclick="toggleAllergen(this)">Sin chocolate</div>
-          <div class="allergen-chip" data-ing="pollo" onclick="toggleAllergen(this)">Sin pollo</div>
-          <div class="allergen-chip" data-ing="queso" onclick="toggleAllergen(this)">Sin queso</div>
-        </div>
-        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
-          <div>
-            <span style="font-size:0.84rem; font-weight:700; color:var(--text-muted);">Presupuesto máximo: </span>
-            <input type="number" id="wa-presupuesto" value="10" min="5" max="30" step="0.5" class="form-control" style="width:100px; display:inline-block;" oninput="actualizarConsultaWhatsApp()">
-          </div>
-          <button class="btn-hero-primary" style="padding:8px 18px; font-size:0.84rem;" onclick="ejecutarConsultaWhatsApp()">Ver Opciones Disponibles</button>
-        </div>
-      </div>
-      <div class="stock-status-grid" id="wa-results-grid"></div>
-      <div style="background:var(--cream-100); border-radius:14px; padding:16px; margin-top:18px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border:1px dashed var(--gold-500);">
-        <div>
-          <span style="font-size:0.74rem; font-weight:800; color:var(--gold-600); text-transform:uppercase;">Combo del Día:</span>
-          <div style="font-size:1rem; font-weight:800; color:var(--cafe-900);">Café Americano + Galleta / Keke</div>
-          <div style="font-size:0.8rem; color:var(--text-muted);">Precio habitual S/ 13.00 &bull; Con 10% de descuento: <strong style="color:var(--green-ok);">S/ 11.70</strong></div>
-        </div>
-        <button class="btn-hero-primary" style="padding:9px 16px; font-size:0.84rem;" onclick="agregarComboWhatsApp()">Añadir Combo (S/ 11.70)</button>
-      </div>
-    </section>
-
-    <!-- SECCIÓN ORIGINAL: COMBOS RECOMENDADOS (Semana 9) -->
-    <section id="combos" class="feature-section">
-      <div class="section-header">
-        <div class="section-eyebrow">Ahorro y Variedad</div>
-        <h3 class="section-title">Combos Recomendados (Bebida + Postre)</h3>
-        <p class="section-desc">Selecciona tu presupuesto y descubre las mejores combinaciones para disfrutar.</p>
-      </div>
-      <div style="display:flex; align-items:center; gap:12px; margin-bottom:14px; flex-wrap:wrap;">
-        <label style="font-size:0.85rem; font-weight:700;">Presupuesto de Combo:</label>
-        <select id="combo-max-select" class="form-control" style="width:160px;" onchange="generarCombosIndeterminismo()">
-          <option value="15">Hasta S/ 15.00</option>
-          <option value="18">Hasta S/ 18.00</option>
-          <option value="20" selected>Hasta S/ 20.00</option>
-          <option value="25">Hasta S/ 25.00</option>
-        </select>
-        <span id="combo-count-badge" style="font-size:0.82rem; font-weight:700; color:var(--gold-600);"></span>
-      </div>
-      <div class="combos-grid" id="combos-grid"></div>
-    </section>
-
+    </aside>
   </div>
 
-  <!-- PANEL LATERAL: CARRITO REACTIVO MEJORADO CON CUPONES Y ETIQUETA DE VASO (Semana 12) -->
-  <aside class="carrito-panel" id="carrito-panel">
-    <div class="carrito-header">
-      <h3>Mi Pedido</h3>
-      <span style="font-size:0.78rem; background:rgba(255,255,255,0.2); padding:2px 9px; border-radius:50px;" id="cart-item-count">0 items</span>
-    </div>
-
-    <div class="carrito-items" id="carrito-items">
-      <div class="carrito-vacio" id="carrito-vacio">
-        <strong>Tu pedido está vacío</strong>
-        <p style="font-size:0.8rem; margin-top:4px;">Elige tus bebidas o postres del menú.</p>
-      </div>
-    </div>
-
-    <!-- NUEVO EN CARRITO: NOMBRE PARA VASO + CUPÓN PROMOCIONAL (Semana 12) -->
-    <div class="carrito-extras">
-      <div class="form-group">
-        <label for="cart-nombre-vaso">Nombre para la etiqueta de tu vaso:</label>
-        <input id="cart-nombre-vaso" class="form-control" style="padding:7px 10px; font-size:0.82rem;" placeholder="Ej. Ana María" value="Ana María">
-      </div>
-      <div class="form-group">
-        <label for="cart-cupon">¿Tienes cupón? (CAFE2026 · CAFEVIP · POSTRE5)</label>
-        <div class="coupon-row">
-          <input id="cart-cupon" class="form-control" style="padding:7px 10px; font-size:0.82rem;" placeholder="Ingresa tu código">
-          <button class="filtro-chip" style="padding:6px 12px; font-size:0.78rem;" onclick="aplicarCuponCarrito()">Aplicar</button>
-        </div>
-        <div id="cart-cupon-msg" class="coupon-msg" style="margin-top:4px;"></div>
-      </div>
-    </div>
-
-    <div class="carrito-resumen">
-      <div class="resumen-fila">
-        <span>Subtotal</span>
-        <span id="r-subtotal">S/ 0.00</span>
-      </div>
-      <div class="resumen-fila descuento" id="r-desc-fila" style="display:none;">
-        <span id="r-desc-label">Descuento Especial 10%</span>
-        <span id="r-desc-val">-S/ 0.00</span>
-      </div>
-      <div class="resumen-fila">
-        <span>Puntos estimados</span>
-        <span id="r-puntos" style="font-weight:700; color:var(--gold-600);">0 pts</span>
-      </div>
-      <div class="resumen-fila total">
-        <span>Total a Pagar</span>
-        <span id="r-total">S/ 0.00</span>
-      </div>
-
-      <button class="btn-desc" id="btn-desc" onclick="aplicarDescuento()" disabled>
-        Aplicar Descuento 10%
-      </button>
-      <button class="btn-checkout" id="btn-checkout" onclick="confirmarPedido()" disabled>
-        Confirmar Pedido &rarr;
-      </button>
-    </div>
-  </aside>
-</div>
-
-<!-- TOAST Y MODAL -->
-<div class="toast-box" id="toast">
-  <span id="toast-msg">Mensaje</span>
-</div>
-
-<div class="modal-overlay" id="modal-overlay" onclick="cerrarModal()">
-  <div class="modal-card" onclick="event.stopPropagation()">
-    <div class="modal-icon-badge">&#10004;</div>
-    <h3 style="font-family:'Playfair Display',serif; font-size:1.55rem; color:var(--cafe-900); margin-bottom:8px;">¡Pedido Confirmado!</h3>
-    <p id="modal-detalle" style="font-size:0.88rem; color:var(--text-muted); line-height:1.6; margin-bottom:20px;"></p>
-    <button class="btn-hero-primary" style="width:100%; justify-content:center;" onclick="cerrarModal()">Hacer Otro Pedido</button>
+  <!-- TOAST Y MODAL -->
+  <div class="toast-box" id="toast">
+    <span id="toast-msg">Mensaje</span>
   </div>
-</div>
 
-<footer>
-  <div style="display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:10px;">
-    <div class="logo-img-wrap" style="width:40px; height:40px;">
-      <img src="img/logo_cafeexpress.jpg" alt="CaféExpress" class="logo-img" />
+  <div class="modal-overlay" id="modal-overlay" onclick="cerrarModal()">
+    <div class="modal-card" onclick="event.stopPropagation()">
+      <div class="modal-icon-badge">&#10004;</div>
+      <h3 style="font-family:'Playfair Display',serif; font-size:1.55rem; color:var(--cafe-900); margin-bottom:8px;">
+        ¡Pedido Confirmado!</h3>
+      <p id="modal-detalle" style="font-size:0.88rem; color:var(--text-muted); line-height:1.6; margin-bottom:20px;">
+      </p>
+      <button class="btn-hero-primary" style="width:100%; justify-content:center;" onclick="cerrarModal()">Hacer Otro
+        Pedido</button>
     </div>
-    <strong style="font-size:1.1rem; color:#fff;">CaféExpress</strong>
   </div>
-  Café artesanal, Delivery inteligente, Club VIP y Analítica de Ventas.<br>
-  <span style="opacity:0.65;">&copy; 2026 CaféExpress &mdash; Pasión por el buen café y servicio de calidad. &bull; <a href="/clasico" style="color:var(--gold-400);">Ver vista clásica</a></span>
-</footer>
 
-<script>
+  <footer>
+    <div style="display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:10px;">
+      <div class="logo-img-wrap" style="width:40px; height:40px;">
+        <img src="img/logo_cafeexpress.jpg" alt="CaféExpress" class="logo-img" />
+      </div>
+      <strong style="font-size:1.1rem; color:#fff;">CaféExpress</strong>
+    </div>
+    Café artesanal, Delivery inteligente, Club VIP y Analítica de Ventas.<br>
+    <span style="opacity:0.65;">&copy; 2026 CaféExpress &mdash; Pasión por el buen café y servicio de calidad. &bull; <a
+        href="/clasico" style="color:var(--gold-400);">Ver vista clásica</a></span>
+  </footer>
+
+  <script>
   const catalogo = [
     { id: 1,  nombre: "Café Americano",     precio: 8.0,  categoria: "bebida",   img: "img/americano.png",      ingredientes: ["cafe"], desc: "Espresso con agua caliente, sabor suave y reconfortante." },
     { id: 2,  nombre: "Capuchino",          precio: 12.0, categoria: "bebida",   img: "img/capuchino.png",      ingredientes: ["cafe", "leche"], desc: "Espresso con leche vaporizada y espuma cremosa." },
@@ -1607,4 +2560,5 @@
   });
 </script>
 </body>
+
 </html>

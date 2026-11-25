@@ -4,7 +4,7 @@ Este proyecto unifica la base de **CaféExpress** con los aportes académicos co
 
 ---
 
-## 🛒 1. Nuevas Opciones Visibles en la Página Web (`http://localhost:8000/`)
+## 🛒 1. Nuevas Opciones Visibles en la Página Web (`http://localhost:8080/`)
 
 Al iniciar `python main.py`, la página principal ([`cafe_express_python.html`](cafe_express_python.html)) mantiene intactas todas las opciones previas (Menú, Carrito, Recomendados, Alérgenos y Combos) e incorpora **6 nuevas opciones interactivas** impulsadas por Python:
 
@@ -27,12 +27,12 @@ Al iniciar `python main.py`, la página principal ([`cafe_express_python.html`](
 | **Semana 14** | Listas, Tuplas, Diccionarios, Funciones y Módulos | [`src/main/python/semana14_colecciones_funciones.py`](src/main/python/semana14_colecciones_funciones.py) + [`src/main/python/utilidades_cafe.py`](src/main/python/utilidades_cafe.py) | `contar_producto_en_tupla` (L66–L79), `actualizar_precio_producto` (L93–L110), `lista_tuplas_a_diccionario` (L116–L139), `cotizar_delivery_modular` (L145–L180) + módulo propio `utilidades_cafe.py` |
 | **Semana 15** | Clases, Objetos, Encapsulamiento, Herencia y Singleton | [`src/main/python/semana15_poo_herencia.py`](src/main/python/semana15_poo_herencia.py) | `ConfiguracionCafeExpress` (L29–L53), `ProductoCafe` (L59–L90), `Bebida` (L93–L114), `Postre` (L117–L130), `Sandwich` (L133–L145), `Persona` (L151–L159), `ClienteVIP` (L162–L176), `Barista` (L179–L191), `MonederoCafeExpress` (L197–L230), `PedidoPOO` (L236–L262) |
 | **Semana 16** | Introducción a la Ciencia de Datos con NumPy | [`src/main/python/semana16_ciencia_datos_numpy.py`](src/main/python/semana16_ciencia_datos_numpy.py) | `analizar_ventas_estadisticas` (L57–L97), `calcular_ingresos_algebra_lineal` (L103–L132), `limpiar_datos_faltantes_pos` (L138–L160), `simular_demanda_aleatoria` (L166–L182), `explorar_slicing_matriz` (L188–L208), `benchmark_lista_vs_numpy` (L214–L244) |
-| **Integración** | Catálogo, Consola y Servidor Web Python | [`main.py`](main.py), [`src/main/python/cafe_express.py`](src/main/python/cafe_express.py), [`src/main/python/servidor_python.py`](src/main/python/servidor_python.py), [`cafe_express_python.html`](cafe_express_python.html) | Punto de entrada `main.py`, ejecución consolidada en consola y servidor HTTP en puerto 8000 con API JSON para cada semana. |
+| **Integración** | Catálogo, Consola y Servidor Web Python | [`main.py`](main.py), [`src/main/python/cafe_express.py`](src/main/python/cafe_express.py), [`src/main/python/servidor_python.py`](src/main/python/servidor_python.py), [`cafe_express_python.html`](cafe_express_python.html) | Punto de entrada `main.py`, ejecución consolidada en consola y servidor HTTP en puerto 8080 con API JSON para cada semana. |
 
 ### Ejecución en Python (desde esta carpeta)
 * **Consola consolidada (Semanas 11 a 16):** `python main.py --consola`
 * **Consola interactiva con `input()`:** `python main.py --interactivo`
-* **Servidor Web Python (puerto 8000):** `python main.py` → http://localhost:8000/ (y vista clásica intacta en http://localhost:8000/clasico)
+* **Servidor Web Python (puerto 8080):** `python main.py` → http://localhost:8080/ (y vista clásica intacta en http://localhost:8080/clasico)
 
 ---
 
@@ -62,5 +62,5 @@ En el caso del cliente que escribe por WhatsApp:
 ## 🚀 4. Ejecución de los Módulos Previos (Prolog / HTML)
 
 * **Consola Prolog (Semanas 1 a 9):** `swipl src/main/prolog/cafe_express.pl`
-* **Servidor Web Prolog (puerto 8080):** `swipl main.pl` → http://localhost:8080 y http://localhost:8080/consulta
+* **Servidor Web Prolog (puerto 8080):** `swipl main.pl` → http://localhost:8080 y http://localhost:8080/consulta. No puede ejecutarse simultáneamente con el servidor Python, ya que ambos usan el mismo puerto de forma predeterminada.
 * **Interfaz Web Clásica:** Abrir [`index.html`](index.html)

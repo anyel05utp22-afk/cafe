@@ -9,7 +9,7 @@ Este proyecto unifica la base de **CaféExpress** con los aportes académicos co
 
 ---
 
-## 🛒 1. Nuevas Opciones Visibles en la Página Web (`http://localhost:8000/`)
+## 🛒 1. Nuevas Opciones Visibles en la Página Web (`http://localhost:8080/`)
 
 Al iniciar el servidor en Python (`python main.py`), la página principal ([`cafe_express_python.html`](cafe%20prolog%20copia/cafe_express_python.html)) conserva **todas** las opciones originales de CaféExpress (Menú de 12 productos, filtros, Carrito lateral, Recomendador por presupuesto, Alérgenos/Stock y Combos Especiales) y añade **6 nuevas opciones reales** para clientes y administración, todas ejecutadas por Python:
 
@@ -122,13 +122,15 @@ python main.py --consola
 python main.py --interactivo
 ```
 
-### Opción C: Servidor Web Interactivo en Python (`http://localhost:8000`)
+### Opción C: Servidor Web Interactivo en Python (`http://localhost:8080`)
 ```bash
 python main.py
 ```
 Luego abre en el navegador:
-* **Panel Multiparadigma Python (Semanas 11 a 16):** http://localhost:8000/
-* **Interfaz Clásica Original intacta (Semanas 6 a 9):** http://localhost:8000/clasico
+* **Panel Multiparadigma Python (Semanas 11 a 16):** http://localhost:8080/
+* **Interfaz Clásica Original intacta (Semanas 6 a 9):** http://localhost:8080/clasico
+
+> Python y Prolog usan el puerto 8080 de forma predeterminada; inicia solo uno a la vez. Para usar otro puerto con Python, ejecuta `python main.py --puerto 8001`.
 
 ---
 

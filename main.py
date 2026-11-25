@@ -4,7 +4,7 @@ Lanzador raíz de conveniencia para CaféExpress en Python (Semanas 11 a 16).
 Delega directamente a: cafe prolog copia/main.py
 
 Uso:
-  python main.py                -> Servidor web Python en http://localhost:8000
+  python main.py                -> Servidor web Python en http://localhost:8080
   python main.py --consola      -> Demostración completa en consola (Semanas 11-16)
   python main.py --interactivo  -> Consola interactiva con input()
 """

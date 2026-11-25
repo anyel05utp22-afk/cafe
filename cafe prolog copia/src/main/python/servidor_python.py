@@ -241,11 +241,11 @@ class CafeExpressPythonHandler(BaseHTTPRequestHandler):
         print(f"[CaféExpress Python] {self.address_string()} - {format_str % args}")
 
 
-def iniciar_servidor_python(puerto=8000):
+def iniciar_servidor_python(puerto=8080):
     servidor = ThreadingHTTPServer(("127.0.0.1", int(puerto)), CafeExpressPythonHandler)
-    print(f"\n  ☕ CaféExpress Python en ejecución: http://localhost:{puerto}")
-    print(f"     • Interfaz Multiparadigma (Sem 11-16): http://localhost:{puerto}/")
-    print(f"     • Interfaz Clásica Original intacta  : http://localhost:{puerto}/clasico")
+    print(f"\n  CafeExpress Python en ejecucion: http://localhost:{puerto}")
+    print(f"     - Interfaz Multiparadigma (Sem 11-16): http://localhost:{puerto}/")
+    print(f"     - Interfaz Clasica Original intacta  : http://localhost:{puerto}/clasico")
     print("     (presiona Ctrl+C para detener el servidor)\n")
     try:
         servidor.serve_forever()
@@ -256,4 +256,4 @@ def iniciar_servidor_python(puerto=8000):
 
 
 if __name__ == "__main__":
-    iniciar_servidor_python(8000)
+    iniciar_servidor_python(8080)

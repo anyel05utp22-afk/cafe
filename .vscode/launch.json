@@ -5,9 +5,21 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "type": "debugpy",
+            "request": "launch",
+            "name": "Iniciar CaféExpress Python (localhost:8080)",
+            "program": "${workspaceFolder}\\main.py",
+            "console": "integratedTerminal",
+            "serverReadyAction": {
+                "pattern": "CafeExpress Python en ejecucion: (https?://\\S+)",
+                "uriFormat": "%s",
+                "action": "openExternally"
+            }
+        },
+        {
             "type": "chrome",
             "request": "launch",
-            "name": "Iniciar Chrome para localhost",
+            "name": "Abrir Chrome en localhost:8080",
             "url": "http://localhost:8080",
             "webRoot": "${workspaceFolder}"
         }
