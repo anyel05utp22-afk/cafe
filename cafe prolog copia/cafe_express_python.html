@@ -79,11 +79,6 @@
     .nav-links a { color: rgba(255,255,255,0.78); text-decoration: none; font-size: 0.85rem; font-weight: 600; transition: var(--transition); }
     .nav-links a:hover, .nav-links a.active { color: #fff; }
     .nav-actions { display: flex; align-items: center; gap: 10px; }
-    .py-status {
-      font-size: 0.74rem; font-weight: 700; padding: 5px 11px; border-radius: 50px;
-      background: rgba(35, 120, 68, 0.25); color: #9cf2bc; border: 1px solid rgba(156,242,188,0.3);
-      white-space: nowrap;
-    }
     .cart-btn {
       background: linear-gradient(135deg, var(--gold-500), var(--gold-600)); color: #fff;
       border: none; border-radius: 50px; padding: 9px 20px; font-family: inherit;
@@ -161,16 +156,20 @@
     /* BARRA DE ACCESO RÁPIDO A TODAS LAS OPCIONES */
     .module-nav-bar {
       background: #fff; border-bottom: 1px solid var(--border-subtle);
-      padding: 12px clamp(16px, 4vw, 56px); display: flex; align-items: center; gap: 10px;
-      overflow-x: auto; scrollbar-width: none; box-shadow: var(--shadow-sm);
+      padding: 14px clamp(16px, 3vw, 36px); box-shadow: var(--shadow-sm);
     }
-    .module-nav-bar::-webkit-scrollbar { display: none; }
+    .module-nav-inner {
+      max-width: 1320px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: center;
+      flex-wrap: wrap; gap: 10px;
+    }
     .mod-tab {
-      display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 50px;
-      background: var(--cream-100); color: var(--text-main); font-size: 0.82rem; font-weight: 600;
-      text-decoration: none; white-space: nowrap; transition: var(--transition); border: 1px solid transparent;
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 8px 16px; border-radius: 50px;
+      background: var(--cream-100); color: var(--text-main); font-size: 0.83rem; font-weight: 600;
+      text-decoration: none; white-space: nowrap; transition: var(--transition);
+      border: 1px solid var(--border-subtle);
     }
-    .mod-tab.nuevo { background: var(--blue-bg); color: var(--blue-py); border-color: rgba(31,92,135,0.2); }
     .mod-tab:hover, .mod-tab.active { background: var(--cafe-900); color: #fff; border-color: var(--cafe-900); }
 
     /* CONTENEDOR PRINCIPAL */
@@ -416,9 +415,8 @@
   </ul>
 
   <div class="nav-actions">
-    <span class="py-status" id="py-status">● En línea</span>
     <button class="cart-btn" onclick="scrollToCart()">
-      <span>&#128722;</span> Mi pedido <span class="cart-count" id="cart-count">0</span>
+      Mi pedido <span class="cart-count" id="cart-count">0</span>
     </button>
   </div>
 </nav>
@@ -434,8 +432,8 @@
       <p>Pide desde nuestra carta artesanal, aplica cupones promocionales, personaliza tu bebida VIP, cotiza tu delivery en segundos, acumula puntos de fidelidad y explora la analítica en vivo.</p>
       <div class="hero-actions">
         <a href="#menu" class="btn-hero-primary">Explorar Menú &darr;</a>
-        <a href="#club-vip" class="btn-hero-secondary">&#128081; Personalizar Pedido VIP</a>
-        <a href="#delivery-precios" class="btn-hero-secondary">&#128757; Cotizar Delivery</a>
+        <a href="#club-vip" class="btn-hero-secondary">Personalizar Pedido VIP</a>
+        <a href="#delivery-precios" class="btn-hero-secondary">Cotizar Delivery</a>
       </div>
     </div>
     <div class="hero-logo-card">
@@ -465,17 +463,19 @@
   </div>
 </div>
 
-<!-- BARRA DE ACCESO RÁPIDO (OPCIONES ORIGINALES + 6 NUEVAS OPCIONES) -->
+<!-- BARRA DE ACCESO RÁPIDO -->
 <div class="module-nav-bar">
-  <a href="#menu" class="mod-tab active">&#9749; Menú &amp; Buscador</a>
-  <a href="#boleta-fidelidad" class="mod-tab nuevo">&#129534; Boleta &amp; Puntos</a>
-  <a href="#barra-vivo" class="mod-tab nuevo">&#128203; Barra en Vivo &amp; Armar Pedido</a>
-  <a href="#delivery-precios" class="mod-tab nuevo">&#128757; Delivery &amp; Precios</a>
-  <a href="#club-vip" class="mod-tab nuevo">&#128081; Club VIP &amp; Monedero</a>
-  <a href="#analitica" class="mod-tab nuevo">&#128202; Analítica Ventas</a>
-  <a href="#recomendador" class="mod-tab">&#128161; Según Presupuesto</a>
-  <a href="#consulta-rapida" class="mod-tab">&#128172; Alérgenos &amp; Stock</a>
-  <a href="#combos" class="mod-tab">&#127873; Combos Especiales</a>
+  <div class="module-nav-inner">
+    <a href="#menu" class="mod-tab active">Menú y Buscador</a>
+    <a href="#boleta-fidelidad" class="mod-tab">Boleta y Puntos</a>
+    <a href="#barra-vivo" class="mod-tab">Barra y Armar Pedido</a>
+    <a href="#delivery-precios" class="mod-tab">Delivery y Precios</a>
+    <a href="#club-vip" class="mod-tab">Club VIP y Monedero</a>
+    <a href="#analitica" class="mod-tab">Analítica Ventas</a>
+    <a href="#recomendador" class="mod-tab">Según Presupuesto</a>
+    <a href="#consulta-rapida" class="mod-tab">Alérgenos y Stock</a>
+    <a href="#combos" class="mod-tab">Combos Especiales</a>
+  </div>
 </div>
 
 <!-- CONTENEDOR PRINCIPAL -->
@@ -485,19 +485,19 @@
     <!-- SECCIÓN 1: MENÚ COMPLETO + NUEVO BUSCADOR INTELIGENTE (Semana 12) -->
     <section id="menu">
       <div class="section-header">
-        <div class="section-eyebrow">&#9749; Carta Artesanal</div>
+        <div class="section-eyebrow">Carta Artesanal</div>
         <h2 class="section-title">Nuestro Menú</h2>
         <p class="section-desc">Explora por categoría o escribe lo que te provoca en el buscador inteligente.</p>
       </div>
 
-      <!-- NUEVA OPCIÓN: BUSCADOR POR FRASE (Semana 12 - .split(), .lower(), operador 'in') -->
+      <!-- BUSCADOR POR FRASE -->
       <div class="search-bar-box">
         <div class="search-row">
           <input type="text" id="buscador-frase" class="search-input"
                  placeholder="Escribe qué te provoca: ej. 'Quiero algo de chocolate o café frío'..."
                  onkeydown="if(event.key==='Enter') ejecutarBuscadorMenu()">
           <button class="btn-hero-primary" style="padding:10px 20px; font-size:0.86rem;" onclick="ejecutarBuscadorMenu()">
-            &#128269; Buscar en el Menú
+            Buscar en el Menú
           </button>
           <button class="filtro-chip" onclick="limpiarBuscadorMenu()">Ver todos</button>
         </div>
@@ -508,9 +508,9 @@
 
       <div class="filtros-wrapper">
         <button class="filtro-chip activo" onclick="filtrarCategoria('todos', this)">Todo (12)</button>
-        <button class="filtro-chip" onclick="filtrarCategoria('bebida', this)">&#9749; Bebidas</button>
-        <button class="filtro-chip" onclick="filtrarCategoria('postre', this)">&#127856; Postres</button>
-        <button class="filtro-chip" onclick="filtrarCategoria('sandwich', this)">&#129386; Sándwiches</button>
+        <button class="filtro-chip" onclick="filtrarCategoria('bebida', this)">Bebidas</button>
+        <button class="filtro-chip" onclick="filtrarCategoria('postre', this)">Postres</button>
+        <button class="filtro-chip" onclick="filtrarCategoria('sandwich', this)">Sándwiches</button>
       </div>
 
       <div class="productos-grid" id="productos-grid"></div>
@@ -519,7 +519,7 @@
     <!-- NUEVA OPCIÓN 2: BOLETA DETALLADA, IGV Y PUNTOS DE FIDELIDAD (Semana 11) -->
     <section id="boleta-fidelidad" class="feature-section">
       <div class="section-header">
-        <div class="section-eyebrow">&#129534; Facturación &amp; Beneficios</div>
+        <div class="section-eyebrow">Facturación &amp; Beneficios</div>
         <h3 class="section-title">Calculadora de Boleta, IGV y Puntos de Fidelidad</h3>
         <p class="section-desc">Simula tu boleta con IGV (18%), descuento por cliente frecuente, puntos acumulados, bono por racha de visitas y empaques para llevar.</p>
       </div>
@@ -558,7 +558,7 @@
     <!-- NUEVA OPCIÓN 3: BARRA EN VIVO Y ARMADOR AUTOMÁTICO DE PEDIDO (Semana 13) -->
     <section id="barra-vivo" class="feature-section">
       <div class="section-header">
-        <div class="section-eyebrow">&#128203; Operaciones de Barra</div>
+        <div class="section-eyebrow">Operaciones de Barra</div>
         <h3 class="section-title">Cola de Preparación en Vivo y "Arma mi Pedido"</h3>
         <p class="section-desc">Gestiona los pedidos en barra (agregar, reemplazar, cancelar y despachar) o deja que el sistema arme automáticamente un pedido según tu presupuesto.</p>
       </div>
@@ -566,7 +566,7 @@
       <div class="two-col">
         <!-- Subpanel A: Cola en barra -->
         <div class="sub-panel">
-          <h4>&#9749; Cola de Preparación en Barra</h4>
+          <h4>Cola de Preparación en Barra</h4>
           <div class="form-group" style="margin-bottom:8px;">
             <label>Agregar nuevo pedido a la barra:</label>
             <div style="display:flex; gap:6px;">
@@ -589,7 +589,7 @@
 
         <!-- Subpanel B: Armador automático por presupuesto -->
         <div class="sub-panel">
-          <h4>&#128176; Arma mi Pedido Automático</h4>
+          <h4>Arma mi Pedido Automático</h4>
           <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:10px;">Indica cuánto deseas gastar y armaremos un pedido completo sin pasarte de tu presupuesto.</p>
           <div style="display:flex; gap:8px; align-items:center; margin-bottom:12px;">
             <input id="s13-presupuesto" type="number" min="10" max="120" step="5" value="35" class="form-control" style="max-width:120px;">
@@ -603,7 +603,7 @@
     <!-- NUEVA OPCIÓN 4: COTIZADOR DE DELIVERY Y GESTOR DE PRECIOS (Semana 14) -->
     <section id="delivery-precios" class="feature-section">
       <div class="section-header">
-        <div class="section-eyebrow">&#128757; Entregas &amp; Catálogo</div>
+        <div class="section-eyebrow">Entregas &amp; Catálogo</div>
         <h3 class="section-title">Cotizador de Delivery por Distrito y Precios del Día</h3>
         <p class="section-desc">Calcula distancia, tiempo estimado de entrega y costo de envío desde nuestra tienda central, revisa popularidad del turno y actualiza precios del menú.</p>
       </div>
@@ -611,7 +611,7 @@
       <div class="two-col">
         <!-- Delivery -->
         <div class="sub-panel">
-          <h4>&#128205; Cotizar Delivery a Domicilio</h4>
+          <h4>Cotizar Delivery a Domicilio</h4>
           <div class="form-group" style="margin-bottom:8px;">
             <label>Distrito de entrega (Lima):</label>
             <select id="s14-zona" class="form-control" onchange="ejecutarDeliveryYPrecios()">
@@ -638,7 +638,7 @@
 
         <!-- Popularidad y actualización de precio -->
         <div class="sub-panel">
-          <h4>&#127991; Popularidad del Turno y Ajuste de Precio</h4>
+          <h4>Popularidad del Turno y Ajuste de Precio</h4>
           <div class="form-group" style="margin-bottom:8px;">
             <label>Ver cuántas veces se vendió hoy:</label>
             <select id="s14-tupla-prod" class="form-control" onchange="ejecutarDeliveryYPrecios()">
@@ -666,7 +666,7 @@
     <!-- NUEVA OPCIÓN 5: CLUB VIP, PERSONALIZADOR Y MONEDERO DIGITAL (Semana 15) -->
     <section id="club-vip" class="feature-section">
       <div class="section-header">
-        <div class="section-eyebrow">&#128081; Experiencia Personalizada</div>
+        <div class="section-eyebrow">Experiencia Personalizada</div>
         <h3 class="section-title">Club CaféExpress VIP, Personalizador y Monedero Digital</h3>
         <p class="section-desc">Arma tu combo personalizado (tamaño de vaso, temperatura, postre sin lactosa y tipo de pan), obtén 15% de descuento VIP y págalo con tu Monedero Digital recargable.</p>
       </div>
@@ -716,7 +716,7 @@
       </div>
 
       <button class="btn-hero-primary" style="padding:10px 22px; font-size:0.88rem;" onclick="ejecutarClubVIP()">
-        &#128081; Simular Pedido VIP y Pagar con Monedero
+        Simular Pedido VIP y Pagar con Monedero
       </button>
 
       <div class="two-col" id="s15-out"></div>
@@ -725,7 +725,7 @@
     <!-- NUEVA OPCIÓN 6: PANEL DE ANALÍTICA DE VENTAS Y DEMANDA (Semana 16 - NumPy) -->
     <section id="analitica" class="feature-section">
       <div class="section-header">
-        <div class="section-eyebrow">&#128202; Inteligencia de Negocio</div>
+        <div class="section-eyebrow">Inteligencia de Negocio</div>
         <h3 class="section-title">Panel de Analítica de Ventas y Simulador de Demanda</h3>
         <p class="section-desc">Visualiza el desempeño semanal de CaféExpress, ingresos por día, corrección automática de fallos de caja (datos faltantes) y prueba de velocidad de procesamiento.</p>
       </div>
@@ -749,7 +749,7 @@
           </select>
         </div>
         <button class="btn-hero-primary" style="padding:10px 20px; font-size:0.86rem;" onclick="ejecutarAnaliticaNumpy()">
-          &#128200; Actualizar Analítica NumPy
+          Actualizar Analítica
         </button>
       </div>
 
@@ -766,7 +766,7 @@
     <!-- SECCIÓN ORIGINAL: ASISTENTE SEGÚN PRESUPUESTO (Semana 6) -->
     <section id="recomendador" class="feature-section">
       <div class="section-header">
-        <div class="section-eyebrow">&#128161; Sugerencias a tu Medida</div>
+        <div class="section-eyebrow">Sugerencias a tu Medida</div>
         <h3 class="section-title">¿Cuánto deseas gastar?</h3>
         <p class="section-desc">Ajusta tu presupuesto y te mostraremos de inmediato las opciones que se ajustan a ti.</p>
       </div>
@@ -791,13 +791,12 @@
     <!-- SECCIÓN ORIGINAL: CONSULTA RÁPIDA & ALÉRGENOS (Semana 7) -->
     <section id="consulta-rapida" class="feature-section">
       <div class="section-header">
-        <div class="section-eyebrow">&#128172; Atención Personalizada</div>
+        <div class="section-eyebrow">Atención Personalizada</div>
         <h3 class="section-title">Consulta Rápida &amp; Alérgenos</h3>
         <p class="section-desc">Personaliza tus preferencias para ver qué opciones no contienen ingredientes que deseas evitar y están listas en stock.</p>
       </div>
       <div class="wa-box">
         <div class="wa-bubble">
-          <span style="font-size:1.3rem;">&#128172;</span>
           <div>
             <strong>Pregunta frecuente:</strong><br>
             <span id="wa-pregunta-texto">"¿Tienen algo sin leche y de menos de S/ 10.00?"</span>
@@ -805,12 +804,12 @@
         </div>
         <label style="font-size:0.8rem; font-weight:700; color:var(--text-muted);">Marca ingredientes que deseas EXCLUIR:</label>
         <div class="chips-container">
-          <div class="allergen-chip selected" data-ing="leche" onclick="toggleAllergen(this)">&#129371; Sin leche</div>
-          <div class="allergen-chip" data-ing="harina" onclick="toggleAllergen(this)">&#127806; Sin harina</div>
-          <div class="allergen-chip" data-ing="huevo" onclick="toggleAllergen(this)">&#129370; Sin huevo</div>
-          <div class="allergen-chip" data-ing="chocolate" onclick="toggleAllergen(this)">&#127851; Sin chocolate</div>
-          <div class="allergen-chip" data-ing="pollo" onclick="toggleAllergen(this)">&#127831; Sin pollo</div>
-          <div class="allergen-chip" data-ing="queso" onclick="toggleAllergen(this)">&#129472; Sin queso</div>
+          <div class="allergen-chip selected" data-ing="leche" onclick="toggleAllergen(this)">Sin leche</div>
+          <div class="allergen-chip" data-ing="harina" onclick="toggleAllergen(this)">Sin harina</div>
+          <div class="allergen-chip" data-ing="huevo" onclick="toggleAllergen(this)">Sin huevo</div>
+          <div class="allergen-chip" data-ing="chocolate" onclick="toggleAllergen(this)">Sin chocolate</div>
+          <div class="allergen-chip" data-ing="pollo" onclick="toggleAllergen(this)">Sin pollo</div>
+          <div class="allergen-chip" data-ing="queso" onclick="toggleAllergen(this)">Sin queso</div>
         </div>
         <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
           <div>
@@ -824,7 +823,7 @@
       <div style="background:var(--cream-100); border-radius:14px; padding:16px; margin-top:18px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border:1px dashed var(--gold-500);">
         <div>
           <span style="font-size:0.74rem; font-weight:800; color:var(--gold-600); text-transform:uppercase;">Combo del Día:</span>
-          <div style="font-size:1rem; font-weight:800; color:var(--cafe-900);">&#9749; Café Americano + &#127856; Galleta / Keke</div>
+          <div style="font-size:1rem; font-weight:800; color:var(--cafe-900);">Café Americano + Galleta / Keke</div>
           <div style="font-size:0.8rem; color:var(--text-muted);">Precio habitual S/ 13.00 &bull; Con 10% de descuento: <strong style="color:var(--green-ok);">S/ 11.70</strong></div>
         </div>
         <button class="btn-hero-primary" style="padding:9px 16px; font-size:0.84rem;" onclick="agregarComboWhatsApp()">Añadir Combo (S/ 11.70)</button>
@@ -834,7 +833,7 @@
     <!-- SECCIÓN ORIGINAL: COMBOS RECOMENDADOS (Semana 9) -->
     <section id="combos" class="feature-section">
       <div class="section-header">
-        <div class="section-eyebrow">&#127873; Ahorro y Variedad</div>
+        <div class="section-eyebrow">Ahorro y Variedad</div>
         <h3 class="section-title">Combos Recomendados (Bebida + Postre)</h3>
         <p class="section-desc">Selecciona tu presupuesto y descubre las mejores combinaciones para disfrutar.</p>
       </div>
@@ -856,13 +855,12 @@
   <!-- PANEL LATERAL: CARRITO REACTIVO MEJORADO CON CUPONES Y ETIQUETA DE VASO (Semana 12) -->
   <aside class="carrito-panel" id="carrito-panel">
     <div class="carrito-header">
-      <h3><span>&#128722;</span> Mi Pedido</h3>
+      <h3>Mi Pedido</h3>
       <span style="font-size:0.78rem; background:rgba(255,255,255,0.2); padding:2px 9px; border-radius:50px;" id="cart-item-count">0 items</span>
     </div>
 
     <div class="carrito-items" id="carrito-items">
       <div class="carrito-vacio" id="carrito-vacio">
-        <div style="font-size:2.4rem; opacity:0.7;">&#9749;</div>
         <strong>Tu pedido está vacío</strong>
         <p style="font-size:0.8rem; margin-top:4px;">Elige tus bebidas o postres del menú.</p>
       </div>
@@ -903,7 +901,7 @@
       </div>
 
       <button class="btn-desc" id="btn-desc" onclick="aplicarDescuento()" disabled>
-        &#127991; Aplicar Descuento 10%
+        Aplicar Descuento 10%
       </button>
       <button class="btn-checkout" id="btn-checkout" onclick="confirmarPedido()" disabled>
         Confirmar Pedido &rarr;
@@ -914,7 +912,7 @@
 
 <!-- TOAST Y MODAL -->
 <div class="toast-box" id="toast">
-  <span>&#9989;</span> <span id="toast-msg">Mensaje</span>
+  <span id="toast-msg">Mensaje</span>
 </div>
 
 <div class="modal-overlay" id="modal-overlay" onclick="cerrarModal()">
@@ -1025,7 +1023,7 @@
       const filtrados = catalogo.filter(p => ids.has(p.id));
       renderMenu(filtrados);
       document.getElementById("buscador-meta").innerHTML = `
-        <span>&#128270; <strong>${data.busqueda.intencion}</strong> &bull; ${filtrados.length} resultado(s)</span>
+        <span><strong>${data.busqueda.intencion}</strong> &bull; ${filtrados.length} resultado(s)</span>
         <span>Palabras analizadas: <code>${data.busqueda.palabras_split.join(", ")}</code></span>
       `;
     } catch (e) {
@@ -1121,7 +1119,7 @@
           Despachado primero: <strong>${g.despachado_con_del}</strong>
         </div>
         <div class="queue-list">
-          ${g.recorrido_while.map(t => `<div class="queue-pill"><span>&#9749; ${t}</span><span class="badge-status disponible">En barra</span></div>`).join("")}
+          ${g.recorrido_while.map(t => `<div class="queue-pill"><span>${t}</span><span class="badge-status disponible">En barra</span></div>`).join("")}
         </div>
       `;
 
@@ -1226,9 +1224,9 @@
       const p = data.pedido, m = data.monedero_encapsulado;
       document.getElementById("s15-out").innerHTML = `
         <div class="sub-panel">
-          <h4>&#128081; Tu Pedido VIP Personalizado</h4>
+          <h4>Tu Pedido VIP Personalizado</h4>
           <p style="font-size:0.82rem; color:var(--text-muted); margin-bottom:8px;">${p.saludo_cliente}</p>
-          <p style="font-size:0.82rem; color:var(--gold-600); font-weight:700; margin-bottom:10px;">&#9749; ${data.accion_barista}</p>
+          <p style="font-size:0.82rem; color:var(--gold-600); font-weight:700; margin-bottom:10px;">${data.accion_barista}</p>
           <div class="queue-list">
             ${p.items.map(i => `<div class="queue-pill"><span>${i.descripcion}</span><span class="badge-status disponible">${i.clase}</span></div>`).join("")}
           </div>
@@ -1237,7 +1235,7 @@
           </div>
         </div>
         <div class="sub-panel">
-          <h4>&#128179; Monedero Digital CaféExpress</h4>
+          <h4>Monedero Digital CaféExpress</h4>
           <div class="kpi-grid" style="margin-top:0;">
             <div class="kpi-card"><span class="kpi-label">Saldo Disponible</span><span class="kpi-val" style="color:var(--green-ok);">S/ ${m.saldo_final.toFixed(2)}</span><span class="kpi-sub">Pago: ${m.pago_realizado ? "Aprobado ✓" : "Saldo insuficiente"}</span></div>
             <div class="kpi-card"><span class="kpi-label">Puntos VIP</span><span class="kpi-val">${data.puntos_totales_vip} pts</span><span class="kpi-sub">+${data.puntos_ganados} pts en esta compra</span></div>
@@ -1301,13 +1299,13 @@
 
       document.getElementById("s16-extra").innerHTML = `
         <div class="sub-panel">
-          <h4>&#128295; Limpieza Automática de Caja (Datos Faltantes)</h4>
+          <h4>Limpieza Automática de Caja (Datos Faltantes)</h4>
           <p style="font-size:0.82rem; color:var(--text-muted);">Detectados <strong>${n.cantidad_nan_detectados}</strong> registros vacíos (NaN) e imputados con la media válida (<strong>S/ ${n.media_sin_nan}</strong>):</p>
           <p style="font-size:0.8rem; margin-top:6px;"><strong>Original:</strong> [${n.datos_originales.map(x => x === null ? "Faltante" : x).join(", ")}]</p>
           <p style="font-size:0.8rem; margin-top:4px; color:var(--green-ok);"><strong>Corregido:</strong> [${n.datos_imputados_sin_nan.join(", ")}]</p>
         </div>
         <div class="sub-panel">
-          <h4>&#127922; Proyección Aleatoria de Demanda (10 días)</h4>
+          <h4>Proyección Aleatoria de Demanda (10 días)</h4>
           <p style="font-size:0.82rem; color:var(--text-muted);">Escenario simulado: <strong>[${r.arreglo_10_ventas_1_a_100.join(", ")}]</strong></p>
           <p style="font-size:0.82rem; margin-top:6px;">Media proyectada: <strong>${r.media_muestra}</strong> &bull; Desviación estándar: <strong>${r.desviacion_estandar_muestra}</strong></p>
         </div>
@@ -1407,8 +1405,8 @@
         <div>
           <div class="combo-header"><span class="combo-pill">Combo Especial</span><strong>S/ ${c.total.toFixed(2)}</strong></div>
           <div class="combo-items">
-            <span>&#9749; ${c.bebida.nombre} (S/ ${c.bebida.precio.toFixed(2)})</span>
-            <span>&#127856; ${c.postre.nombre} (S/ ${c.postre.precio.toFixed(2)})</span>
+            <span>${c.bebida.nombre} (S/ ${c.bebida.precio.toFixed(2)})</span>
+            <span>${c.postre.nombre} (S/ ${c.postre.precio.toFixed(2)})</span>
           </div>
         </div>
         <button class="btn-checkout" style="padding:9px; font-size:0.84rem;" onclick="agregarComboComple(${c.bebida.id}, ${c.postre.id})">+ Agregar Combo</button>
@@ -1594,10 +1592,9 @@
     generarCombosIndeterminismo();
     actualizarCarrito();
 
-    // Conectar y cargar todas las opciones nuevas en Python
+    // Conectar y cargar todas las opciones dinámicas
     try {
       await fetch("/api/salud");
-      document.getElementById("py-status").textContent = "● En línea";
       await Promise.all([
         actualizarSaludoHora(),
         calcularBoletaFidelidad(),
@@ -1606,9 +1603,7 @@
         ejecutarClubVIP(),
         ejecutarAnaliticaNumpy()
       ]);
-    } catch (e) {
-      document.getElementById("py-status").textContent = "⚠ Inicia: python main.py";
-    }
+    } catch (e) {}
   });
 </script>
 </body>
